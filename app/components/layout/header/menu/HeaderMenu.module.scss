@@ -1,0 +1,27 @@
+.menu {
+	@apply flex items-center gap-10;
+
+	> nav {
+		@apply mx-auto;
+		> ul {
+			@apply flex items-center gap-10;
+			> li {
+				> a {
+					@apply relative text-white/50;
+
+					&::after {
+						content: '';
+						@apply absolute left-0 -bottom-3 h-0.5 w-0 bg-[#FFCC00] transition-all duration-300;
+					}
+
+					&:active:after {
+						@apply w-full;
+					}
+					&:hover {
+						@apply text-[#FFCC00] transition-all duration-100;
+					}
+				}
+			}
+		}
+	}
+}
