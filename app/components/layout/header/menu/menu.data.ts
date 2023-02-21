@@ -16,5 +16,9 @@ export const menu: IMenuLink[] = [
 	{
 		link: '/collection',
 		name: 'Collection',
+	},
+	{
+		link: '/streams',
+		name: 'Streams',
 	}
 ]

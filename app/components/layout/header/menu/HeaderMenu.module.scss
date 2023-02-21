@@ -1,13 +1,13 @@
 .menu {
-	@apply flex items-center gap-10;
+	@apply flex  gap-10 w-[70%];
 
 	> nav {
-		@apply mx-auto;
+		;
 		> ul {
-			@apply flex items-center gap-10;
+			@apply flex items-center  gap-12;
 			> li {
 				> a {
-					@apply relative text-white/50;
+					@apply text-[15px] relative text-white/50;
 
 					&::after {
 						content: '';

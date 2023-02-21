@@ -1,7 +1,7 @@
-import React from 'react'
+import HeaderSearch from '../search/HeaderSearch'
+import styles from './HeaderMenu.module.scss'
 import MenuItem from './menu-item/MenuItem'
 import { menu } from './menu.data'
-import styles from './HeaderMenu.module.scss'
 
 const HeaderMenu = () => {
 	return (
@@ -11,6 +11,7 @@ const HeaderMenu = () => {
 					{menu.map(item => (
 						<MenuItem key={item.link} item={item} />
 					))}
+					<HeaderSearch/>
 				</ul>
 			</nav>
 		</div>
