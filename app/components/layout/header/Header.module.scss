@@ -1,6 +1,6 @@
 .header {
-	@apply  items-center ;
-	padding-bottom: 25px;
+	@apply  items-center border-b border-white/5 ;
+	padding: 20px 30px;
 	display: flex;
 	justify-content: space-between;
 }

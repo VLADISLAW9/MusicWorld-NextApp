@@ -1,9 +1,10 @@
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { handleSearchStateAction } from '../store/search/hidden.search.slice'
+import { handleBlockActions } from '../store/slices/handleBlock.slice'
+
 
 const actions = {
-	...handleSearchStateAction
+	...handleBlockActions
 }
 
 export const useActions = () => {

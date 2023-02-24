@@ -1,27 +1,9 @@
 .menu {
-	@apply flex  gap-10 w-[70%];
+	@apply flex gap-10 w-[70%];
 
 	> nav {
-		;
 		> ul {
-			@apply flex items-center  gap-12;
-			> li {
-				> a {
-					@apply text-[15px] relative text-white/50;
-
-					&::after {
-						content: '';
-						@apply absolute left-0 -bottom-3 h-0.5 w-0 bg-[#FFCC00] transition-all duration-300;
-					}
-
-					&:active:after {
-						@apply w-full;
-					}
-					&:hover {
-						@apply text-[#FFCC00] transition-all duration-100;
-					}
-				}
-			}
+			@apply flex items-center gap-12;
 		}
 	}
 }

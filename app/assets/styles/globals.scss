@@ -15,3 +15,105 @@ body {
 	padding-left: 231px;
 	padding-right: 231px;
 }
+
+.linkActive {
+	@apply text-white;
+}
+
+.linkActive::after {
+	content: '';
+	@apply absolute left-0 -bottom-[30px] h-0.5 w-full bg-[#FFCC00] transition-all duration-300;
+}
+
+.linkActive::before {
+	content: '';
+	@apply absolute left-[50px] top-[9px]  h-1 w-1 rounded-full  bg-[#FFCC00] transition-all duration-300;
+}
+
+.blockActive::after {
+	content: '';
+	@apply absolute left-0 -bottom-2  h-0.5 w-full bg-[#FFCC00] transition-all duration-300;
+}
+
+/* .video-player-wrapper {
+	position: relative;
+	padding-bottom: 56.25%;
+	height: 0;
+}
+*/
+
+.rup__animation {
+	position: absolute;
+	width: calc(100% + 60px);
+	height: 580px;
+	top: -150px;
+	left: -30px;
+	z-index: 0;
+}
+
+.audio-animation,
+.audio-animation__fallback {
+	width: 100%;
+	height: 100%;
+}
+
+.audio-animation__fallback video {
+	height: 100%;
+	max-height: 100%;
+	max-width: 100%;
+	margin: 0 auto;
+	display: block;
+}
+
+.audio-animation {
+	position: relative;
+}
+
+.audio-animation__fallback-fade {
+	width: 0;
+	height: 592px;
+	position: absolute;
+	top: 0;
+	left: 0;
+	left: 407px;
+	width: 631px;
+}
+
+.audio-animation__fade-top {
+	position: absolute;
+	background: linear-gradient(#181818, rgba(24, 24, 24, 0));
+	top: 0;
+	width: 100%;
+	height: 100px;
+}
+
+.audio-animation__fade-bottom {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	height: 100px;
+	background: linear-gradient(rgba(24, 24, 24, 0), #181818);
+}
+
+.audio-animation__fallback-fade-left {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100px;
+	height: 110%;
+	background: linear-gradient(90deg, #181818, rgba(24, 24, 24, 0));
+}
+
+.audio-animation__fallback-fade-right {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 100px;
+	height: 100%;
+	background: linear-gradient(90deg, rgba(24, 24, 24, 0), #181818);
+}
+
+.video-react-control-bar,
+.video-react-big-play-button {
+	display: none;
+}

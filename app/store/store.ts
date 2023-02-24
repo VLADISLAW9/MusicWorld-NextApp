@@ -1,12 +1,12 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
-import { handleSearchStateReducer } from './search/hidden.search.slice'
+import { handleBlockReducer } from './slices/handleBlock.slice'
 
 export const store = configureStore({
 	reducer: {
-		handleSearchState: handleSearchStateReducer,
+		handleBlock: handleBlockReducer,
 	},
-	middleware: getDefaultMiddleware => getDefaultMiddleware(),
+	middleware: getDefaultMiddleware => getDefaultMiddleware()
 })
 
 setupListeners(store.dispatch)
