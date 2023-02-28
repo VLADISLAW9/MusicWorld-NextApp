@@ -5,8 +5,9 @@ import { FC } from 'react'
 
 const AllNewReleases: FC<IMusicProps> = ({newRelease}) => {
 	return (
-		<div className='relative'>
+		<div className='relative mt-28'>
 			<HomeListHeader
+			
 				header={'New releases'}
 				title={'New tracks, albums and compilations'}
 			/>

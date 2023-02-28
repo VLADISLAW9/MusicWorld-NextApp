@@ -4,7 +4,7 @@ import { BsChevronRight } from 'react-icons/bs'
 
 interface IHomeListHeader {
 	header: string
-	title: string
+	title?: string
 }
 
 const HomeListHeader: FC<IHomeListHeader> = ({ header, title }) => {
@@ -17,7 +17,7 @@ const HomeListHeader: FC<IHomeListHeader> = ({ header, title }) => {
 			onMouseLeave={() => {
 				setHover(false)
 			}}
-			className='mt-32 z-20 relative hover:cursor-pointer flex justify-between items-end'
+			className='z-20 relative hover:cursor-pointer flex justify-between items-end'
 		>
 			<div>
 				<h1
@@ -30,6 +30,7 @@ const HomeListHeader: FC<IHomeListHeader> = ({ header, title }) => {
 				</h1>
 				<p className='text-white/40 font-light'>{title}</p>
 			</div>
+
 			<div
 				className={cn(
 					'flex transition-colors',

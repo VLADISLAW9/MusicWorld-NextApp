@@ -1,14 +1,20 @@
 import HomeListHeader from '@/app/components/UI/HomeListHeader'
-import { fetchMusicById } from '@/app/services/music'
+import { IMusicProps } from '@/pages'
 import { FC } from 'react'
+import ChartItem from '../../../../../UI/ChartItem'
 
-const AllChart: FC = () => {
+const AllChart: FC<IMusicProps> = ({ newRelease }) => {
 	return (
-		<div className='relative'>
+		<div className='relative mt-28'>
 			<HomeListHeader
 				header={'Chart'}
 				title={'Tracks popular on Music World right now'}
 			/>
+			<ul className='mt-8 grid grid-rows-5 grid-flow-col gap-y-2 gap-x-10  '>
+				{newRelease?.map((track, index) => (
+					<ChartItem index={index} key={track._id} track={track} />
+				))}
+			</ul>
 		</div>
 	)
 }
