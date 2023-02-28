@@ -3,7 +3,11 @@ import { IMusicProps } from '@/pages'
 import { FC } from 'react'
 import ChartItem from '../../../../../UI/ChartItem'
 
-const AllChart: FC<IMusicProps> = ({ newRelease }) => {
+const AllChart: FC<IMusicProps> = ({ music }) => {
+	const musicChart = music?.sort((a, b) => b.rating - a.rating)
+
+	const data = musicChart?.slice(0,10)
+
 	return (
 		<div className='relative mt-28'>
 			<HomeListHeader
@@ -11,7 +15,7 @@ const AllChart: FC<IMusicProps> = ({ newRelease }) => {
 				title={'Tracks popular on Music World right now'}
 			/>
 			<ul className='mt-8 grid grid-rows-5 grid-flow-col gap-y-2 gap-x-10  '>
-				{newRelease?.map((track, index) => (
+				{data?.map((track, index) => (
 					<ChartItem index={index} key={track._id} track={track} />
 				))}
 			</ul>

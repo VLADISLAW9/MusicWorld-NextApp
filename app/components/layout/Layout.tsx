@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react'
+import { FC, PropsWithChildren } from 'react'
 import Footer from './footer/Footer'
 import Header from './header/Header'
 import styles from './Layout.module.scss'
@@ -9,7 +9,7 @@ const Layout: FC<PropsWithChildren> = ({ children }) => {
 	return (
 		<div className={styles.layout}>
 			<Header />
-			<section>{children}</section>
+			<section className='content'>{children}</section>
 			<Footer />
 		</div>
 	)

@@ -1,25 +1,22 @@
 import Home from '@/app/components/screens/home/Home'
-import { getAllMusic, getNewReleases } from '@/app/services/music'
+import { getAllMusic } from '@/app/services/music'
 import { IMusic } from '@/app/types/IMusic'
 import { FC } from 'react'
 
 export interface IMusicProps {
 	music?: IMusic[]
-	newRelease?: IMusic[]
 }
 
-const HomePage: FC<IMusicProps> = ({ music, newRelease }) => {
-	
-	return <Home newRelease={newRelease} />
+const HomePage: FC<IMusicProps> = ({ music }) => {
+	return <Home music={music} />
 }
 
 export async function getStaticProps() {
 	const music = await getAllMusic()
-	const newRelease = await getNewReleases()
+
 	return {
 		props: {
-			music,
-			newRelease
+			music
 		}
 	}
 }

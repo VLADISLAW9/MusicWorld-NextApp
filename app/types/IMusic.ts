@@ -3,6 +3,7 @@ export interface IMusic {
 	name: string
 	release: number
 	author: string
+	rating: number
 	music: string
 	image: string
 }

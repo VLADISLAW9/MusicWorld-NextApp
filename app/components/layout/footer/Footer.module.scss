@@ -1,6 +1,7 @@
 .footer {
-	@apply  items-center border-t border-white/5 mt-28;
+	@apply items-center border-t border-white/5;
 	padding: 50px 30px;
 	display: flex;
+	margin-top: auto;
 	justify-content: space-between;
 }

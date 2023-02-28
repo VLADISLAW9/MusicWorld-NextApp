@@ -1,5 +1,11 @@
 .layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100vh;
 	background-color: #181818;
-	/* padding: 20px 30px; */
 	height: 100%;
+}
+
+.content {
+	flex: 1;
 }

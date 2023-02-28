@@ -5,10 +5,10 @@ import FooterTitle from './title/FooterTitle'
 
 const Footer: FC = () => {
 	return (
-		<div className={styles.footer}>
+		<footer className={styles.footer}>
 			<FooterLogo/>
 			<FooterTitle/>
-		</div>
+		</footer>
 	)
 }
 

@@ -5,13 +5,13 @@ import AllChart from './all__chart/AllChart'
 import AllNewReleases from './all__releases/AllNewReleases'
 import Listened from './listened/Listened'
 
-const All: FC<IMusicProps> = ({ newRelease }) => {
+const All: FC<IMusicProps> = ({ music }) => {
 	return (
 		<div>
 			<MyWave />
-			<AllNewReleases newRelease={newRelease} />
-			<AllChart newRelease={newRelease} />
-			<Listened newRelease= {newRelease}/>
+			<AllNewReleases music={music} />
+			<AllChart music={music} />
+			<Listened />
 		</div>
 	)
 }

@@ -24,7 +24,7 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 		>
 			<div className='flex items-center'>
 				<div className='flex flex-col '>
-					<h1 className='mr-3 text-white font-semibold'>{index + 1}</h1>
+					<h1 className='mr-3 w-4 text-white font-semibold'>{index + 1}</h1>
 					{index + 1 === 1 && (
 						<TbCrown className='w-5 h-5 -translate-x-[5px] text-[#FFCC00]' />
 					)}
