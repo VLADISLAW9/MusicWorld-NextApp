@@ -1,8 +1,8 @@
 import { FC } from 'react'
 import { BiPlay } from 'react-icons/bi'
-import Background from '../Background'
+import Background from './Background'
 
-const HomeAll: FC = () => {
+const MyWave: FC = () => {
 	return (
 		<div className='relative'>
 			<Background />
@@ -16,4 +16,4 @@ const HomeAll: FC = () => {
 	)
 }
 
-export default HomeAll
+export default MyWave
