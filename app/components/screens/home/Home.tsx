@@ -2,6 +2,7 @@ import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusicProps } from '@/pages'
 import { FC } from 'react'
 import Layout from '../../layout/Layout'
+import Player from '../../layout/player/Player'
 import All from './blocks/all/All'
 import Chart from './blocks/chart/Chart'
 import Mood from './blocks/mood/Mood'
@@ -17,10 +18,11 @@ const Home: FC<IMusicProps> = ({ music }) => {
 				<h1 className='text-5xl text-white font-bold'>Home</h1>
 				<HomeMenu />
 				{activeBlock === 'All' && <All music={music} />}
-				{activeBlock === 'NewReleases' && <NewReleases music ={music} />}
+				{activeBlock === 'NewReleases' && <NewReleases music={music} />}
 				{activeBlock === 'Chart' && <Chart music={music} />}
 				{activeBlock === 'Mood' && <Mood />}
 			</div>
+			<Player />
 		</Layout>
 	)
 }

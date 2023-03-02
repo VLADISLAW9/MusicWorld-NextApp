@@ -1,7 +1,9 @@
+import { useActions } from '@/app/hooks/actions.hook'
+import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
 import { CardMedia } from '@mui/material'
-import { FC, useState } from 'react'
-import { BsPlayFill } from 'react-icons/bs'
+import { FC, useEffect, useState } from 'react'
+import { BsPauseFill, BsPlayFill } from 'react-icons/bs'
 import { TbCrown } from 'react-icons/tb'
 
 interface IChartItem {
@@ -11,6 +13,41 @@ interface IChartItem {
 
 const ChartItem: FC<IChartItem> = ({ track, index }) => {
 	const [hover, setHover] = useState(false)
+	const { playTrack, pauseTrack, setActiveTrack } = useActions()
+	const { pause, active } = useAppSelector(state => state.player)
+	const [state, setState] = useState(false)
+
+	useEffect(() => {
+		if (active) {
+			if (track.name === active.name) {
+				setState(true)
+			} else {
+				setState(false)
+			}
+		}
+	}, [active])
+
+	useEffect(() => {
+		if (pause) {
+			setState(false)
+		} else {
+			setState(true)
+		}
+	}, [pause])
+
+	const play = (e: any) => {
+		e.stopPropagation()
+		setActiveTrack(track)
+		playTrack()
+		setState(true)
+	}
+
+	const stop = (e: any) => {
+		e.stopPropagation()
+		setActiveTrack(track)
+		pauseTrack()
+		setState(false)
+	}
 
 	return (
 		<li
@@ -38,12 +75,23 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 						alt='Paella dish'
 					/>
 					{hover && (
-						<button className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'>
-							<BsPlayFill
-								className='translate-x-px
+						<div>
+							{!state ? (
+								<button onClick={play} className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'>
+									<BsPlayFill
+										className='translate-x-px
 							'
-							/>
-						</button>
+									/>
+								</button>
+							) : (
+								<button onClick={stop}  className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'>
+									<BsPauseFill
+										className='translate-x-px
+							'
+									/>
+								</button>
+							)}
+						</div>
 					)}
 				</div>
 

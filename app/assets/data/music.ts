@@ -3,7 +3,8 @@ export const music = [
 		_id: 1,
 		name: 'Ich Mag Sie',
 		author: 'UncleFlexxx',
-		music: 'fad',
+		music:
+			'https://ruo.morsmusic.org/load/400641013/UncleFlexxx_-_Ich_Mag_Sie_(musmore.com).mp3',
 		rating: 9.8,
 		release: 2023,
 		image:
@@ -13,7 +14,8 @@ export const music = [
 		_id: 2,
 		name: 'Саша Белый',
 		author: 'DEAD BLONDE',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/721120442/DEAD_BLONDE_-_Sasha_Belyjj_(musmore.com).mp3',
 		rating: 9.6,
 		release: 2023,
 		image:
@@ -23,7 +25,7 @@ export const music = [
 		_id: 3,
 		name: 'УГОМОНИСЬ',
 		author: 'CMH',
-		music: 'fds',
+		music: '//mp3uks.ru/mp3/files/cmh-ugomonis-mp3.mp3',
 		rating: 9.0,
 		release: 2023,
 		image:
@@ -33,7 +35,8 @@ export const music = [
 		_id: 4,
 		name: 'MURDER PLOT',
 		author: 'Kordhell',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/629469171/Kordhell_-_MURDER_PLOT_(musmore.com).mp3',
 		rating: 8.0,
 		release: 2023,
 		image:
@@ -43,7 +46,8 @@ export const music = [
 		_id: 5,
 		name: 'ERRDAY',
 		author: 'Big Baby Tape',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/1167683432/Big_Baby_Tape_-_ERRDAY_(musmore.com).mp3',
 		rating: 7.0,
 		release: 2023,
 		image:
@@ -53,7 +57,8 @@ export const music = [
 		_id: 6,
 		name: 'Komarovo',
 		author: 'DVRST',
-		music: 'fds',
+		music:
+			'//mp3uks.ru/mp3/files/dvrst-igor-sklyar-atomic-heart-komarovo-dvrst-phonk-remix-mp3.mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -63,7 +68,7 @@ export const music = [
 		_id: 7,
 		name: 'Добро',
 		author: 'LIZER',
-		music: 'fds',
+		music: '//mp3uks.ru/mp3/files/lizer-dobro-mp3.mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -73,7 +78,8 @@ export const music = [
 		_id: 8,
 		name: 'Remedy',
 		author: 'Leony',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/1844412415/Leony_-_Remedy_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -83,7 +89,8 @@ export const music = [
 		_id: 9,
 		name: 'Айтишник',
 		author: 'нексюша',
-		music: 'fds',
+		music:
+			'https://gidmp3.ru/uploads/files/2022-06/1655431441_neksjusha-ajtishnik.mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -93,7 +100,8 @@ export const music = [
 		_id: 10,
 		name: 'Всего лишь друг',
 		author: 'DEAD BLONDE',
-		music: 'fds',
+		music:
+			'https://gidmp3.ru/uploads/files//2022-09/1664485815_dead-blonde-vsego-lish-drug.mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -103,7 +111,8 @@ export const music = [
 		_id: 11,
 		name: 'Carbon',
 		author: 'FindMyName',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/447310103/FindMyName_-_Carbon_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -113,7 +122,8 @@ export const music = [
 		_id: 12,
 		name: 'Baby mama',
 		author: 'Скриптонит',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/28227430/Skriptonit_Rajjda_-_Baby_mama_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -123,7 +133,8 @@ export const music = [
 		_id: 13,
 		name: 'Лето',
 		author: 'KYIVSTONER',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/615943240/KYIVSTONER_-_Leto_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -133,7 +144,8 @@ export const music = [
 		_id: 14,
 		name: 'Август',
 		author: 'Абрикоса',
-		music: 'fds',
+		music:
+			'fhttps://ruo.morsmusic.org/load/1277814492/Abrikosa_-_Avgust_(musmore.com).mp3ds',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -143,7 +155,8 @@ export const music = [
 		_id: 15,
 		name: 'Rave in the Grave',
 		author: 'REDZED',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/1464173735/REDZED_-_Rave_in_the_Grave_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -153,7 +166,8 @@ export const music = [
 		_id: 16,
 		name: 'Бла Бла	',
 		author: 'Мэйби Бэйби',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/866271867/MJEJJBI_BJEJJBI_-_Bla_Bla_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -163,7 +177,8 @@ export const music = [
 		_id: 17,
 		name: 'Отпускай',
 		author: 'Три дня дождя',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/1137834983/Tri_dnya_dozhdya_-_Otpuskajj_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -173,7 +188,8 @@ export const music = [
 		_id: 18,
 		name: 'Пластинки',
 		author: 'Дурной Вкус',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/2077190141/Durnojj_Vkus_-_Plastinki_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:
@@ -183,7 +199,8 @@ export const music = [
 		_id: 19,
 		name: 'Дворы',
 		author: 'Улица Восток',
-		music: 'fds',
+		music:
+			'https://ruo.morsmusic.org/load/757387417/Ulica_Vostok_-_Dvory_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
 		image:

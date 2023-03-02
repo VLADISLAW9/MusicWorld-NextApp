@@ -1,7 +1,10 @@
+import { useActions } from '@/app/hooks/actions.hook'
+import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
 import { CardMedia } from '@mui/material'
-import { FC, useState } from 'react'
-import { BsHeart, BsPlayFill, BsShare } from 'react-icons/bs'
+import { FC, useEffect, useState } from 'react'
+import { BiPause, BiPlay } from 'react-icons/bi'
+import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IMusicItem {
 	mus: IMusic
@@ -9,6 +12,41 @@ interface IMusicItem {
 
 const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	const [hover, setHover] = useState(false)
+	const { playTrack, pauseTrack, setActiveTrack } = useActions()
+	const { pause, active } = useAppSelector(state => state.player)
+	const [state, setState] = useState(false)
+
+	useEffect(() => {
+		if (active) {
+			if (mus.name === active.name) {
+				setState(true)
+			} else {
+				setState(false)
+			}
+		}
+	}, [active])
+
+	useEffect(() => {
+		if (pause) {
+			setState(false)
+		} else {
+			setState(true)
+		}
+	}, [pause])
+
+	const play = (e: any) => {
+		e.stopPropagation()
+		setActiveTrack(mus)
+		playTrack()
+		setState(true)
+	}
+
+	const stop = (e: any) => {
+		e.stopPropagation()
+		setActiveTrack(mus)
+		pauseTrack()
+		setState(false)
+	}
 
 	return (
 		<li
@@ -38,9 +76,21 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 						</button>
 					</li>
 					<li>
-						<button className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'>
-							<BsPlayFill className='w-6 h-6 translate-x-0.5' />
-						</button>
+						{!state ? (
+							<button
+								onClick={play}
+								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
+							>
+								<BiPlay className='w-6 h-6 translate-x-0.5' />
+							</button>
+						) : (
+							<button
+								onClick={stop}
+								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
+							>
+								<BiPause className='w-6 h-6 	' />
+							</button>
+						)}
 					</li>
 					<li>
 						<button className='bg-stone-800/95 p-3 scale-90 rounded-full text-white/50 hover:text-white hover:scale-100 transition-all hover:bg-stone-800'>

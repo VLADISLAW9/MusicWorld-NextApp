@@ -10,6 +10,7 @@
 }
 
 body {
+	position: relative;
 	background-color: #121212;
 	font-family: 'Open Sans', sans-serif;
 	padding-left: 231px;
@@ -116,4 +117,36 @@ body {
 .video-react-control-bar,
 .video-react-big-play-button {
 	display: none;
+}
+
+.bar {
+	position: fixed;
+	width: 100%;
+	bottom: 0;
+	margin: 0 auto;
+	max-width: 1440px;
+	z-index: 101;
+}
+
+.bar__content {
+	position: relative;
+}
+
+.progress {
+	position: absolute;
+	right: 0;
+	left: 0;
+	bottom: 76px;
+	height: 16px;
+	cursor: default;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+	cursor: pointer;
+}
+
+.controls {
+	@apply py-5 px-8;
+	background-color: rgba(24, 24, 24, 0.95);
 }
