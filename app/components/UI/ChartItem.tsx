@@ -20,20 +20,18 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 	useEffect(() => {
 		if (active) {
 			if (track.name === active.name) {
-				setState(true)
+				if (pause) {
+					setState(false)
+				} else {
+					setState(true)
+				}
 			} else {
 				setState(false)
 			}
-		}
-	}, [active])
-
-	useEffect(() => {
-		if (pause) {
-			setState(false)
 		} else {
-			setState(true)
+			setState(false)
 		}
-	}, [pause])
+	}, [active, pause])
 
 	const play = (e: any) => {
 		e.stopPropagation()
@@ -77,14 +75,20 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 					{hover && (
 						<div>
 							{!state ? (
-								<button onClick={play} className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'>
+								<button
+									onClick={play}
+									className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'
+								>
 									<BsPlayFill
 										className='translate-x-px
 							'
 									/>
 								</button>
 							) : (
-								<button onClick={stop}  className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'>
+								<button
+									onClick={stop}
+									className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'
+								>
 									<BsPauseFill
 										className='translate-x-px
 							'

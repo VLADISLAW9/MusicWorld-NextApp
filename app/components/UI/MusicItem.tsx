@@ -19,20 +19,18 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	useEffect(() => {
 		if (active) {
 			if (mus.name === active.name) {
-				setState(true)
+				if (pause) {
+					setState(false)
+				} else {
+					setState(true)
+				}
 			} else {
 				setState(false)
 			}
-		}
-	}, [active])
-
-	useEffect(() => {
-		if (pause) {
-			setState(false)
 		} else {
-			setState(true)
+			setState(false)
 		}
-	}, [pause])
+	}, [active, pause])
 
 	const play = (e: any) => {
 		e.stopPropagation()

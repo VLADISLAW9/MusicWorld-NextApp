@@ -68,6 +68,7 @@ const Player: FC = () => {
 		audio.volume = Number(e.target.value) / 100
 		setVolume(Number(e.target.value))
 	}
+
 	const changeCurrentTime = (e: React.ChangeEvent<HTMLInputElement>) => {
 		audio.currentTime = Number(e.target.value)
 		setCurrentTime(Number(e.target.value))
@@ -81,7 +82,7 @@ const Player: FC = () => {
 		<div className='bar'>
 			<div className='bar__content'>
 				<TrackProgress
-					absolyte={true}
+					absolute={true}
 					left={currentTime}
 					right={duration}
 					onChange={changeCurrentTime}
@@ -120,7 +121,7 @@ const Player: FC = () => {
 					<div className='flex'>
 						<BsVolumeUpFill className='w-7 h-7 text-[#757575] mr-3' />
 						<TrackProgress
-							absolyte={false}
+							absolute={false}
 							left={volume}
 							right={100}
 							onChange={changeVolume}

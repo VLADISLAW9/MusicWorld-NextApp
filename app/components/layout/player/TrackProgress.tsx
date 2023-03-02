@@ -4,19 +4,19 @@ interface TrackProgressProps {
 	left: number
 	right: number
 	onChange: (e: any) => void
-	absolyte: boolean
+	absolute: boolean
 }
 
 const TrackProgress: FC<TrackProgressProps> = ({
 	left,
 	right,
 	onChange,
-	absolyte
+	absolute
 }) => {
 	return (
 		<div className='flex'>
 			<input
-				className={absolyte ? 'progress' : ''}
+				className={absolute ? 'progress' : ''}
 				min={0}
 				max={right}
 				value={left}
