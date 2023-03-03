@@ -16,7 +16,7 @@ const TrackProgress: FC<TrackProgressProps> = ({
 	return (
 		<div className='flex'>
 			<input
-				className={absolute ? 'progress' : ''}
+				className={absolute ? 'progress bg-red-800' : ''}
 				min={0}
 				max={right}
 				value={left}

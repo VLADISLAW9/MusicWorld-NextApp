@@ -33,7 +33,7 @@ export const playerSlice = createSlice({
 			state.volume = action.payload
 		},
 		setDuration(state, action: PayloadAction<number>) {
-			state.currentTime = action.payload
+			state.duration = action.payload
 		},
 		setActiveTrack(state, action: PayloadAction<any>) {
 			state.active = action.payload

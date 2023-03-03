@@ -87,6 +87,7 @@ const Player: FC = () => {
 					right={duration}
 					onChange={changeCurrentTime}
 				/>
+
 				<div className='controls flex items-center justify-between'>
 					<div className='flex items-center'>
 						{pause ? (
