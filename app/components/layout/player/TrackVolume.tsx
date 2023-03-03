@@ -6,18 +6,21 @@ interface TrackProgressProps {
 	right: number
 	onChange: (e: any) => void
 	absolute: boolean
-	orientation: string
+	ref: any
 }
 
-const TrackProgress: FC<TrackProgressProps> = ({
+const TrackVolume: FC<TrackProgressProps> = ({
 	left,
 	right,
 	onChange,
-	absolute
+	absolute,
+	ref
 }) => {
 	return (
-		<div className='flex'>
+		<div className='flex z-50 absolute h-40 bottom-20 right-3 bg-[#222] px-1 py-5'>
 			<Slider
+				ref= {ref}
+				orientation='vertical'
 				className={absolute ? 'progress' : 'text-[#FFCC00]'}
 				min={0}
 				max={right}
@@ -28,4 +31,4 @@ const TrackProgress: FC<TrackProgressProps> = ({
 	)
 }
 
-export default TrackProgress
+export default TrackVolume

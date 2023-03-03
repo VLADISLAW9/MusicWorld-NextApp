@@ -10,6 +10,7 @@ const AllNewReleases: FC<IMusicProps> = ({ music }) => {
 	return (
 		<div className='relative mt-28'>
 			<HomeListHeader
+				link = {'NewReleases'}
 				header={'New releases'}
 				title={'New tracks, albums and compilations'}
 			/>

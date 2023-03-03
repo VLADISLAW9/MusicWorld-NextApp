@@ -132,12 +132,14 @@ body {
 	position: relative;
 }
 
-.progress {
+.progress {	
+	@apply rounded-none;
 	position: absolute;
 	right: 0;
 	left: 0;
+	color:#FFCC00 ;
 	bottom: 76px;
-	height: 16px;
+	height: 12px;
 	cursor: default;
 	-webkit-user-select: none;
 	-moz-user-select: none;

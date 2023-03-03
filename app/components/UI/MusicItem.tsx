@@ -34,13 +34,15 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 
 	const play = (e: any) => {
 		e.stopPropagation()
-		if (mus.name === active.name) {
-			playTrack()
-			setState(true)
+		if (active) {
+			if (mus.name === active.name) {
+				playTrack()
+				setState(true)
+			} else setActiveTrack(mus)
 		} else {
-			setActiveTrack(mus)
 			playTrack()
 			setState(true)
+			setActiveTrack(mus)
 		}
 	}
 

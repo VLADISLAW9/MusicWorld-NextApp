@@ -1,3 +1,4 @@
+import { useActions } from '@/app/hooks/actions.hook'
 import cn from 'clsx'
 import { FC, useState } from 'react'
 import { BsChevronRight } from 'react-icons/bs'
@@ -5,12 +6,20 @@ import { BsChevronRight } from 'react-icons/bs'
 interface IHomeListHeader {
 	header: string
 	title?: string
+	link: string
 }
 
-const HomeListHeader: FC<IHomeListHeader> = ({ header, title }) => {
+const HomeListHeader: FC<IHomeListHeader> = ({ header, title, link }) => {
 	const [hover, setHover] = useState(false)
+	const { handleBlock } = useActions()
+
+	const handleClick = () => {
+		handleBlock(link)
+		window.scrollTo(0, 0)
+	}
 	return (
 		<div
+			onClick={handleClick}
 			onMouseEnter={() => {
 				setHover(true)
 			}}

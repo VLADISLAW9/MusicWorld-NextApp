@@ -1,10 +1,12 @@
 import { useActions } from '@/app/hooks/actions.hook'
+import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { CardMedia } from '@mui/material'
+import { CardMedia, Slider } from '@mui/material'
 import { FC, useEffect } from 'react'
 import { BiPause, BiPlay, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
 import TrackProgress from './TrackProgress'
+import cn from 'clsx'
 
 let audio: any
 
@@ -12,6 +14,12 @@ const Player: FC = () => {
 	const { pause, volume, active, duration, currentTime } = useAppSelector(
 		state => state.player
 	)
+
+	const { isShow, setIsShow, ref } = useOutside(false)
+
+	const handleClick = () => {
+		setIsShow(!isShow)
+	}
 
 	const {
 		playTrack,
@@ -119,14 +127,27 @@ const Player: FC = () => {
 							<p className='text-sm font-light text-white'>{active?.author}</p>
 						</div>
 					</div>
-					<div className='flex'>
-						<BsVolumeUpFill className='w-7 h-7 text-[#757575] mr-3' />
-						<TrackProgress
-							absolute={false}
-							left={volume}
-							right={100}
-							onChange={changeVolume}
-						/>
+					<div className='flex relative'>
+						<button onClick={handleClick}>
+							<BsVolumeUpFill
+								className={
+									cn('hover:text-white transition-all w-7 h-7 text-[#757575] mr-3')
+								}
+							/>
+						</button>
+						{isShow && (
+							<div className='flex z-50 absolute h-44 shadow-2xl bottom-20 right-3 rounded-md bg-[#222] px-1 py-6'>
+								<Slider
+									className='text-[#FFCC00]'
+									ref={ref}
+									orientation='vertical'
+									min={0}
+									max={100}
+									value={volume}
+									onChange={changeVolume}
+								/>
+							</div>
+						)}
 					</div>
 				</div>
 			</div>

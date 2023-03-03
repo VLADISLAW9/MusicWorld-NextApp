@@ -35,10 +35,16 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 
 	const play = (e: any) => {
 		e.stopPropagation()
-		if (track.name === active.name) {
+		if (active) {
+			if (track.name === active.name) {
+				playTrack()
+				setState(true)
+			} else setActiveTrack(track)
+		} else {
 			playTrack()
 			setState(true)
-		} else setActiveTrack(track)
+			setActiveTrack(track)
+		}
 	}
 
 	const stop = (e: any) => {
