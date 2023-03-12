@@ -1,19 +1,24 @@
+import { IMusic } from '@/app/types/IMusic'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface PlayerState {
-	active: null | any
+	activeTrack: null | IMusic
+	activeMyWave: null | IMusic
 	currentTime: number
 	duration: number
 	volume: number
-	pause: boolean
+	stateTrack: boolean
+	stateMyWave: boolean
 }
 
 const initialState: PlayerState = {
-	active: null,
+	activeTrack: null,
+	activeMyWave: null,
 	currentTime: 0,
 	duration: 0,
 	volume: 100,
-	pause: true
+	stateTrack: false,
+	stateMyWave: false
 }
 
 export const playerSlice = createSlice({
@@ -21,10 +26,18 @@ export const playerSlice = createSlice({
 	initialState,
 	reducers: {
 		playTrack(state) {
-			state.pause = false
+			state.stateTrack = true
+			state.stateMyWave = false
 		},
 		pauseTrack(state) {
-			state.pause = true
+			state.stateTrack = false
+		},
+		playMyWave(state) {
+			state.stateMyWave = true
+			state.stateTrack = false
+		},
+		pauseMyWave(state) {
+			state.stateMyWave = false
 		},
 		setCurrentTime(state, action: PayloadAction<number>) {
 			state.currentTime = action.payload
@@ -36,7 +49,14 @@ export const playerSlice = createSlice({
 			state.duration = action.payload
 		},
 		setActiveTrack(state, action: PayloadAction<any>) {
-			state.active = action.payload
+			state.activeTrack = action.payload
+			state.activeMyWave = null
+			state.duration = 0
+			state.currentTime = 0
+		},
+		setActiveMyWave(state, action: PayloadAction<any>) {
+			state.activeMyWave = action.payload
+			state.activeTrack = null
 			state.duration = 0
 			state.currentTime = 0
 		}

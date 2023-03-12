@@ -2,18 +2,17 @@ import { useActions } from '@/app/hooks/actions.hook'
 import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { CardMedia, Slider } from '@mui/material'
+import cn from 'clsx'
 import { FC, useEffect } from 'react'
 import { BiPause, BiPlay, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
 import TrackProgress from './TrackProgress'
-import cn from 'clsx'
 
 let audio: any
 
 const Player: FC = () => {
-	const { pause, volume, active, duration, currentTime } = useAppSelector(
-		state => state.player
-	)
+	const { stateTrack, volume, activeTrack, duration, currentTime } =
+		useAppSelector(state => state.player)
 
 	const { isShow, setIsShow, ref } = useOutside(false)
 
@@ -37,10 +36,10 @@ const Player: FC = () => {
 			setAudio()
 			play()
 		}
-	}, [active])
+	}, [activeTrack])
 
 	const setAudio = () => {
-		if (active) {
+		if (activeTrack) {
 			audio.volume = volume / 100
 			audio.onloadedmetadata = () => {
 				setDuration(audio.duration)
@@ -48,19 +47,19 @@ const Player: FC = () => {
 			audio.ontimeupdate = () => {
 				setCurrentTime(audio.currentTime)
 			}
-			audio.src = active.music
+			audio.src = activeTrack.music
 		}
 	}
 
 	useEffect(() => {
-		if (!pause) {
+		if (stateTrack) {
 			playTrack()
 			audio.play()
 		} else {
 			pauseTrack()
 			audio.pause()
 		}
-	}, [pause])
+	}, [stateTrack])
 
 	const play = () => {
 		playTrack()
@@ -82,7 +81,7 @@ const Player: FC = () => {
 		setCurrentTime(Number(e.target.value))
 	}
 
-	if (!active) {
+	if (!activeTrack) {
 		return null
 	}
 
@@ -98,7 +97,7 @@ const Player: FC = () => {
 
 				<div className='controls flex items-center justify-between'>
 					<div className='flex items-center'>
-						{pause ? (
+						{!stateTrack ? (
 							<button onClick={play}>
 								<BiPlay className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 							</button>
@@ -117,22 +116,24 @@ const Player: FC = () => {
 							<CardMedia
 								component='img'
 								sx={{ height: 50, width: 50 }}
-								image={active.image}
+								image={activeTrack.image}
 							/>
 						</div>
 						<div className='ml-5'>
 							<h1 className='text-base font-semibold text-white'>
-								{active?.name}
+								{activeTrack?.name}
 							</h1>
-							<p className='text-sm font-light text-white'>{active?.author}</p>
+							<p className='text-sm font-light text-white'>
+								{activeTrack?.author}
+							</p>
 						</div>
 					</div>
 					<div className='flex relative'>
 						<button onClick={handleClick}>
 							<BsVolumeUpFill
-								className={
-									cn('hover:text-white transition-all w-7 h-7 text-[#757575] mr-3')
-								}
+								className={cn(
+									'hover:text-white transition-all w-7 h-7 text-[#757575] mr-3'
+								)}
 							/>
 						</button>
 						{isShow && (

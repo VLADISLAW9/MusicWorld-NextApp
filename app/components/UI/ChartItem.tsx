@@ -14,13 +14,13 @@ interface IChartItem {
 const ChartItem: FC<IChartItem> = ({ track, index }) => {
 	const [hover, setHover] = useState(false)
 	const { playTrack, pauseTrack, setActiveTrack } = useActions()
-	const { pause, active } = useAppSelector(state => state.player)
+	const { activeTrack, stateTrack } = useAppSelector(state => state.player)
 	const [state, setState] = useState(false)
 
 	useEffect(() => {
-		if (active) {
-			if (track.name === active.name) {
-				if (pause) {
+		if (activeTrack) {
+			if (track.name === activeTrack.name) {
+				if (!stateTrack) {
 					setState(false)
 				} else {
 					setState(true)
@@ -31,12 +31,12 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 		} else {
 			setState(false)
 		}
-	}, [active, pause])
+	}, [activeTrack, stateTrack])
 
 	const play = (e: any) => {
 		e.stopPropagation()
-		if (active) {
-			if (track.name === active.name) {
+		if (activeTrack) {
+			if (track.name === activeTrack.name) {
 				playTrack()
 				setState(true)
 			} else setActiveTrack(track)

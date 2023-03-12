@@ -13,13 +13,13 @@ interface IMusicItem {
 const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	const [hover, setHover] = useState(false)
 	const { playTrack, pauseTrack, setActiveTrack } = useActions()
-	const { pause, active } = useAppSelector(state => state.player)
+	const { stateTrack, activeTrack } = useAppSelector(state => state.player)
 	const [state, setState] = useState(false)
 
 	useEffect(() => {
-		if (active) {
-			if (mus.name === active.name) {
-				if (pause) {
+		if (activeTrack) {
+			if (mus.name === activeTrack.name) {
+				if (!stateTrack) {
 					setState(false)
 				} else {
 					setState(true)
@@ -30,12 +30,12 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 		} else {
 			setState(false)
 		}
-	}, [active, pause])
+	}, [activeTrack, stateTrack])
 
 	const play = (e: any) => {
 		e.stopPropagation()
-		if (active) {
-			if (mus.name === active.name) {
+		if (activeTrack) {
+			if (mus.name === activeTrack.name) {
 				playTrack()
 				setState(true)
 			} else setActiveTrack(mus)
@@ -51,7 +51,6 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 		pauseTrack()
 		setState(false)
 	}
-
 	return (
 		<li
 			onMouseEnter={() => setHover(true)}
