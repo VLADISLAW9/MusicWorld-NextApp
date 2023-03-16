@@ -4,7 +4,8 @@ import { IMusic } from '@/app/types/IMusic'
 import { FC } from 'react'
 
 export interface IMusicProps {
-	music?: IMusic[]
+	music: IMusic[]
+	
 }
 
 const HomePage: FC<IMusicProps> = ({ music }) => {

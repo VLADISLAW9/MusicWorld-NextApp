@@ -8,7 +8,7 @@ import Listened from './listened/Listened'
 const All: FC<IMusicProps> = ({ music }) => {
 	return (
 		<div>
-			<MyWave />
+			<MyWave music={music} />
 			<AllNewReleases music={music} />
 			<AllChart music={music} />
 			<Listened />

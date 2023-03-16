@@ -13,7 +13,10 @@ interface IMusicItem {
 const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	const [hover, setHover] = useState(false)
 	const { playTrack, pauseTrack, setActiveTrack } = useActions()
-	const { stateTrack, activeTrack } = useAppSelector(state => state.player)
+	const { stateTrack, activeTrack, stateMyWave } = useAppSelector(
+		state => state.player
+	)
+
 	const [state, setState] = useState(false)
 
 	useEffect(() => {
@@ -34,6 +37,7 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 
 	const play = (e: any) => {
 		e.stopPropagation()
+
 		if (activeTrack) {
 			if (mus.name === activeTrack.name) {
 				playTrack()

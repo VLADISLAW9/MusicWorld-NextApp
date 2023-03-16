@@ -61,8 +61,7 @@ export const music = [
 			'//mp3uks.ru/mp3/files/dvrst-igor-sklyar-atomic-heart-komarovo-dvrst-phonk-remix-mp3.mp3',
 		rating: 5.5,
 		release: 2023,
-		image:
-			'https://avatars.yandex.net/get-music-content/8096180/c9a5af59.a.24982188-1/200x200'
+		image: 'https://mp3.tj/img/song/b/2/7/30690.jpg'
 	},
 	{
 		_id: 7,
@@ -139,17 +138,6 @@ export const music = [
 		release: 2023,
 		image:
 			'https://avatars.yandex.net/get-music-content/192707/c9b955b3.a.5636305-1/200x200'
-	},
-	{
-		_id: 14,
-		name: 'Август',
-		author: 'Абрикоса',
-		music:
-			'fhttps://ruo.morsmusic.org/load/1277814492/Abrikosa_-_Avgust_(musmore.com).mp3ds',
-		rating: 5.5,
-		release: 2023,
-		image:
-			'https://avatars.yandex.net/get-music-content/6201394/c5615c9d.a.23312885-1/200x200'
 	},
 	{
 		_id: 15,

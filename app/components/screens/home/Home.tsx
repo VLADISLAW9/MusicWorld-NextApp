@@ -2,7 +2,7 @@ import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusicProps } from '@/pages'
 import { FC } from 'react'
 import Layout from '../../layout/Layout'
-import Player from '../../layout/player/Player'
+import Player from '../../UI/player/Player'
 import All from './blocks/all/All'
 import Chart from './blocks/chart/Chart'
 import Mood from './blocks/mood/Mood'
@@ -22,7 +22,7 @@ const Home: FC<IMusicProps> = ({ music }) => {
 				{activeBlock === 'Chart' && <Chart music={music} />}
 				{activeBlock === 'Mood' && <Mood />}
 			</div>
-			<Player />
+			<Player music={music} />
 		</Layout>
 	)
 }
