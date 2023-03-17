@@ -83,13 +83,17 @@ const Player: FC<IMusicProps> = ({ music }) => {
 					if (!listened.includes(activeMyWave)) {
 						addToListened(activeMyWave)
 					}
-					addToHistory(activeMyWave)
+					if (!historyMusic.includes(activeMyWave)) {
+						addToHistory(activeMyWave)
+					}
 					nextMusic()
 				} else if (activeTrack) {
 					if (!listened.includes(activeTrack)) {
 						addToListened(activeTrack)
 					}
-					addToHistory(activeTrack)
+					if (!historyMusic.includes(activeTrack)) {
+						addToHistory(activeTrack)
+					}
 					nextMusic()
 				}
 			}
@@ -131,7 +135,6 @@ const Player: FC<IMusicProps> = ({ music }) => {
 
 	const play_track = () => {
 		playTrack()
-
 		audio.play()
 	}
 
@@ -161,12 +164,30 @@ const Player: FC<IMusicProps> = ({ music }) => {
 
 	const prevMusic = () => {
 		if (historyMusic.length > 0) {
-			if (historyMusic.length - 1) {
+			if (historyMusic[1]) {
 				if (activeMyWave) {
-					setActiveMyWave(historyMusic[historyMusic.length - 2])
+					if (
+						historyMusic[historyMusic.findIndex(i => i === activeMyWave) - 1]
+					) {
+						setActiveMyWave(
+							historyMusic[historyMusic.findIndex(i => i === activeMyWave) - 1]
+						)
+					}
 				} else if (activeTrack) {
-					setActiveTrack(historyMusic[historyMusic.length - 1])
+					if (
+						historyMusic[historyMusic.findIndex(i => i === activeTrack) - 1]
+					) {
+						setActiveTrack(
+							historyMusic[historyMusic.findIndex(i => i === activeTrack) - 1]
+						)
+					}
 				}
+			}
+		} else {
+			if (activeMyWave) {
+				setActiveMyWave(activeMyWave)
+			} else if (activeTrack) {
+				setActiveTrack(activeTrack)
 			}
 		}
 	}

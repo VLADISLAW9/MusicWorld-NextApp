@@ -1,3 +1,4 @@
+import { useActions } from '@/app/hooks/actions.hook'
 import { FC } from 'react'
 import { IconType } from 'react-icons'
 
@@ -8,8 +9,10 @@ interface IMoodItemProps {
 }
 
 const MoodItem: FC<IMoodItemProps> = ({ genre, Icon, color }) => {
+	const { handleGenre } = useActions()
+
 	return (
-		<li className='cursor-pointer'>
+		<li onClick={() => handleGenre(genre)} className='cursor-pointer'>
 			<div
 				style={{ backgroundColor: color }}
 				className='w-[200px] h-[200px] flex flex-col justify-center items-center text-white'

@@ -7,6 +7,7 @@ export const music = [
 			'https://ruo.morsmusic.org/load/400641013/UncleFlexxx_-_Ich_Mag_Sie_(musmore.com).mp3',
 		rating: 9.8,
 		release: 2023,
+		genre: ['rap'],
 		image:
 			'https://avatars.yandex.net/get-music-content/5853241/3979a52f.a.24148123-1/200x200'
 	},

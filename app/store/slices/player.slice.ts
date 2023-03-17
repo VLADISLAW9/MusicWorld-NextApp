@@ -53,19 +53,25 @@ export const playerSlice = createSlice({
 		setActiveTrack(state, action: PayloadAction<IMusic>) {
 			state.activeMyWave = null
 			state.activeTrack = action.payload
-			state.historyMusic.push(action.payload)
+			if (!state.historyMusic.includes(action.payload)) {
+				state.historyMusic.push(action.payload)
+			}
 			state.duration = 0
 			state.currentTime = 0
 		},
 		setActiveMyWave(state, action: PayloadAction<IMusic>) {
 			state.activeTrack = null
 			state.activeMyWave = action.payload
-			state.historyMusic.push(action.payload)
+			if (!state.historyMusic.includes(action.payload)) {
+				state.historyMusic.push(action.payload)
+			}
 			state.duration = 0
 			state.currentTime = 0
 		},
 		addToHistory(state, action: PayloadAction<IMusic>) {
-			state.historyMusic.push(action.payload)
+			if (!state.historyMusic.includes(action.payload)) {
+				state.historyMusic.push(action.payload)
+			}
 		}
 	}
 })

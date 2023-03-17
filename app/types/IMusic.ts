@@ -6,4 +6,5 @@ export interface IMusic {
 	rating: number
 	music: string
 	image: string
+	genre: string[]
 }

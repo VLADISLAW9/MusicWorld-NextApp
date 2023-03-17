@@ -1,13 +1,15 @@
 import MoodItem from '@/app/components/UI/MoodItem'
+import { useAppSelector } from '@/app/hooks/selector.hook'
 import { FC } from 'react'
-import { GiMicrophone } from 'react-icons/gi'
+import { BsHeadphones } from 'react-icons/bs'
 import { CiLollipop } from 'react-icons/ci'
+import { GiGuitar, GiMicrophone } from 'react-icons/gi'
 import { MdAlbum } from 'react-icons/md'
 import { TbHandRock } from 'react-icons/tb'
-import { BsHeadphones } from 'react-icons/bs'
-import { GiGuitar } from 'react-icons/gi'
 
 const Mood: FC = () => {
+	const { activeGenre } = useAppSelector(state => state.handleGenre)
+
 	return (
 		<div>
 			<h1 className='text-white text-xl font-semibold'>
@@ -20,6 +22,9 @@ const Mood: FC = () => {
 				<MoodItem genre={'Rock'} Icon={TbHandRock} color={'#A002EF'} />
 				<MoodItem genre={'EDM'} Icon={BsHeadphones} color={'#016191'} />
 				<MoodItem genre={'Metal'} Icon={GiGuitar} color={'#E3705D'} />
+			</ul>
+			<ul>
+				
 			</ul>
 		</div>
 	)
