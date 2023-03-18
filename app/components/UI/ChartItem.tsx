@@ -3,6 +3,7 @@ import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
 import { CardMedia } from '@mui/material'
 import { FC, useEffect, useState } from 'react'
+import { BiHeart } from 'react-icons/bi'
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs'
 import { TbCrown } from 'react-icons/tb'
 
@@ -13,9 +14,11 @@ interface IChartItem {
 
 const ChartItem: FC<IChartItem> = ({ track, index }) => {
 	const [hover, setHover] = useState(false)
-	const { playTrack, pauseTrack, setActiveTrack } = useActions()
+	const { playTrack, pauseTrack, setActiveTrack, addToFav, removeToFav } =
+		useActions()
 	const { activeTrack, stateTrack } = useAppSelector(state => state.player)
 	const [state, setState] = useState(false)
+	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -100,6 +103,29 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 							'
 									/>
 								</button>
+							)}
+							{!favorites.includes(track) ? (
+								<>
+									<button
+										onClick={() => {
+											addToFav(track)
+										}}
+										className='absolute top-[11px] left-[34rem]'
+									>
+										<BiHeart className=' w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
+									</button>{' '}
+								</>
+							) : (
+								<>
+									<button
+										onClick={() => {
+											removeToFav(track)
+										}}
+										className='absolute top-[11px] left-[34rem] '
+									>
+										<BiHeart className=' w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
+									</button>
+								</>
 							)}
 						</div>
 					)}

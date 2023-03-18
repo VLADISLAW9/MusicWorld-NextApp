@@ -10,10 +10,6 @@ export const menu: IMenuLink[] = [
 		name: 'Podcasts and books',
 	},
 	{
-		link: '/kids',
-		name: 'Kids',
-	},
-	{
 		link: '/collection',
 		name: 'Collection',
 	},

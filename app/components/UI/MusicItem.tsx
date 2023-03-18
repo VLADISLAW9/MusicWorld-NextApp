@@ -12,10 +12,12 @@ interface IMusicItem {
 
 const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	const [hover, setHover] = useState(false)
-	const { playTrack, pauseTrack, setActiveTrack } = useActions()
+	const { playTrack, pauseTrack, setActiveTrack, addToFav, removeToFav } =
+		useActions()
 	const { stateTrack, activeTrack, stateMyWave } = useAppSelector(
 		state => state.player
 	)
+	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
 	const [state, setState] = useState(false)
 
@@ -75,12 +77,27 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 			{hover && (
 				<ul className='absolute flex items-center top-[75px] left-[15px] gap-3'>
 					<li>
-						<button
-							className='bg-stone-800/95 p-3 scale-90
+						{!favorites.includes(mus) ? (
+							<button
+								onClick={() => {
+									addToFav(mus)
+								}}
+								className='bg-stone-800/95 p-3 scale-90
 						rounded-full text-white/50 hover:text-white hover:scale-100 transition-all hover:bg-stone-800'
-						>
-							<BsHeart className='w-6 h-6' />
-						</button>
+							>
+								<BsHeart className='w-6 h-6' />
+							</button>
+						) : (
+							<button
+								onClick={() => {
+									removeToFav(mus)
+								}}
+								className='bg-stone-800/95 p-3 scale-90
+						rounded-full text-[#FFCC00] hover:text-[#FFCC00] hover:scale-100 transition-all hover:bg-stone-800'
+							>
+								<BsHeart className='w-6 h-6' />
+							</button>
+						)}
 					</li>
 					<li>
 						{!state ? (
