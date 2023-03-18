@@ -20,7 +20,7 @@ const Home: FC<IMusicProps> = ({ music }) => {
 				{activeBlock === 'All' && <All music={music} />}
 				{activeBlock === 'NewReleases' && <NewReleases music={music} />}
 				{activeBlock === 'Chart' && <Chart music={music} />}
-				{activeBlock === 'Mood' && <Mood />}
+				{activeBlock === 'Mood' && <Mood music={music} />}
 			</div>
 			<Player music={music} />
 		</Layout>
