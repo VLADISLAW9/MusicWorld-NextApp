@@ -5,13 +5,13 @@ import { FiSearch } from 'react-icons/fi'
 const HeaderSearch: FC = () => {
 	const { isShow, setIsShow, ref } = useOutside(false)
 
-	const handleClick = () => {
-		setIsShow(!isShow)
-	}
-
 	return (
 		<div>
-			<button onClick={handleClick}>
+			<button
+				onClick={() => {
+					setIsShow(!isShow)
+				}}
+			>
 				<FiSearch className='translate-y-1 w-5 h-5 text-white/50 hover:text-white transition-colors' />
 			</button>
 			{isShow && (

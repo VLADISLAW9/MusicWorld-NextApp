@@ -6,6 +6,7 @@ import { handleCollectionReducer } from './slices/handleBlock_collection.slice'
 import { handleGenreReducer } from './slices/handleGenre.slice'
 import { listenedSliceReducer } from './slices/listened.slice'
 import { playerReducer } from './slices/player.slice'
+import { playlistMenuReducer } from './slices/playlistMenu.slice'
 
 export const store = configureStore({
 	reducer: {
@@ -14,7 +15,8 @@ export const store = configureStore({
 		listened: listenedSliceReducer,
 		handleGenre: handleGenreReducer,
 		handleCollection: handleCollectionReducer,
-		favoritesSlice: favoritesSliceReducer
+		favoritesSlice: favoritesSliceReducer,
+		playlistMenu: playlistMenuReducer
 	},
 	middleware: getDefaultMiddleware => getDefaultMiddleware()
 })

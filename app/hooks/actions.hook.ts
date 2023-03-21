@@ -6,6 +6,7 @@ import { handleCollectionActions } from '../store/slices/handleBlock_collection.
 import { handleGenreActions } from '../store/slices/handleGenre.slice'
 import { listenedSliceAction } from '../store/slices/listened.slice'
 import { playerAction } from '../store/slices/player.slice'
+import { playlistMenuActions } from '../store/slices/playlistMenu.slice'
 
 const actions = {
 	...handleBlockActions,
@@ -13,7 +14,8 @@ const actions = {
 	...listenedSliceAction,
 	...handleGenreActions,
 	...handleCollectionActions,
-	...favoritesSliceActions
+	...favoritesSliceActions,
+	...playlistMenuActions
 }
 
 export const useActions = () => {

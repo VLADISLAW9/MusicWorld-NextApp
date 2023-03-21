@@ -48,7 +48,7 @@ const Player: FC<IMusicProps> = ({ music }) => {
 		addToListened,
 		addToHistory,
 		addToFav,
-		removeToFav
+		removeToFav,
 	} = useActions()
 
 	useEffect(() => {

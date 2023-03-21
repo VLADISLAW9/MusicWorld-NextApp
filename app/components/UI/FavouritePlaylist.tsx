@@ -1,3 +1,5 @@
+import { useActions } from '@/app/hooks/actions.hook'
+import { useAppSelector } from '@/app/hooks/selector.hook'
 import { FC, useState } from 'react'
 import { BiPause, BiPlay } from 'react-icons/bi'
 import { BsHeartFill } from 'react-icons/bs'
@@ -5,6 +7,13 @@ import { BsHeartFill } from 'react-icons/bs'
 const FavouritePlaylist: FC = () => {
 	const [hover, setHover] = useState(false)
 	const [state, setState] = useState(false)
+	const { activePlaylist, statePlaylistMenu } = useAppSelector(
+		state => state.playlistMenu
+	)
+
+	const { favorites } = useAppSelector(state => state.favoritesSlice)
+
+	const { openPlaylistMenu, closePlaylistMenu } = useActions()
 
 	const play = () => {
 		setState(true)
@@ -14,8 +23,17 @@ const FavouritePlaylist: FC = () => {
 		setState(false)
 	}
 
+	const openFavMenu = () => {
+		openPlaylistMenu({
+			_id: 3232,
+			name: 'Me like',
+			tracks: [...favorites]
+		})
+	}
+
 	return (
 		<li
+			onClick={openFavMenu}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => {
 				setHover(false)
