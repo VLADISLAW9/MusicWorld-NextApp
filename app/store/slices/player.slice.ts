@@ -2,6 +2,7 @@ import { IMusic } from '@/app/types/IMusic'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface PlayerState {
+	isPlaying: boolean
 	historyMusic: IMusic[]
 	activeTrack: null | IMusic
 	activeMyWave: null | IMusic
@@ -13,6 +14,7 @@ interface PlayerState {
 }
 
 const initialState: PlayerState = {
+	isPlaying: false,
 	historyMusic: [],
 	activeTrack: null,
 	activeMyWave: null,
@@ -28,17 +30,21 @@ export const playerSlice = createSlice({
 	initialState,
 	reducers: {
 		playTrack(state) {
+			state.isPlaying = true
 			state.stateTrack = true
 			state.stateMyWave = false
 		},
 		pauseTrack(state) {
+			state.isPlaying = false
 			state.stateTrack = false
 		},
 		playMyWave(state) {
+			state.isPlaying = true
 			state.stateMyWave = true
 			state.stateTrack = false
 		},
 		pauseMyWave(state) {
+			state.isPlaying = false
 			state.stateMyWave = false
 		},
 		setCurrentTime(state, action: PayloadAction<number>) {

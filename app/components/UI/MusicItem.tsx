@@ -19,7 +19,17 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
+	const [isFav, setIsFav] = useState(false)
+
 	const [state, setState] = useState(false)
+
+	console.log(favorites)
+
+	useEffect(() => {
+		if(favorites.includes(mus)){
+			setIsFav(true)
+		}
+	})
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -46,9 +56,9 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 				setState(true)
 			} else setActiveTrack(mus)
 		} else {
+			setActiveTrack(mus)
 			playTrack()
 			setState(true)
-			setActiveTrack(mus)
 		}
 	}
 
@@ -77,7 +87,7 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 			{hover && (
 				<ul className='absolute flex items-center top-[75px] left-[15px] gap-3'>
 					<li>
-						{!favorites.includes(mus) ? (
+						{!isFav ? (
 							<button
 								onClick={() => {
 									addToFav(mus)

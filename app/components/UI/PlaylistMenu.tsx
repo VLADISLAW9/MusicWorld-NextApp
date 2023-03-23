@@ -2,6 +2,7 @@ import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { FC } from 'react'
 import { MdClose } from 'react-icons/md'
+import PlaylistMenuItem from './PlaylistMenuItem'
 
 const PlaylistMenu: FC = () => {
 	const { closePlaylistMenu } = useActions()
@@ -16,12 +17,7 @@ const PlaylistMenu: FC = () => {
 			<h1 className='text-2xl text-white'>{activePlaylist?.name}</h1>
 			<ul className='mt-10'>
 				{activePlaylist?.tracks.map((i, index) => (
-					<div className='flex mb-3' key={i._id}>
-						<p className='text-white/50'>{index + 1}</p>
-						<h1 className='text-white ml-2'>
-							{i.name}  <span className='text-white/50'>- {i.author}</span>
-						</h1>
-					</div>
+					<PlaylistMenuItem key={i._id} i={i} index={index} />
 				))}
 			</ul>
 		</div>

@@ -4,14 +4,15 @@ import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusicProps } from '@/pages'
 import { CardMedia, Slider } from '@mui/material'
 import cn from 'clsx'
-import { FC, useEffect } from 'react'
+import { NextPage } from 'next'
+import { useEffect, useState } from 'react'
 import { BiHeart, BiPause, BiPlay, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
 import TrackProgress from './TrackProgress'
 
 let audio: any
 
-const Player: FC<IMusicProps> = ({ music }) => {
+const Player: NextPage<IMusicProps> = ({ music }) => {
 	const {
 		stateTrack,
 		stateMyWave,
@@ -25,6 +26,8 @@ const Player: FC<IMusicProps> = ({ music }) => {
 
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
+	const [isFav, setIsFav] = useState(false)
+
 	const { listened } = useAppSelector(state => state.listened)
 
 	const { isShow, setIsShow, ref } = useOutside(false)
@@ -32,8 +35,6 @@ const Player: FC<IMusicProps> = ({ music }) => {
 	const handleClick = () => {
 		setIsShow(!isShow)
 	}
-
-	console.log(favorites)
 
 	const {
 		pauseMyWave,
@@ -48,8 +49,30 @@ const Player: FC<IMusicProps> = ({ music }) => {
 		addToListened,
 		addToHistory,
 		addToFav,
-		removeToFav,
+		removeToFav
 	} = useActions()
+
+	useEffect(() => {
+		if (favorites.length > 0) {
+			if (activeTrack) {
+				for (let i = 0; i < favorites.length; i++) {
+					if (favorites[i].name === activeTrack.name) {
+						setIsFav(true)
+					} else {
+						setIsFav(false)
+					}
+				}
+			} else if (activeMyWave) {
+				for (let i = 0; i < favorites.length; i++) {
+					if (favorites[i].name === activeMyWave.name) {
+						setIsFav(true)
+					} else {
+						setIsFav(false)
+					}
+				}
+			}
+		}
+	})
 
 	useEffect(() => {
 		if (!audio) {
@@ -81,8 +104,6 @@ const Player: FC<IMusicProps> = ({ music }) => {
 			audio.src = activeMyWave.music
 		}
 	}
-
-	console.log(favorites)
 
 	useEffect(() => {
 		if (currentTime !== 0 && duration !== 0) {
@@ -257,7 +278,7 @@ const Player: FC<IMusicProps> = ({ music }) => {
 								</p>
 							</div>
 							<div className='ml-5'>
-								{!favorites.includes(activeTrack) ? (
+								{!isFav ? (
 									<>
 										<button
 											onClick={() => {
@@ -351,6 +372,29 @@ const Player: FC<IMusicProps> = ({ music }) => {
 								<p className='text-sm font-light text-white'>
 									{activeMyWave.author}
 								</p>
+							</div>
+							<div className='ml-5'>
+								{!isFav ? (
+									<>
+										<button
+											onClick={() => {
+												addToFav(activeTrack)
+											}}
+										>
+											<BiHeart className='w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
+										</button>{' '}
+									</>
+								) : (
+									<>
+										<button
+											onClick={() => {
+												removeToFav(activeTrack)
+											}}
+										>
+											<BiHeart className='w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
+										</button>
+									</>
+								)}
 							</div>
 						</div>
 						<div className='flex relative'>

@@ -1,4 +1,5 @@
 import { useAppSelector } from '@/app/hooks/selector.hook'
+import { IMusicProps } from '@/pages'
 import { Avatar } from '@mui/material'
 import { FC } from 'react'
 import Layout from '../../layout/Layout'
@@ -8,7 +9,7 @@ import Podcasts from './podcasts/Podcasts'
 import Story from './story/Story'
 import Tracks from './tracks/Tracks'
 
-const Collection: FC = () => {
+const Collection: FC<IMusicProps> = ({ music }) => {
 	const { activeCollection } = useAppSelector(state => state.handleCollection)
 
 	return (
