@@ -10,7 +10,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<Provider store={store}>
 			<Component {...pageProps} />
-			<Player music={music}/>
+			<Player music={music} />
 		</Provider>
 	)
 }

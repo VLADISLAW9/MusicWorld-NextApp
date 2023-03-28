@@ -1,5 +1,6 @@
 import { useDispatch } from 'react-redux'
 import { bindActionCreators } from 'redux'
+import { creatingPlaylistSliceActions } from '../store/slices/creatingPlaylistsArray'
 import { favoritesSliceActions } from '../store/slices/favourite.slice'
 import { handleBlockActions } from '../store/slices/handleBlock.slice'
 import { handleCollectionActions } from '../store/slices/handleBlock_collection.slice'
@@ -15,7 +16,8 @@ const actions = {
 	...handleGenreActions,
 	...handleCollectionActions,
 	...favoritesSliceActions,
-	...playlistMenuActions
+	...playlistMenuActions,
+	...creatingPlaylistSliceActions
 }
 
 export const useActions = () => {

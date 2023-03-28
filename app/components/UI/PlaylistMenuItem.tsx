@@ -7,13 +7,22 @@ import { BiHeart, BiPause, BiPlay } from 'react-icons/bi'
 interface IPlaylistMenuItem {
 	i: IMusic
 	index: number
+	favPlaylist?: boolean
 }
 
-const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i }) => {
-	const { playTrack, pauseTrack, setActiveTrack } = useActions()
+const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
+	const {
+		playTrack,
+		pauseTrack,
+		setActiveTrack,
+		removeToFav,
+		removeTrackFromPlaylist
+	} = useActions()
 	const { activeTrack, stateTrack } = useAppSelector(state => state.player)
 	const [hover, setHover] = useState(false)
 	const [musicState, setMusicState] = useState(false)
+	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
+	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -52,7 +61,13 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i }) => {
 		setMusicState(false)
 	}
 
-	const removeFav = () => {}
+	const removeTrack = () => {
+		if (favPlaylist) {
+			removeToFav(i)
+		} else {
+			removeTrackFromPlaylist(i)
+		}
+	}
 
 	return (
 		<div
@@ -89,7 +104,7 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i }) => {
 					)}
 
 					<button
-						onClick={removeFav}
+						onClick={removeTrack}
 						className='absolute right-10 text-[#FFCC00]'
 					>
 						<BiHeart className='w-5 h-5' />

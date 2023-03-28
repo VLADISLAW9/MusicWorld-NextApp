@@ -27,7 +27,7 @@ const FavouritePlaylist: FC = () => {
 		openPlaylistMenu({
 			_id: 3232,
 			name: 'Me like',
-			tracks: [...favorites]
+			tracks: favorites
 		})
 	}
 

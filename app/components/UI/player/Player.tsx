@@ -6,7 +6,7 @@ import { CardMedia, Slider } from '@mui/material'
 import cn from 'clsx'
 import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
-import { BiHeart, BiPause, BiPlay, BiSkipNext } from 'react-icons/bi'
+import { BiHeart, BiPause, BiPlay, BiPlus, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
 import TrackProgress from './TrackProgress'
 
@@ -30,11 +30,29 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 
 	const { listened } = useAppSelector(state => state.listened)
 
-	const { isShow, setIsShow, ref } = useOutside(false)
+	const {
+		isShow: isShowVol,
+		setIsShow: setIsShowVol,
+		ref: refVol
+	} = useOutside(false)
 
-	const handleClick = () => {
-		setIsShow(!isShow)
+	const {
+		isShow: isShowPlaylists,
+		setIsShow: setIsShowPlaylists,
+		ref: refPlaylists
+	} = useOutside(false)
+
+	const handleVol = () => {
+		setIsShowVol(!isShowVol)
 	}
+
+	const handlePlaylists = () => {
+		setIsShowPlaylists(!isShowPlaylists)
+	}
+
+	const { creatingPlaylistArray } = useAppSelector(
+		state => state.creatingPlaylist
+	)
 
 	const {
 		pauseMyWave,
@@ -221,6 +239,16 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		}
 	}
 
+	useEffect(() => {
+		if (activeMyWave) {
+			setIsFav(favorites.includes(activeMyWave))
+		}
+
+		if (activeTrack) {
+			setIsFav(favorites.includes(activeTrack))
+		}
+	}, [favorites])
+
 	const changeVolume = (e: React.ChangeEvent<HTMLInputElement>) => {
 		audio.volume = Number(e.target.value) / 100
 		setVolume(Number(e.target.value))
@@ -277,7 +305,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									{activeTrack?.author}
 								</p>
 							</div>
-							<div className='ml-5'>
+							<div className='ml-5 flex'>
 								{!isFav ? (
 									<>
 										<button
@@ -299,21 +327,54 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 										</button>
 									</>
 								)}
+								<div className='ml-3 mt-1.5 relative'>
+									<button onClick={handlePlaylists}>
+										<BiPlus className='w-7 h-7 mt-1.5  text-[#757575]' />
+									</button>
+									{isShowPlaylists && (
+										<div
+											className=' absolute bottom-14 -right-[85px] w-[200px] h-[240px] bg-[#222222]'
+											ref={refPlaylists}
+										>
+											<h1 className='px-2 py-2 text-[#636363] text-sm'>
+												Add music to playlist
+											</h1>
+											<ul>
+												<li
+													onClick={() => {
+														addToFav(activeTrack)
+													}}
+													className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
+												>
+													<h1 className='text-white ml-5'>Me like</h1>
+												</li>
+												{creatingPlaylistArray.map(playlist => (
+													<li
+														key={playlist._id}
+														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
+													>
+														<h1 className='text-white ml-5'>{playlist.name}</h1>
+													</li>
+												))}
+											</ul>
+										</div>
+									)}
+								</div>
 							</div>
 						</div>
 						<div className='flex relative'>
-							<button onClick={handleClick}>
+							<button onClick={handleVol}>
 								<BsVolumeUpFill
 									className={cn(
 										'hover:text-white transition-all w-7 h-7 text-[#757575] mr-3'
 									)}
 								/>
 							</button>
-							{isShow && (
+							{isShowVol && (
 								<div className='flex z-50 absolute h-44 shadow-2xl bottom-20 right-3 rounded-md bg-[#222] px-1 py-6'>
 									<Slider
 										className='text-[#FFCC00]'
-										ref={ref}
+										ref={refVol}
 										orientation='vertical'
 										min={0}
 										max={100}
@@ -398,18 +459,18 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 							</div>
 						</div>
 						<div className='flex relative'>
-							<button onClick={handleClick}>
+							<button onClick={handleVol}>
 								<BsVolumeUpFill
 									className={cn(
 										'hover:text-white transition-all w-7 h-7 text-[#757575] mr-3'
 									)}
 								/>
 							</button>
-							{isShow && (
+							{isShowVol && (
 								<div className='flex z-50 absolute h-44 shadow-2xl bottom-20 right-3 rounded-md bg-[#222] px-1 py-6'>
 									<Slider
 										className='text-[#FFCC00]'
-										ref={ref}
+										ref={refVol}
 										orientation='vertical'
 										min={0}
 										max={100}

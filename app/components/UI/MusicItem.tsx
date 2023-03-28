@@ -26,10 +26,8 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	console.log(favorites)
 
 	useEffect(() => {
-		if(favorites.includes(mus)){
-			setIsFav(true)
-		}
-	})
+		setIsFav(favorites.includes(mus))
+	},[favorites])
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -91,6 +89,7 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 							<button
 								onClick={() => {
 									addToFav(mus)
+									setIsFav(true)
 								}}
 								className='bg-stone-800/95 p-3 scale-90
 						rounded-full text-white/50 hover:text-white hover:scale-100 transition-all hover:bg-stone-800'
@@ -101,6 +100,7 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 							<button
 								onClick={() => {
 									removeToFav(mus)
+									setIsFav(false)
 								}}
 								className='bg-stone-800/95 p-3 scale-90
 						rounded-full text-[#FFCC00] hover:text-[#FFCC00] hover:scale-100 transition-all hover:bg-stone-800'

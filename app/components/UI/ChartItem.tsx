@@ -20,6 +20,8 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 	const [state, setState] = useState(false)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
+	const [isFav, setIsFav] = useState(false)
+
 	useEffect(() => {
 		if (activeTrack) {
 			if (track.name === activeTrack.name) {
@@ -104,7 +106,7 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 									/>
 								</button>
 							)}
-							{!favorites.includes(track) ? (
+							{!isFav ? (
 								<>
 									<button
 										onClick={() => {

@@ -1,3 +1,4 @@
+import { IMusic } from '@/app/types/IMusic'
 import { IPlaylist } from '@/app/types/IPlaylist'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
@@ -22,6 +23,9 @@ export const PlaylistMenuSlice = createSlice({
 		closePlaylistMenu(state) {
 			state.activePlaylist = null
 			state.statePlaylistMenu = false
+		},
+		removeTrackFromPlaylist(state, action: PayloadAction<IMusic>) {
+			state.activePlaylist?.tracks.filter(el => el._id !== action.payload._id)
 		}
 	}
 })

@@ -1,5 +1,6 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
+import { creatingPlaylistSliceReducer } from './slices/creatingPlaylistsArray'
 import { favoritesSliceReducer } from './slices/favourite.slice'
 import { handleBlockReducer } from './slices/handleBlock.slice'
 import { handleCollectionReducer } from './slices/handleBlock_collection.slice'
@@ -16,7 +17,8 @@ export const store = configureStore({
 		handleGenre: handleGenreReducer,
 		handleCollection: handleCollectionReducer,
 		favoritesSlice: favoritesSliceReducer,
-		playlistMenu: playlistMenuReducer
+		playlistMenu: playlistMenuReducer,
+		creatingPlaylist: creatingPlaylistSliceReducer
 	},
 	middleware: getDefaultMiddleware => getDefaultMiddleware()
 })

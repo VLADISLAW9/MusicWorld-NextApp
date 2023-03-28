@@ -17,7 +17,9 @@ export const favoritesSlice = createSlice({
 			state.favorites.push(action.payload)
 		},
 		removeToFav(state, action: PayloadAction<IMusic>) {
-			state.favorites = state.favorites.filter(i => i.name !== action.payload.name)
+			state.favorites = state.favorites.filter(
+				i => i._id !== action.payload._id
+			)
 		}
 	}
 })
