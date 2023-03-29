@@ -23,9 +23,6 @@ export const PlaylistMenuSlice = createSlice({
 		closePlaylistMenu(state) {
 			state.activePlaylist = null
 			state.statePlaylistMenu = false
-		},
-		removeTrackFromPlaylist(state, action: PayloadAction<IMusic>) {
-			state.activePlaylist?.tracks.filter(el => el._id !== action.payload._id)
 		}
 	}
 })

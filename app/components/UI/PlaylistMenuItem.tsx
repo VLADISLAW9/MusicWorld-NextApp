@@ -19,6 +19,9 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 		removeTrackFromPlaylist
 	} = useActions()
 	const { activeTrack, stateTrack } = useAppSelector(state => state.player)
+	const { creatingPlaylistArray } = useAppSelector(
+		state => state.creatingPlaylist
+	)
 	const [hover, setHover] = useState(false)
 	const [musicState, setMusicState] = useState(false)
 	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
@@ -64,8 +67,10 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 	const removeTrack = () => {
 		if (favPlaylist) {
 			removeToFav(i)
+			console.log('fav is working')
 		} else {
-			removeTrackFromPlaylist(i)
+			removeTrackFromPlaylist({ activePlaylist, i })
+			console.log('is working')
 		}
 	}
 

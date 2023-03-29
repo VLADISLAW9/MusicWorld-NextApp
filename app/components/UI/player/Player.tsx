@@ -8,6 +8,7 @@ import { NextPage } from 'next'
 import { useEffect, useState } from 'react'
 import { BiHeart, BiPause, BiPlay, BiPlus, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
+import AlertWindows from '../AlertWindows'
 import TrackProgress from './TrackProgress'
 
 let audio: any
@@ -240,6 +241,22 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		}
 	}
 
+	const [showAlert, setShowAlert] = useState(false)
+
+	const handleAlertWindows = () => {
+		setShowAlert(true)
+	}
+
+	useEffect(() => {
+		let timeoutId: any
+		if (showAlert) {
+			timeoutId = setTimeout(() => {
+				setShowAlert(false)
+			}, 2000)
+		}
+		return () => clearTimeout(timeoutId)
+	}, [showAlert])
+
 	useEffect(() => {
 		if (activeMyWave) {
 			setIsFav(favorites.includes(activeMyWave))
@@ -270,7 +287,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 						right={duration}
 						onChange={changeCurrentTime}
 					/>
-
+					{showAlert && <AlertWindows />}
 					<div className='controls flex items-center justify-between'>
 						<div className='flex items-center'>
 							<button onClick={prevMusic}>
@@ -343,7 +360,11 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 											<ul>
 												<li
 													onClick={() => {
-														addToFav(activeTrack)
+														setIsShowPlaylists(false)
+														if (!favorites.includes(activeTrack)) {
+															handleAlertWindows()
+															addToFav(activeTrack)
+														}
 													}}
 													className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
 												>
@@ -352,12 +373,23 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 												{creatingPlaylistArray.map((playlist, index) => (
 													<li
 														onClick={() => {
-															addTrackToPlaylist({ playlist, activeTrack })
+															setIsShowPlaylists(false)
+															if (
+																!creatingPlaylistArray
+																	.filter(el => el._id === playlist._id)
+																	.map(el => el.tracks)
+																	.includes(activeTrack)
+															) {
+																handleAlertWindows()
+																addTrackToPlaylist({ playlist, activeTrack })
+															}
 														}}
 														key={playlist._id}
 														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
 													>
-														<h1 className='text-white ml-5'>{playlist.name} {index + 1}</h1>
+														<h1 className='text-white ml-5'>
+															{playlist.name} {index + 1}
+														</h1>
 													</li>
 												))}
 											</ul>
@@ -430,7 +462,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									image={activeMyWave.image}
 								/>
 							</div>
-							<div className='ml-5'>
+							<div className='ml-5 '>
 								<h1 className='text-base font-semibold text-white'>
 									{activeMyWave.name}
 								</h1>
@@ -438,12 +470,12 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									{activeMyWave.author}
 								</p>
 							</div>
-							<div className='ml-5'>
+							<div className='ml-5 flex'>
 								{!isFav ? (
 									<>
 										<button
 											onClick={() => {
-												addToFav(activeTrack)
+												addToFav(activeMyWave)
 											}}
 										>
 											<BiHeart className='w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
@@ -453,13 +485,66 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									<>
 										<button
 											onClick={() => {
-												removeToFav(activeTrack)
+												removeToFav(activeMyWave)
 											}}
 										>
 											<BiHeart className='w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
 										</button>
 									</>
 								)}
+								<div className='ml-3 mt-1.5 relative'>
+									<button onClick={handlePlaylists}>
+										<BiPlus className='w-7 h-7 mt-1.5  text-[#757575]' />
+									</button>
+									{isShowPlaylists && (
+										<div
+											className=' absolute bottom-14 -right-[85px] w-[200px] h-[240px] bg-[#222222]'
+											ref={refPlaylists}
+										>
+											<h1 className='px-2 py-2 text-[#636363] text-sm'>
+												Add music to playlist
+											</h1>
+											<ul>
+												<li
+													onClick={() => {
+														setIsShowPlaylists(false)
+														if (!favorites.includes(activeMyWave)) {
+															handleAlertWindows()
+															addToFav(activeMyWave)
+														}
+													}}
+													className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
+												>
+													<h1 className='text-white ml-5'>Me like</h1>
+												</li>
+												{creatingPlaylistArray.map((playlist, index) => (
+													<li
+														onClick={() => {
+															setIsShowPlaylists(false)
+															if (
+																!creatingPlaylistArray
+																	.filter(el => el._id === playlist._id)[0]
+																	.tracks.includes(activeMyWave)
+															) {
+																handleAlertWindows()
+																addTrackToPlaylist({
+																	playlist,
+																	activeTrack: activeMyWave
+																})
+															}
+														}}
+														key={playlist._id}
+														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
+													>
+														<h1 className='text-white ml-5'>
+															{playlist.name} {index + 1}
+														</h1>
+													</li>
+												))}
+											</ul>
+										</div>
+									)}
+								</div>
 							</div>
 						</div>
 						<div className='flex relative'>

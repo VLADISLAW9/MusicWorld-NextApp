@@ -24,6 +24,16 @@ export const creatingPlaylistSlice = createSlice({
 			state.creatingPlaylistArray
 				.filter(el => el._id === playlist._id)
 				.map(pl => pl.tracks.push(music))
+		},
+		removeTrackFromPlaylist(state, action: PayloadAction<any>) {
+			const playlist: IPlaylist = action.payload.activePlaylist
+			const music: IMusic = action.payload.i
+
+			state.creatingPlaylistArray.filter(
+				pl => pl._id === playlist._id
+			)[0].tracks = state.creatingPlaylistArray
+				.filter(pl => pl._id === playlist._id)[0]
+				.tracks.filter(m => m._id !== music._id)
 		}
 	}
 })
