@@ -67,7 +67,8 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		addToListened,
 		addToHistory,
 		addToFav,
-		removeToFav
+		removeToFav,
+		addTrackToPlaylist
 	} = useActions()
 
 	useEffect(() => {
@@ -348,12 +349,15 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 												>
 													<h1 className='text-white ml-5'>Me like</h1>
 												</li>
-												{creatingPlaylistArray.map(playlist => (
+												{creatingPlaylistArray.map((playlist, index) => (
 													<li
+														onClick={() => {
+															addTrackToPlaylist({ playlist, activeTrack })
+														}}
 														key={playlist._id}
 														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
 													>
-														<h1 className='text-white ml-5'>{playlist.name}</h1>
+														<h1 className='text-white ml-5'>{playlist.name} {index + 1}</h1>
 													</li>
 												))}
 											</ul>

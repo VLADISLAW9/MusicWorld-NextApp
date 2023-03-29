@@ -23,7 +23,6 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 
 	const [state, setState] = useState(false)
 
-	console.log(favorites)
 
 	useEffect(() => {
 		setIsFav(favorites.includes(mus))

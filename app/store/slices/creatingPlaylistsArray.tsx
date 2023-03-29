@@ -17,11 +17,14 @@ export const creatingPlaylistSlice = createSlice({
 		createPlaylist(state, action: PayloadAction<IPlaylist>) {
 			state.creatingPlaylistArray.push(action.payload)
 		},
-		// addTrackToPlaylist(state, action: PayloadAction<IMusic | IPlaylist>) {
-		// 	state.creatingPlaylistArray.filter(
-		// 		playlist => playlist._id === action.payload._id
-		// 	).push(action.payload)
-		// }
+		addTrackToPlaylist(state, action: PayloadAction<any>) {
+			const playlist: IPlaylist = action.payload.playlist
+			const music: IMusic = action.payload.activeTrack
+
+			state.creatingPlaylistArray
+				.filter(el => el._id === playlist._id)
+				.map(pl => pl.tracks.push(music))
+		}
 	}
 })
 
