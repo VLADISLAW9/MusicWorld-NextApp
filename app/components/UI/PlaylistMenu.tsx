@@ -17,13 +17,13 @@ const PlaylistMenu: FC = () => {
 	)[0]?.tracks
 
 	return (
-		<div className='z-40 p-3 w-[400px] absolute top-24 bottom-48 bg-[#181818] right-[15rem]'>
+		<div className='z-40 p-3 PlaylistMenu absolute bg-[#181818]'>
 			<button onClick={() => closePlaylistMenu()} className='float-right'>
 				<MdClose className='w-6 h-6 text-[#ABABAB]' />
 			</button>
 			<h1 className='text-white/50 font-light '>PLAYLIST</h1>
 			<h1 className='text-2xl text-white'>{activePlaylist?.name}</h1>
-			<ul className='mt-10'>
+			<ul className='mt-10 overflow-y-scroll max-h-[400px] list-none'>
 				{activePlaylist?._id === 3232
 					? favorites.map((i, index) => (
 							<PlaylistMenuItem

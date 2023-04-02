@@ -17,6 +17,13 @@ body {
 	padding-right: 231px;
 }
 
+@media (max-width: 1900px) {
+	body {
+		padding-left: 50px;
+		padding-right: 50px;
+	}
+}
+
 .linkActive {
 	@apply text-white;
 }
@@ -28,7 +35,7 @@ body {
 
 .linkActive::before {
 	content: '';
-	@apply absolute left-[50px] top-[9px]  h-1 w-1 rounded-full  bg-[#FFCC00] transition-all duration-300;
+	@apply absolute -right-3 top-[9px]  h-1 w-1 rounded-full  bg-[#FFCC00] transition-all duration-300;
 }
 
 .blockActive::after {
@@ -128,16 +135,22 @@ body {
 	z-index: 101;
 }
 
+@media (max-width: 1980px) {
+	.bar {
+		max-width: (1440px - 20.5px);
+	}
+}
+
 .bar__content {
 	position: relative;
 }
 
-.progress {	
+.progress {
 	@apply rounded-none;
 	position: absolute;
 	right: 0;
 	left: 0;
-	color:#FFCC00 ;
+	color: #ffcc00;
 	bottom: 76px;
 	height: 12px;
 	cursor: default;
@@ -151,4 +164,20 @@ body {
 .controls {
 	@apply py-5 px-8;
 	background-color: rgba(24, 24, 24, 0.95);
+}
+
+.PlaylistMenu {
+	width: 30%;
+	right: 15rem;
+	top: 6rem;
+	height: (100% - 30%);
+}
+
+@media (max-width: 1900px) {
+	.PlaylistMenu {
+		width: 30%;
+		right: 4rem;
+		top: 6rem;
+		height: (100%-30%);
+	}
 }
