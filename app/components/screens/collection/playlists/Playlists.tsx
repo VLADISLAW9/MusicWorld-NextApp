@@ -24,7 +24,7 @@ const Playlists: FC = () => {
 				<FavouritePlaylist />
 				<CreatePlaylist />
 				{creatingPlaylistArray.map((playlist, index) => (
-					<PlaylistItem key={playlist._id} index={index} playlist={playlist} />
+					<PlaylistItem key={playlist._id} playlist={playlist} />
 				))}
 			</ul>
 		</div>

@@ -13,7 +13,7 @@ const CreatePlaylist: FC = () => {
 	const playlist_creator = () => {
 		createPlaylist({
 			_id: creatingPlaylistArray.length + 1,
-			name: 'New playlist',
+			name: 'New playlist ' + (creatingPlaylistArray.length + 1),
 			tracks: [],
 			BackgroundColor:
 				'#' +

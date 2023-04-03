@@ -279,7 +279,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 
 	if (activeTrack) {
 		return (
-			<div className='baTr'>
+			<div className='bar'>
 				<div className='bar__content'>
 					<TrackProgress
 						absolute={true}
