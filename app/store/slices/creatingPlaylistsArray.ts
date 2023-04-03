@@ -34,6 +34,14 @@ export const creatingPlaylistSlice = createSlice({
 			)[0].tracks = state.creatingPlaylistArray
 				.filter(pl => pl._id === playlist._id)[0]
 				.tracks.filter(m => m._id !== music._id)
+		},
+		renamePlaylistName(state, action: PayloadAction<any>) {
+			const newName: string = action.payload.newName
+			const currentPlaylist: IPlaylist = action.payload.playlist
+
+			state.creatingPlaylistArray.filter(
+				pl => pl._id === currentPlaylist._id
+			)[0].name = newName
 		}
 	}
 })

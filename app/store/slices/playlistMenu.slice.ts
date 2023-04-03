@@ -23,6 +23,13 @@ export const PlaylistMenuSlice = createSlice({
 		closePlaylistMenu(state) {
 			state.activePlaylist = null
 			state.statePlaylistMenu = false
+		},
+		renameActivePlaylist(state, action: PayloadAction<string>) {
+			const newName: string = action.payload
+
+			if (state.activePlaylist?.name) {
+				state.activePlaylist.name = newName
+			}
 		}
 	}
 })

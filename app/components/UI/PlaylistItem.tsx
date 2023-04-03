@@ -15,17 +15,33 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist, index }) => {
 	const [state, setState] = useState(false)
 	const { openPlaylistMenu } = useActions()
 	const { ref, isShow, setIsShow } = useOutside(false)
+	const { renamePlaylistName } = useActions()
 
-	const editPlaylistName = () => {
+	const openEditPlaylistName = () => {
 		setIsShow(true)
 	}
 
+	const editPlaylistName = (e: any) => {
+		e.preventDefault()
+		const newName = e.target.value
+		console.log(newName)
+		renamePlaylistName({ newName, playlist })
+	}
+
 	const openPlaylist = () => {
-		openPlaylistMenu({
-			_id: playlist._id,
-			name: playlist.name + ` ${index + 1}`,
-			tracks: playlist.tracks
-		})
+		if (playlist.name === 'New playlist') {
+			openPlaylistMenu({
+				_id: playlist._id,
+				name: playlist.name + ` ${index + 1}`,
+				tracks: playlist.tracks
+			})
+		} else {
+			openPlaylistMenu({
+				_id: playlist._id,
+				name: playlist.name,
+				tracks: playlist.tracks
+			})
+		}
 	}
 
 	return (
@@ -60,26 +76,28 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist, index }) => {
 									index + 1
 								}`}</h1>
 							) : (
-								<h1 className='mt-2 text-white font-light'>${playlist.name}</h1>
+								<h1 className='mt-2 text-white font-light'>{playlist.name}</h1>
 							)}
 						</>
 					) : (
-						<>
+						<form>
 							<input
 								type='text'
 								autoFocus
 								ref={ref}
+								onChange={editPlaylistName}
+								onSubmit={close}
 								placeholder='Type new name'
 								className='mt-2 placeholder:text-[14px] placeholder:text-white/50 outline-none border-b border-white/50 text-[14px] text-white  bg-[#181818]'
 							/>
-						</>
+						</form>
 					)}
 				</li>
 				{hover && (
 					<>
 						{!isShow ? (
 							<li
-								onClick={editPlaylistName}
+								onClick={openEditPlaylistName}
 								className='translate-y-[3px] ml-2 cursor-pointer'
 							>
 								<HiOutlinePencil className='w-4 h-4 text-white/50 hover:text-white' />
