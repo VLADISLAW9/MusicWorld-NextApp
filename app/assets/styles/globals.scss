@@ -160,6 +160,22 @@ body {
 	cursor: pointer;
 }
 
+.d-track__start-column{
+	flex: 0 0 40px;
+}
+
+.d-track__name{
+	flex: 1 1 25%;
+}
+
+.d-track__artist{
+	flex: 0 1 50%;
+}
+
+.d-track__moreinfo{
+	flex: 0 1 30%;
+}
+
 .controls {
 	@apply py-5 px-8;
 	background-color: rgba(24, 24, 24, 0.95);
