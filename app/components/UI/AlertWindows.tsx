@@ -10,7 +10,7 @@ const AlertWindows: FC = () => {
 		<div className='absolute  bottom-28 right-[620px] z-50'>
 			{open && (
 				<div>
-					<ul className='bg-[#585858] p-2 flex items-center  overflow-y-scroll max-h-[200px]'>
+					<ul className='bg-[#585858] p-2 flex items-center  '>
 						<li className='mr-3'>
 							<BsCheck2Circle className='w-5 h-5 text-white' />
 						</li>

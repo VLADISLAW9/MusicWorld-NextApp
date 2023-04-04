@@ -357,7 +357,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 											<h1 className='px-2 py-2 text-[#636363] text-sm'>
 												Add music to playlist
 											</h1>
-											<ul>
+											<ul className='overflow-y-scroll max-h-[350px]'>
 												<li
 													onClick={() => {
 														setIsShowPlaylists(false)
@@ -504,7 +504,13 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 											<h1 className='px-2 py-2 text-[#636363] text-sm'>
 												Add music to playlist
 											</h1>
-											<ul>
+											<ul
+												className={
+													creatingPlaylistArray.length > 4
+														? 'overflow-y-scroll max-h-[175px]'
+														: ''
+												}
+											>
 												<li
 													onClick={() => {
 														setIsShowPlaylists(false)
@@ -536,9 +542,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 														key={playlist._id}
 														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
 													>
-														<h1 className='text-white ml-5'>
-															{playlist.name} {index + 1}
-														</h1>
+														<h1 className='text-white ml-5'>{playlist.name}</h1>
 													</li>
 												))}
 											</ul>

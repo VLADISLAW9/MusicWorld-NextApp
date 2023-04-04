@@ -104,7 +104,7 @@ const CollectionTrackItem: FC<CollectionTrackProps> = ({ mus, index }) => {
 							<BsFillHeartFill
 								className={
 									isHover
-										? 'translate-y-1 w-5 h-5 text-[#FFCC00]'
+										? 'translate-y-1 w-5 h-5 text-[#FFCC00] hover:text-[#FFCC00]/50 transition-colors '
 										: 'translate-y-1 w-5 h-5 text-white/50'
 								}
 							/>

@@ -20,9 +20,13 @@ const PlaylistMenu: FC = () => {
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollTop = window.pageYOffset
-			if (scrollTop > 0 && !scrolled) {
+			console.log(scrollTop)
+			if (scrollTop > 80 && !scrolled) {
 				setScrolled(true)
 			} else if (scrollTop === 0 && scrolled) {
+				setScrolled(false)
+			} else if (scrollTop < 80 && scrolled) {
+				// добавляем новое условие
 				setScrolled(false)
 			}
 		}
