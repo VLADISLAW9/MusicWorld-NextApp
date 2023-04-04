@@ -61,7 +61,7 @@ const HomeMenu: FC = () => {
 						}}
 						className={cn(
 							'z-20 font-semibold relative hover:text-[#FFCC00] transition-colors',
-							activeBlock === 'Mood	'
+							activeBlock === 'Mood'
 								? 'text-white blockActive'
 								: 'text-white/50'
 						)}

@@ -42,6 +42,13 @@ export const creatingPlaylistSlice = createSlice({
 			state.creatingPlaylistArray.filter(
 				pl => pl._id === currentPlaylist._id
 			)[0].name = newName
+		},
+		deletePlaylist(state, action: PayloadAction<IPlaylist>) {
+			const playlist = action.payload
+
+			state.creatingPlaylistArray = state.creatingPlaylistArray.filter(
+				pl => pl._id !== playlist._id
+			)
 		}
 	}
 })

@@ -434,7 +434,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 						right={duration}
 						onChange={changeCurrentTime}
 					/>
-
+					{showAlert && <AlertWindows />}
 					<div className='controls flex items-center justify-between'>
 						<div className='flex items-center'>
 							<button onClick={prevMusic}>

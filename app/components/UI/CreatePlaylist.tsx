@@ -10,10 +10,26 @@ const CreatePlaylist: FC = () => {
 		state => state.creatingPlaylist
 	)
 
+	console.log(creatingPlaylistArray)
+
 	const playlist_creator = () => {
+		let random_id = Math.random() * 1000
+		let playlist_number = creatingPlaylistArray.length + 1
+		// Проверяем, что id уникален
+		while (creatingPlaylistArray.some(playlist => playlist._id === random_id)) {
+			random_id = Math.random() * 1000
+		}
+		// Проверяем, что имя уникально
+		let playlist_name = 'New playlist ' + playlist_number
+		while (
+			creatingPlaylistArray.some(playlist => playlist.name === playlist_name)
+		) {
+			playlist_number += 1
+			playlist_name = 'New playlist ' + playlist_number
+		}
 		createPlaylist({
-			_id: creatingPlaylistArray.length + 1,
-			name: 'New playlist ' + (creatingPlaylistArray.length + 1),
+			_id: random_id,
+			name: playlist_name,
 			tracks: [],
 			BackgroundColor:
 				'#' +

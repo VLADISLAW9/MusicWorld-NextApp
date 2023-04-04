@@ -1,10 +1,11 @@
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { FC } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { MdClose } from 'react-icons/md'
 import PlaylistMenuItem from './PlaylistMenuItem'
 
 const PlaylistMenu: FC = () => {
+	const [scrolled, setScrolled] = useState(false)
 	const { closePlaylistMenu } = useActions()
 	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
 	const { creatingPlaylistArray } = useAppSelector(
@@ -16,28 +17,64 @@ const PlaylistMenu: FC = () => {
 		pl => pl._id === activePlaylist?._id
 	)[0]?.tracks
 
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollTop = window.pageYOffset
+			if (scrollTop > 0 && !scrolled) {
+				setScrolled(true)
+			} else if (scrollTop === 0 && scrolled) {
+				setScrolled(false)
+			}
+		}
+		window.addEventListener('scroll', handleScroll)
+		return () => {
+			window.removeEventListener('scroll', handleScroll)
+		}
+	}, [scrolled])
+
 	return (
-		<div className='z-40 p-3 PlaylistMenu absolute bg-[#181818]'>
-			<button onClick={() => closePlaylistMenu()} className='float-right'>
-				<MdClose className='w-6 h-6 text-[#ABABAB]' />
-			</button>
-			<h1 className='text-white/50 font-light '>PLAYLIST</h1>
-			<h1 className='text-2xl text-white'>{activePlaylist?.name}</h1>
-			<ul className='mt-10 overflow-y-scroll max-h-[400px] list-none'>
-				{activePlaylist?._id === 3232
-					? favorites.map((i, index) => (
-							<PlaylistMenuItem
-								favPlaylist={true}
-								key={i._id}
-								i={i}
-								index={index}
-							/>
-					  ))
-					: currentPlaylist.map((i, index) => (
-							<PlaylistMenuItem key={i._id} i={i} index={index} />
-					  ))}
-				{}
-			</ul>
+		<div
+			className={
+				scrolled
+					? 'z-40 p-3 PlaylistMenu_fixed shadow-xl bg-[#181818]'
+					: 'z-40 p-3 PlaylistMenu  shadow-xl bg-[#181818]'
+			}
+		>
+			<div className=''>
+				<ul className='flex justify-between'>
+					<li>
+						<h1 className='text-white/50 font-light '>PLAYLIST</h1>
+						<h1 className='text-2xl text-white'>{activePlaylist?.name}</h1>
+					</li>
+					<li className=''>
+						<button onClick={() => closePlaylistMenu()} className=''>
+							<MdClose className='w-6 h-6 text-[#ABABAB]' />
+						</button>
+					</li>
+				</ul>
+
+				<ul
+					className={
+						currentPlaylist?.length > 9 || favorites.length > 9
+							? 'mt-10 overflow-y-scroll max-h-[550px] list-none'
+							: 'mt-10 list-none'
+					}
+				>
+					{activePlaylist?._id === 3232
+						? favorites.map((i, index) => (
+								<PlaylistMenuItem
+									favPlaylist={true}
+									key={i._id}
+									i={i}
+									index={index}
+								/>
+						  ))
+						: currentPlaylist.map((i, index) => (
+								<PlaylistMenuItem key={i._id} i={i} index={index} />
+						  ))}
+					{}
+				</ul>
+			</div>
 		</div>
 	)
 }

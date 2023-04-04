@@ -6,7 +6,7 @@ import { FC, useEffect, useState } from 'react'
 import { BiCheck } from 'react-icons/bi'
 import { BsMusicNoteList } from 'react-icons/bs'
 import { HiOutlinePencil } from 'react-icons/hi'
-import { MdClose } from 'react-icons/md'
+import { MdClose, MdDeleteOutline } from 'react-icons/md'
 
 interface PlaylistItemProps {
 	playlist: IPlaylist
@@ -17,7 +17,8 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist }) => {
 	const [state, setState] = useState(false)
 	const { openPlaylistMenu } = useActions()
 	const { ref, isShow, setIsShow } = useOutside(false)
-	const { renamePlaylistName, renameActivePlaylist } = useActions()
+	const { renamePlaylistName, renameActivePlaylist, deletePlaylist } =
+		useActions()
 	const [nameEditor, setNameEditor] = useState(playlist.name)
 	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
 
@@ -59,6 +60,10 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist }) => {
 				tracks: playlist.tracks
 			})
 		}
+	}
+
+	const deletePlaylistFromArray = () => {
+		deletePlaylist(playlist)
 	}
 
 	return (
@@ -114,7 +119,12 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist }) => {
 							>
 								<BiCheck className='w-7 h-7 text-white/50 hover:text-white transition-colors translate-y-1 ' />
 							</button>
-							<button onClick={() => {setIsShow(false)}} className='ml-1'>
+							<button
+								onClick={() => {
+									setIsShow(false)
+								}}
+								className='ml-1'
+							>
 								<MdClose className='w-6 h-6 text-white/50 hover:text-white transition-colors translate-y-[5px] ' />
 							</button>
 						</div>
@@ -123,12 +133,20 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist }) => {
 				{hover && (
 					<>
 						{!isShow ? (
-							<li
-								onClick={openEditPlaylistName}
-								className='translate-y-[4px] ml-3 cursor-pointer'
-							>
-								<HiOutlinePencil className='w-4 h-4 text-white/50 hover:text-white' />
-							</li>
+							<ul className='flex'>
+								<li
+									onClick={openEditPlaylistName}
+									className='translate-y-[4px] ml-3 cursor-pointer'
+								>
+									<HiOutlinePencil className='w-4 h-4 text-white/50 hover:text-white' />
+								</li>
+								<li
+									onClick={deletePlaylistFromArray}
+									className='translate-y-[4px] ml-2 cursor-pointer'
+								>
+									<MdDeleteOutline className='w-4 h-4 text-red-600/60 hover:text-red-600' />
+								</li>
+							</ul>
 						) : (
 							<></>
 						)}

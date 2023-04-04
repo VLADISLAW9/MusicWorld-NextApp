@@ -1,7 +1,8 @@
 .footer {
-	@apply items-center border-t border-white/5;
+	@apply items-center border-t bg-[#181818] border-white/5;
 	padding: 50px 30px;
 	display: flex;
 	margin-top: auto;
+	z-index: 90;
 	justify-content: space-between;
 }

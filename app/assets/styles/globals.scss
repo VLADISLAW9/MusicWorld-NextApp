@@ -136,7 +136,7 @@ body {
 	right: 0;
 	left: 0;
 	margin: 0 auto;
-	max-width: 1440px;
+	max-width: calc(100% - $fullhd_padding * 2);
 	z-index: 101;
 }
 
@@ -167,9 +167,19 @@ body {
 
 .PlaylistMenu {
 	width: 30%;
-	right: 15rem;
+	right: 14.5rem;
 	top: 6rem;
-	height: (100% - 30%);
+	height: calc(100% - 225px);
+	position: absolute;
+	z-index: 30;
+}
+
+.PlaylistMenu_fixed{
+	width: 30%;
+	right: 14.5rem;
+	top: 0rem;
+	height: 100vh;
+	position: fixed
 }
 
 @media (max-width: 1900px) {
@@ -178,5 +188,9 @@ body {
 		right: 4rem;
 		top: 6rem;
 		height: (100%-30%);
+	}
+
+	.bar {
+		max-width: calc(100% - $laptop_padding * 2);
 	}
 }

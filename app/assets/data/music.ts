@@ -38,12 +38,11 @@ export const music = [
 		_id: 4,
 		name: 'MURDER PLOT',
 		author: 'Kordhell',
-		genre: ['rap'],
 		music:
 			'https://ruo.morsmusic.org/load/629469171/Kordhell_-_MURDER_PLOT_(musmore.com).mp3',
 		rating: 8.0,
 		release: 2023,
-		genre: ['house'],
+		genre: ['house' , 'rap'],
 		image:
 			'https://avatars.yandex.net/get-music-content/5878680/d0357792.a.24407739-1/200x200'
 	},

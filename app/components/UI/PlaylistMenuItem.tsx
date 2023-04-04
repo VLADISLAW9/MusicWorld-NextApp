@@ -2,7 +2,8 @@ import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
 import { FC, useEffect, useState } from 'react'
-import { BiHeart, BiPause, BiPlay } from 'react-icons/bi'
+import { BiPause, BiPlay } from 'react-icons/bi'
+import { MdClose } from 'react-icons/md'
 
 interface IPlaylistMenuItem {
 	i: IMusic
@@ -82,7 +83,7 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 			onMouseLeave={() => {
 				setHover(false)
 			}}
-			className='hover:cursor-pointer relative p-2 flex mb-5'
+			className='hover:cursor-pointer relative p-2 ml-2 flex mb-5'
 			key={i._id}
 		>
 			<p className='text-white/50'>{index + 1}</p>
@@ -110,9 +111,9 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 
 					<button
 						onClick={removeTrack}
-						className='absolute right-10 text-[#FFCC00]'
+						className='absolute right-10 text-white/50 hover:text-white transition-colors'
 					>
-						<BiHeart className='w-5 h-5' />
+						<MdClose className='w-5 h-5' />
 					</button>
 				</div>
 			)}

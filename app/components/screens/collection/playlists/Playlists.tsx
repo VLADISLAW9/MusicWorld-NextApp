@@ -22,10 +22,10 @@ const Playlists: FC = () => {
 			{statePlaylistMenu && <PlaylistMenu />}
 			<ul className='grid grid-cols-6 mt-5 gap-8'>
 				<FavouritePlaylist />
-				<CreatePlaylist />
 				{creatingPlaylistArray.map((playlist, index) => (
 					<PlaylistItem key={playlist._id} playlist={playlist} />
 				))}
+				<CreatePlaylist />
 			</ul>
 		</div>
 	)
