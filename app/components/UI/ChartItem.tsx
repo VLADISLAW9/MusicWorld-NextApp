@@ -10,9 +10,10 @@ import { TbCrown } from 'react-icons/tb'
 interface IChartItem {
 	track: IMusic
 	index: number
+	hideCrown?: boolean
 }
 
-const ChartItem: FC<IChartItem> = ({ track, index }) => {
+const ChartItem: FC<IChartItem> = ({ track, index, hideCrown }) => {
 	const [hover, setHover] = useState(false)
 	const { playTrack, pauseTrack, setActiveTrack, addToFav, removeToFav } =
 		useActions()
@@ -69,13 +70,17 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 			className='px-2 py-1 border-2 cursor-pointer border-[#181818] hover:border-[#FFCC00] flex items-center justify-between'
 		>
 			<div className='flex items-center'>
-				<div className='flex flex-col '>
+				<div className='flex flex-col  '>
 					<h1 className='mr-3 w-4 text-white font-semibold'>{index + 1}</h1>
-					{index + 1 === 1 && (
-						<TbCrown className='w-5 h-5 -translate-x-[5px] text-[#FFCC00]' />
+					{!hideCrown && (
+						<>
+							{index + 1 === 1 && (
+								<TbCrown className='w-5 h-5 -translate-x-[5px] text-[#FFCC00]' />
+							)}
+						</>
 					)}
 				</div>
-				<div className='relative'>
+				<div className='relative flex items-center '>
 					<CardMedia
 						className={hover ? 'opacity-60' : ''}
 						component='img'
@@ -83,64 +88,67 @@ const ChartItem: FC<IChartItem> = ({ track, index }) => {
 						image={track.image}
 						alt='Paella dish'
 					/>
-					{hover && (
-						<div>
-							{!state ? (
-								<button
-									onClick={play}
-									className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'
-								>
-									<BsPlayFill
-										className='translate-x-px
-							'
-									/>
-								</button>
-							) : (
-								<button
-									onClick={stop}
-									className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'
-								>
-									<BsPauseFill
-										className='translate-x-px
-							'
-									/>
-								</button>
-							)}
-							{!isFav ? (
-								<>
-									<button
-										onClick={() => {
-											addToFav(track)
-										}}
-										className='absolute top-[11px] left-[34rem]'
-									>
-										<BiHeart className=' w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
-									</button>{' '}
-								</>
-							) : (
-								<>
-									<button
-										onClick={() => {
-											removeToFav(track)
-										}}
-										className='absolute top-[11px] left-[34rem] '
-									>
-										<BiHeart className=' w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
-									</button>
-								</>
-							)}
-						</div>
-					)}
-				</div>
 
-				<div className='ml-3'>
-					<h1 className='text-white text-base'>{track.name}</h1>
-					<p className='text-white/50 text-sm font-light'>{track.author}</p>
+					<div className='ml-3 w-44'>
+						<h1 className='text-white text-base'>{track.name}</h1>
+						<p className='text-white/50 text-sm font-light'>{track.author}</p>
+					</div>
+
+					<div className={!hover ? 'opacity-0' : ''}>
+						{!state ? (
+							<button
+								onClick={play}
+								className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'
+							>
+								<BsPlayFill
+									className='translate-x-px
+							'
+								/>
+							</button>
+						) : (
+							<button
+								onClick={stop}
+								className='absolute bg-[#FFCC00] rounded-full p-2 top-[12px] left-[10px] opacity-80 hover:opacity-100 transition-opacity'
+							>
+								<BsPauseFill
+									className='translate-x-px
+							'
+								/>
+							</button>
+						)}
+					</div>
 				</div>
 			</div>
 
-			<div className='flex'>
-				<h1 className='text-white/50 text-sm font-light'>1:40</h1>
+			<div className='flex items-center'>
+				<div className={hover ? '' : 'opacity-0'}>
+					{!isFav ? (
+						<>
+							<button
+								onClick={() => {
+									addToFav(track)
+									setIsFav(true)
+								}}
+								className=''
+							>
+								<BiHeart className=' w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
+							</button>{' '}
+						</>
+					) : (
+						<>
+							<button
+								onClick={() => {
+									removeToFav(track)
+									setIsFav(false)
+								}}
+								className=''
+							>
+								<BiHeart className=' w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
+							</button>
+						</>
+					)}
+				</div>
+				<h1 className='text-white/50 ml-5 text-sm font-light'>1:40</h1>
 			</div>
 		</li>
 	)

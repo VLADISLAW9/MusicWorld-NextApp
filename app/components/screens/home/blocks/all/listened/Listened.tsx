@@ -47,7 +47,7 @@ const Listened: FC = () => {
 				</>
 			) : (
 				<h1 className='text-white/50 text-xl opacity-70 flex justify-center mt-14 mb-32'>
-					You didn't listen to anything
+					You didn't listen anything
 				</h1>
 			)}
 		</div>
