@@ -23,10 +23,9 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 
 	const [state, setState] = useState(false)
 
-
 	useEffect(() => {
 		setIsFav(favorites.includes(mus))
-	},[favorites])
+	}, [favorites])
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -70,7 +69,7 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 			onMouseLeave={() => {
 				setHover(false)
 			}}
-			className='hover:cursor-pointer relative'
+			className=' hover:cursor-pointer relative list-none'
 		>
 			<CardMedia
 				component='img'

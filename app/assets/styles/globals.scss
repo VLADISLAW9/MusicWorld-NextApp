@@ -3,6 +3,9 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
+@import 'slick-carousel/slick/slick.css';
+@import 'slick-carousel/slick/slick-theme.css';
+
 $fullhd_padding: 231px;
 $laptop_padding: 50px;
 
@@ -217,4 +220,42 @@ body {
 	.bar {
 		max-width: calc(100% - $laptop_padding * 2);
 	}
+}
+
+.slick-next {
+	right: 15px;
+}
+
+.slick-prev {
+	left: -25px;
+}
+
+.slick-prev,
+.slick-next {
+	font-size: 0;
+	line-height: 0;
+	position: absolute;
+	z-index: 20;
+	top: 40%;
+	display: block;
+	width: 20px;
+	height: 20px;
+	padding: 0;
+	transform: translate(0, -50%);
+	cursor: pointer;
+	color: transparent;
+	border: none;
+	outline: none;
+	background: transparent;
+}
+
+.slick-prev:before,
+.slick-next:before {
+	font-family: 'slick';
+	font-size: 35px;
+	line-height: 1;
+	opacity: 0.75;
+	color: #ffcc00;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
 }
