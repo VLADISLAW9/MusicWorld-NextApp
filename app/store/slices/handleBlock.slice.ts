@@ -2,7 +2,6 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface ActiveBlockState {
 	activeBlock: string
-
 }
 
 const initialState: ActiveBlockState = {
@@ -15,7 +14,7 @@ export const handleBlockSlice = createSlice({
 	reducers: {
 		handleBlock(state, action: PayloadAction<string>) {
 			state.activeBlock = action.payload
-		},
+		}
 	}
 })
 

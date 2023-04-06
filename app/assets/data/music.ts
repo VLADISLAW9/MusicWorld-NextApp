@@ -42,9 +42,10 @@ export const music = [
 			'https://ruo.morsmusic.org/load/629469171/Kordhell_-_MURDER_PLOT_(musmore.com).mp3',
 		rating: 8.0,
 		release: 2023,
-		genre: ['house' , 'rap'],
+		genre: ['house', 'rap'],
 		image:
-			'https://avatars.yandex.net/get-music-content/5878680/d0357792.a.24407739-1/200x200'
+			'https://avatars.yandex.net/get-music-content/5878680/d0357792.a.24407739-1/200x200',
+		country: 'English'
 	},
 	{
 		_id: 5,
@@ -90,7 +91,8 @@ export const music = [
 		rating: 5.5,
 		release: 2023,
 		image:
-			'https://avatars.yandex.net/get-music-content/6202531/95eab1e9.a.22301905-1/200x200'
+			'https://avatars.yandex.net/get-music-content/6202531/95eab1e9.a.22301905-1/200x200',
+		country: 'English'
 	},
 	{
 		_id: 9,
@@ -162,7 +164,8 @@ export const music = [
 		release: 2023,
 		genre: ['rap', 'metal'],
 		image:
-			'https://avatars.yandex.net/get-music-content/2427101/19c2fcf2.a.12627839-1/200x200'
+			'https://avatars.yandex.net/get-music-content/2427101/19c2fcf2.a.12627839-1/200x200',
+		country: 'English'
 	},
 	{
 		_id: 16,

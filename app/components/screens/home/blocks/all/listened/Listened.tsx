@@ -11,8 +11,10 @@ const Listened: FC = () => {
 		infinite: true,
 		speed: 500,
 		slidesToShow: 6,
-		slidesToScroll: 1
+		slidesToScroll: 1,    
 	}
+
+
 
 	return (
 		<div className='mt-28 mb-20'>

@@ -7,4 +7,5 @@ export interface IMusic {
 	music: string
 	image: string
 	genre: string[]
+	country?: string
 }

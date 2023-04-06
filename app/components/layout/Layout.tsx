@@ -6,7 +6,7 @@ import styles from './Layout.module.scss'
 
 interface ILayoutProps {
 	children: any
-	music: IMusic[]
+	music?: IMusic[]
 }
 
 const Layout: FC<ILayoutProps> = ({ children, music }) => {
