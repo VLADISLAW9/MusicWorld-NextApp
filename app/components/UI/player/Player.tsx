@@ -22,7 +22,9 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		duration,
 		currentTime,
 		activeMyWave,
-		historyMusic
+		historyMusic,
+		activePlaylist,
+		statePlaylist
 	} = useAppSelector(state => state.player)
 
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
@@ -69,7 +71,10 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		addToHistory,
 		addToFav,
 		removeToFav,
-		addTrackToPlaylist
+		addTrackToPlaylist,
+		setActivePlaylist,
+		playPlaylist,
+		pausePlaylist
 	} = useActions()
 
 	useEffect(() => {
@@ -577,8 +582,159 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 				</div>
 			</div>
 		)
-	} else {
-		return null
+	} else if (activePlaylist) {
+		return (
+			<div className='bar'>
+				<div className='bar__content'>
+					<TrackProgress
+						absolute={true}
+						left={currentTime}
+						right={duration}
+						onChange={changeCurrentTime}
+					/>
+					{showAlert && <AlertWindows />}
+					<div className='controls flex items-center justify-between'>
+						<div className='flex items-center'>
+							<button onClick={prevMusic}>
+								<BiSkipNext className='rotate-180 w-10 h-10 text-[#757575] hover:text-white transition-colors' />
+							</button>
+							{!stateMyWave ? (
+								<button onClick={play_mywave}>
+									<BiPlay className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
+								</button>
+							) : (
+								<button onClick={stop_mywave}>
+									<BiPause className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
+								</button>
+							)}
+
+							<button onClick={nextMusic}>
+								<BiSkipNext className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
+							</button>
+						</div>
+						<div className='flex items-center w-[70%]'>
+							<div>
+								<CardMedia
+									component='img'
+									sx={{ height: 50, width: 50 }}
+									image={activePlaylist.image}
+								/>
+							</div>
+							<div className='ml-5 '>
+								<h1 className='text-base font-semibold text-white'>
+									{activePlaylist.name}
+								</h1>
+								<p className='text-sm font-light text-white'>
+									{activePlaylist.author}
+								</p>
+							</div>
+							<div className='ml-5 flex'>
+								{!isFav ? (
+									<>
+										<button
+											onClick={() => {
+												addToFav(activePlaylist)
+											}}
+										>
+											<BiHeart className='w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
+										</button>{' '}
+									</>
+								) : (
+									<>
+										<button
+											onClick={() => {
+												removeToFav(activePlaylist)
+											}}
+										>
+											<BiHeart className='w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
+										</button>
+									</>
+								)}
+								<div className='ml-3 mt-1.5 relative'>
+									<button onClick={handlePlaylists}>
+										<BiPlus className='w-7 h-7 mt-1.5  text-[#757575]' />
+									</button>
+									{isShowPlaylists && (
+										<div
+											className=' absolute bottom-14 -right-[85px] w-[200px] h-[240px] bg-[#222222]'
+											ref={refPlaylists}
+										>
+											<h1 className='px-2 py-2 text-[#636363] text-sm'>
+												Add music to playlist
+											</h1>
+											<ul
+												className={
+													creatingPlaylistArray.length > 4
+														? 'overflow-y-scroll max-h-[175px]'
+														: ''
+												}
+											>
+												<li
+													onClick={() => {
+														setIsShowPlaylists(false)
+														if (!favorites.includes(activePlaylist)) {
+															handleAlertWindows()
+															addToFav(activePlaylist)
+														}
+													}}
+													className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
+												>
+													<h1 className='text-white ml-5'>Me like</h1>
+												</li>
+												{creatingPlaylistArray.map((playlist, index) => (
+													<li
+														onClick={() => {
+															setIsShowPlaylists(false)
+															if (
+																!creatingPlaylistArray
+																	.filter(el => el._id === playlist._id)[0]
+																	.tracks.includes(activePlaylist)
+															) {
+																handleAlertWindows()
+																addTrackToPlaylist({
+																	playlist,
+																	activeTrack: activePlaylist
+																})
+															}
+														}}
+														key={playlist._id}
+														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
+													>
+														<h1 className='text-white ml-5'>{playlist.name}</h1>
+													</li>
+												))}
+											</ul>
+										</div>
+									)}
+								</div>
+							</div>
+						</div>
+						<div className='flex relative'>
+							<button onClick={handleVol}>
+								<BsVolumeUpFill
+									className={cn(
+										'hover:text-white transition-all w-7 h-7 text-[#757575] mr-3'
+									)}
+								/>
+							</button>
+							{isShowVol && (
+								<div className='flex z-50 absolute h-44 shadow-2xl bottom-20 right-3 rounded-md bg-[#222] px-1 py-6'>
+									<Slider
+										className='text-[#FFCC00]'
+										ref={refVol}
+										orientation='vertical'
+										min={0}
+										max={100}
+										value={volume}
+										onChange={changeVolume}
+									/>
+								</div>
+							)}
+						</div>
+					</div>
+				</div>
+			</div>
+		)
 	}
 }
 

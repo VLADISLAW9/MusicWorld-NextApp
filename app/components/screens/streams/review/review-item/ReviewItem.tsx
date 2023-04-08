@@ -1,4 +1,6 @@
-import { FC, useState } from 'react'
+import { useActions } from '@/app/hooks/actions.hook'
+import { useAppSelector } from '@/app/hooks/selector.hook'
+import { FC, useEffect, useState } from 'react'
 import { BiPause, BiPlay } from 'react-icons/bi'
 import { IReviewItem } from './ReviewItem.interface'
 
@@ -9,10 +11,22 @@ interface IReviewItemProps {
 const ReviewItem: FC<IReviewItemProps> = ({ data }) => {
 	const [isHover, setIsHover] = useState(false)
 	const [isPlaying, setIsPlaying] = useState(false)
+	const { activePlaylist, activeTrack } = useAppSelector(state => state.player)
+	const { playPlaylist, pausePlaylist, setActivePlaylist, setActiveTrack } =
+		useActions()
+
+	useEffect(() => {
+		for (let i = 0; i < data.tracks.length; i++) {
+			if (activePlaylist?._id === data._id) {
+				setIsPlaying(true)
+			}
+		}
+	}, [activePlaylist])
 
 	const play = () => {
 		setIsPlaying(true)
-		
+		setActiveTrack(data.tracks[0])
+		setActivePlaylist(data)
 	}
 
 	const stop = () => {
@@ -63,7 +77,7 @@ const ReviewItem: FC<IReviewItemProps> = ({ data }) => {
 					</div>
 				)}
 
-				<data.icon className='w-20 h-20 text-white' />
+				<data.icon className={'w-20 h-20 text-white'} />
 			</div>
 			<h1 className='text-center mt-3 text-white'>{data.name}</h1>
 		</li>
