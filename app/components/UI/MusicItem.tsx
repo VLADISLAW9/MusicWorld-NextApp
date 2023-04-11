@@ -12,8 +12,14 @@ interface IMusicItem {
 
 const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	const [hover, setHover] = useState(false)
-	const { playTrack, pauseTrack, setActiveTrack, addToFav, removeToFav } =
-		useActions()
+	const {
+		playTrack,
+		pauseTrack,
+		setActiveTrack,
+		addToFav,
+		removeToFav,
+		setActivePlaylist
+	} = useActions()
 	const { stateTrack, activeTrack, stateMyWave } = useAppSelector(
 		state => state.player
 	)
@@ -50,11 +56,16 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 			if (mus.name === activeTrack.name) {
 				playTrack()
 				setState(true)
-			} else setActiveTrack(mus)
+				setActivePlaylist(null)
+			} else {
+				setActiveTrack(mus)
+				setActivePlaylist(null)
+			}
 		} else {
 			setActiveTrack(mus)
 			playTrack()
 			setState(true)
+			setActivePlaylist(null)
 		}
 	}
 

@@ -36,7 +36,6 @@ export const playerSlice = createSlice({
 			state.isPlaying = true
 			state.stateTrack = true
 			state.stateMyWave = false
-			state.statePlaylist = false
 		},
 		pauseTrack(state) {
 			state.isPlaying = false
@@ -46,17 +45,6 @@ export const playerSlice = createSlice({
 			state.isPlaying = true
 			state.stateMyWave = true
 			state.stateTrack = false
-			state.statePlaylist = false
-		},
-		playPlaylist(state) {
-			state.isPlaying = true
-			state.statePlaylist = true
-			state.stateMyWave = false
-			state.stateTrack = false
-		},
-		pausePlaylist(state) {
-			state.isPlaying = false
-			state.statePlaylist = false
 		},
 		pauseMyWave(state) {
 			state.isPlaying = false
@@ -72,7 +60,6 @@ export const playerSlice = createSlice({
 			state.duration = action.payload
 		},
 		setActiveTrack(state, action: PayloadAction<IMusic>) {
-			state.activePlaylist = null
 			state.activeMyWave = null
 			state.activeTrack = action.payload
 			if (!state.historyMusic.includes(action.payload)) {
@@ -91,9 +78,8 @@ export const playerSlice = createSlice({
 			state.duration = 0
 			state.currentTime = 0
 		},
-		setActivePlaylist(state, action: PayloadAction<IPlaylist>) {
+		setActivePlaylist(state, action: PayloadAction<IPlaylist | null>) {
 			state.activeMyWave = null
-			state.activeTrack = null
 			state.activePlaylist = action.payload
 			state.duration = 0
 			state.currentTime = 0

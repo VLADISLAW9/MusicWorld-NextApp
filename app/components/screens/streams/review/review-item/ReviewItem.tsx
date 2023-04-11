@@ -12,24 +12,42 @@ const ReviewItem: FC<IReviewItemProps> = ({ data }) => {
 	const [isHover, setIsHover] = useState(false)
 	const [isPlaying, setIsPlaying] = useState(false)
 	const { activePlaylist, activeTrack } = useAppSelector(state => state.player)
-	const { playPlaylist, pausePlaylist, setActivePlaylist, setActiveTrack } =
+	const { setActivePlaylist, setActiveTrack, playTrack, pauseTrack } =
 		useActions()
 
+	let randTrack = Math.floor(Math.random() * data.tracks.length)
+
+
 	useEffect(() => {
-		for (let i = 0; i < data.tracks.length; i++) {
-			if (activePlaylist?._id === data._id) {
+		if (activePlaylist) {
+			if (activePlaylist._id === data._id) {
 				setIsPlaying(true)
+			} else {
+				setIsPlaying(false)
 			}
 		}
 	}, [activePlaylist])
 
 	const play = () => {
-		setIsPlaying(true)
-		setActiveTrack(data.tracks[0])
-		setActivePlaylist(data)
+		if (activePlaylist) {
+			if (data._id === activePlaylist._id) {
+				playTrack()
+				setIsPlaying(true)
+			} else {
+				setActiveTrack(data.tracks[randTrack])
+				playTrack()
+				setActivePlaylist(data)
+			}
+		} else {
+			setActiveTrack(data.tracks[randTrack])
+			setActivePlaylist(data)
+			playTrack()
+			setIsPlaying(true)
+		}
 	}
 
 	const stop = () => {
+		pauseTrack()
 		setIsPlaying(false)
 	}
 
@@ -55,7 +73,11 @@ const ReviewItem: FC<IReviewItemProps> = ({ data }) => {
 								backgroundColor: `rgba(${data.backgroundColor})`
 						  }
 				}
-				className='relative cursor-pointer hover:scale-110  transition-all  rounded-full flex justify-center items-center'
+				className={
+					isPlaying
+						? 'reviewItemAnimate relative cursor-pointer hover:scale-110  transition-all  rounded-full flex justify-center items-center'
+						: 'relative cursor-pointer hover:scale-110  transition-all  rounded-full flex justify-center items-center'
+				}
 			>
 				{isHover && (
 					<div className='absolute'>

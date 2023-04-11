@@ -1,6 +1,7 @@
 import { useActions } from '@/app/hooks/actions.hook'
 import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
+import { IMusic } from '@/app/types/IMusic'
 import { IMusicProps } from '@/pages'
 import { CardMedia, Slider } from '@mui/material'
 import cn from 'clsx'
@@ -207,6 +208,29 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		audio.pause()
 	}
 
+	const prevMusicInPlaylist = () => {
+		if (activePlaylist && activePlaylist.tracks.length > 0) {
+			const index = activePlaylist.tracks.indexOf(activeTrack)
+			if (index > 0) {
+				const prevTrack = activePlaylist.tracks[index - 1]
+				setActiveTrack(prevTrack)
+			}
+		}
+	}
+	const nextMusicInPlaylist = () => {
+		if (activePlaylist && activePlaylist.tracks.length > 0) {
+			const index = activePlaylist.tracks.indexOf(activeTrack)
+			if (index < activePlaylist.tracks.length - 1) {
+				const nextTrack = activePlaylist.tracks[index + 1]
+				setActiveTrack(nextTrack)
+			}
+		}
+	}
+
+	console.log(
+		activePlaylist?.tracks.findIndex((i: IMusic) => i._id === activeTrack?._id)
+	)
+
 	const nextMusic = () => {
 		let number = Math.floor(Math.random() * music.length)
 		if (activeMyWave) {
@@ -282,7 +306,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		setCurrentTime(Number(e.target.value))
 	}
 
-	if (activeTrack) {
+	if (activeTrack && activePlaylist === null) {
 		return (
 			<div className='bar'>
 				<div className='bar__content'>
@@ -595,10 +619,10 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 					{showAlert && <AlertWindows />}
 					<div className='controls flex items-center justify-between'>
 						<div className='flex items-center'>
-							<button onClick={prevMusic}>
+							<button onClick={prevMusicInPlaylist}>
 								<BiSkipNext className='rotate-180 w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 							</button>
-							{!stateMyWave ? (
+							{!stateTrack ? (
 								<button onClick={play_mywave}>
 									<BiPlay className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 								</button>
@@ -608,7 +632,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 								</button>
 							)}
 
-							<button onClick={nextMusic}>
+							<button onClick={nextMusicInPlaylist}>
 								<BiSkipNext className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 							</button>
 						</div>
@@ -617,15 +641,15 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 								<CardMedia
 									component='img'
 									sx={{ height: 50, width: 50 }}
-									image={activePlaylist.image}
+									image={activeTrack?.image}
 								/>
 							</div>
 							<div className='ml-5 '>
 								<h1 className='text-base font-semibold text-white'>
-									{activePlaylist.name}
+									{activeTrack?.name}
 								</h1>
 								<p className='text-sm font-light text-white'>
-									{activePlaylist.author}
+									{activeTrack?.author}
 								</p>
 							</div>
 							<div className='ml-5 flex'>
@@ -633,7 +657,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									<>
 										<button
 											onClick={() => {
-												addToFav(activePlaylist)
+												addToFav(activeTrack)
 											}}
 										>
 											<BiHeart className='w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
@@ -643,7 +667,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									<>
 										<button
 											onClick={() => {
-												removeToFav(activePlaylist)
+												removeToFav(activeTrack)
 											}}
 										>
 											<BiHeart className='w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
@@ -672,9 +696,9 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 												<li
 													onClick={() => {
 														setIsShowPlaylists(false)
-														if (!favorites.includes(activePlaylist)) {
+														if (!favorites.includes(activeTrack)) {
 															handleAlertWindows()
-															addToFav(activePlaylist)
+															addToFav(activeTrack)
 														}
 													}}
 													className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
@@ -688,12 +712,12 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 															if (
 																!creatingPlaylistArray
 																	.filter(el => el._id === playlist._id)[0]
-																	.tracks.includes(activePlaylist)
+																	.tracks.includes(activeTrack)
 															) {
 																handleAlertWindows()
 																addTrackToPlaylist({
 																	playlist,
-																	activeTrack: activePlaylist
+																	activeTrack
 																})
 															}
 														}}
@@ -735,6 +759,8 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 				</div>
 			</div>
 		)
+	} else {
+		return null
 	}
 }
 

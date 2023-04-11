@@ -6,7 +6,7 @@ export const music = [
 		music:
 			'https://ruo.morsmusic.org/load/400641013/UncleFlexxx_-_Ich_Mag_Sie_(musmore.com).mp3',
 		rating: 9.8,
-		release: 2023,
+		release: 2021,
 		genre: ['rap', 'pop'],
 		image:
 			'https://avatars.yandex.net/get-music-content/5853241/3979a52f.a.24148123-1/200x200'
@@ -161,7 +161,7 @@ export const music = [
 		music:
 			'https://ruo.morsmusic.org/load/1464173735/REDZED_-_Rave_in_the_Grave_(musmore.com).mp3',
 		rating: 5.5,
-		release: 2023,
+		release: 2022,
 		genre: ['rap', 'metal'],
 		image:
 			'https://avatars.yandex.net/get-music-content/2427101/19c2fcf2.a.12627839-1/200x200',
@@ -174,7 +174,7 @@ export const music = [
 		music:
 			'https://ruo.morsmusic.org/load/866271867/MJEJJBI_BJEJJBI_-_Bla_Bla_(musmore.com).mp3',
 		rating: 5.5,
-		release: 2023,
+		release: 2022,
 		genre: ['rap', 'pop'],
 		image:
 			'https://avatars.yandex.net/get-music-content/2357076/1b091128.a.12761844-2/200x200'
@@ -198,7 +198,7 @@ export const music = [
 		music:
 			'https://ruo.morsmusic.org/load/2077190141/Durnojj_Vkus_-_Plastinki_(musmore.com).mp3',
 		rating: 5.5,
-		release: 2023,
+		release: 2022,
 		genre: ['pop'],
 		image:
 			'https://avatars.yandex.net/get-music-content/114728/629b4f09.a.5872052-1/200x200'
@@ -210,7 +210,7 @@ export const music = [
 		music:
 			'https://ruo.morsmusic.org/load/757387417/Ulica_Vostok_-_Dvory_(musmore.com).mp3',
 		rating: 5.5,
-		release: 2023,
+		release: 2022,
 		genre: ['pop'],
 		image:
 			'https://avatars.yandex.net/get-music-content/5234929/4f8fe1f3.a.18079056-1/200x200'
