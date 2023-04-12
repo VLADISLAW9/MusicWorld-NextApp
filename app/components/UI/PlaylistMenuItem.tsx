@@ -86,7 +86,13 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 			className='hover:cursor-pointer relative p-2 ml-2 flex mb-5'
 			key={i._id}
 		>
-			<p className='text-white/50'>{index + 1}</p>
+			<p className={!musicState ? 'text-white/50' : 'text-white/50 opacity-0'}>
+				{index + 1}
+			</p>
+
+			{musicState && i._id === activeTrack?._id && (
+				<div className='absolute w-3.5 h-3.5 animate-pulse  rounded-full left-1.5 top-3.5 bg-[#FFCC00]'></div>
+			)}
 
 			<h1 className='text-white ml-4'>
 				{i.name} <span className='text-white/50'>- {i.author}</span>

@@ -1,34 +1,77 @@
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { FC, useState } from 'react'
+import { FC, useEffect, useState } from 'react'
 import { BiPause, BiPlay } from 'react-icons/bi'
 import { BsHeartFill } from 'react-icons/bs'
 
 const FavouritePlaylist: FC = () => {
 	const [hover, setHover] = useState(false)
-	const [state, setState] = useState(false)
-	const { activePlaylist, statePlaylistMenu } = useAppSelector(
+	const [isPlaying, setIsPlaying] = useState(false)
+	const { activePlaylistMenu, statePlaylistMenu } = useAppSelector(
 		state => state.playlistMenu
 	)
-
+	const { activePlaylist } = useAppSelector(state => state.player)
+	const { stateTrack } = useAppSelector(state => state.player)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
+	const {
+		openPlaylistMenu,
+		setActivePlaylist,
+		setActiveTrack,
+		playTrack,
+		pauseTrack,
+		playPlaylist,
+		pausePlaylist
+	} = useActions()
 
-	const { openPlaylistMenu, closePlaylistMenu } = useActions()
+	const data = {
+		_id: 3232,
+		name: 'Me like',
+		tracks: favorites
+	}
+
+	useEffect(() => {
+		if (activePlaylist) {
+			if (data._id === activePlaylist._id) {
+				if (!stateTrack) {
+					setIsPlaying(false)
+				} else {
+					setIsPlaying(true)
+				}
+			} else {
+				setIsPlaying(false)
+			}
+		} else {
+			setIsPlaying(false)
+		}
+	}, [activePlaylist, stateTrack])
 
 	const play = () => {
-		setState(true)
+		if (data.tracks.length > 0) {
+			if (activePlaylist) {
+				if (data._id === activePlaylist._id) {
+					playTrack()
+					setIsPlaying(true)
+				} else {
+					setActiveTrack(data.tracks[0])
+					playTrack()
+					setActivePlaylist(data)
+				}
+			} else {
+				setActiveTrack(data.tracks[0])
+				setActivePlaylist(data)
+				playTrack()
+				setIsPlaying(true)
+			}
+		}
 	}
 
 	const stop = () => {
-		setState(false)
+		pauseTrack()
+		setIsPlaying(false)
 	}
 
 	const openFavMenu = () => {
-		openPlaylistMenu({
-			_id: 3232,
-			name: 'Me like',
-			tracks: favorites
-		})
+		openPlaylistMenu(data)
 	}
 
 	return (
@@ -56,7 +99,7 @@ const FavouritePlaylist: FC = () => {
 			{hover && (
 				<ul className='absolute flex items-center top-[75px] left-[75px] gap-3'>
 					<li>
-						{!state ? (
+						{!isPlaying ? (
 							<button
 								onClick={play}
 								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'

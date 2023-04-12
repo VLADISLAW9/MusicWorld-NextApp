@@ -3,7 +3,7 @@ import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IPlaylist } from '@/app/types/IPlaylist'
 import { FC, useEffect, useState } from 'react'
-import { BiCheck } from 'react-icons/bi'
+import { BiCheck, BiPause, BiPlay } from 'react-icons/bi'
 import { BsMusicNoteList } from 'react-icons/bs'
 import { HiOutlinePencil } from 'react-icons/hi'
 import { MdClose, MdDeleteOutline } from 'react-icons/md'
@@ -14,19 +14,68 @@ interface PlaylistItemProps {
 
 const PlaylistItem: FC<PlaylistItemProps> = ({ playlist }) => {
 	const [hover, setHover] = useState(false)
-	const [state, setState] = useState(false)
+	const [isPlaying, setIsPlaying] = useState(false)
 	const { openPlaylistMenu } = useActions()
 	const { ref, isShow, setIsShow } = useOutside(false)
-	const { renamePlaylistName, renameActivePlaylist, deletePlaylist } =
-		useActions()
+	const {
+		renamePlaylistName,
+		renameActivePlaylist,
+		deletePlaylist,
+		setActiveTrack,
+		setActivePlaylist,
+		playTrack,
+		pauseTrack
+	} = useActions()
 	const [nameEditor, setNameEditor] = useState(playlist.name)
-	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
+	const { activePlaylistMenu } = useAppSelector(state => state.playlistMenu)
+	const { stateTrack, activePlaylist } = useAppSelector(state => state.player)
 
 	useEffect(() => {
 		if (!isShow) {
 			setNameEditor(playlist.name)
 		}
 	}, [isShow])
+
+	useEffect(() => {
+		if (activePlaylist) {
+			if (playlist._id === activePlaylist._id) {
+				if (!stateTrack) {
+					setIsPlaying(false)
+				} else {
+					setIsPlaying(true)
+				}
+			} else {
+				setIsPlaying(false)
+			}
+		} else {
+			setIsPlaying(false)
+		}
+	}, [activePlaylist, stateTrack])
+
+	const play = () => {
+		if (playlist.tracks.length > 0) {
+			if (activePlaylist) {
+				if (playlist._id === activePlaylist._id) {
+					playTrack()
+					setIsPlaying(true)
+				} else {
+					setActiveTrack(playlist.tracks[0])
+					playTrack()
+					setActivePlaylist(playlist)
+				}
+			} else {
+				setActiveTrack(playlist.tracks[0])
+				setActivePlaylist(playlist)
+				playTrack()
+				setIsPlaying(true)
+			}
+		}
+	}
+
+	const stop = () => {
+		pauseTrack()
+		setIsPlaying(false)
+	}
 
 	const openEditPlaylistName = () => {
 		setIsShow(true)
@@ -153,6 +202,27 @@ const PlaylistItem: FC<PlaylistItemProps> = ({ playlist }) => {
 					</>
 				)}
 			</ul>
+			{hover && (
+				<ul className='absolute flex items-center top-[75px] left-[75px] gap-3'>
+					<li>
+						{!isPlaying ? (
+							<button
+								onClick={play}
+								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
+							>
+								<BiPlay className='w-6 h-6 translate-x-0.5' />
+							</button>
+						) : (
+							<button
+								onClick={stop}
+								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
+							>
+								<BiPause className='w-6 h-6 	' />
+							</button>
+						)}
+					</li>
+				</ul>
+			)}
 		</li>
 	)
 }

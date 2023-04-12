@@ -7,14 +7,14 @@ import PlaylistMenuItem from './PlaylistMenuItem'
 const PlaylistMenu: FC = () => {
 	const [scrolled, setScrolled] = useState(false)
 	const { closePlaylistMenu } = useActions()
-	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
+	const { activePlaylistMenu } = useAppSelector(state => state.playlistMenu)
 	const { creatingPlaylistArray } = useAppSelector(
 		state => state.creatingPlaylist
 	)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
 	const currentPlaylist = creatingPlaylistArray.filter(
-		pl => pl._id === activePlaylist?._id
+		pl => pl._id === activePlaylistMenu?._id
 	)[0]?.tracks
 
 	useEffect(() => {
@@ -48,7 +48,7 @@ const PlaylistMenu: FC = () => {
 				<ul className='flex justify-between'>
 					<li>
 						<h1 className='text-white/50 font-light '>PLAYLIST</h1>
-						<h1 className='text-2xl text-white'>{activePlaylist?.name}</h1>
+						<h1 className='text-2xl text-white'>{activePlaylistMenu?.name}</h1>
 					</li>
 					<li className=''>
 						<button onClick={() => closePlaylistMenu()} className=''>
@@ -64,7 +64,7 @@ const PlaylistMenu: FC = () => {
 							: 'mt-10 list-none'
 					}
 				>
-					{activePlaylist?._id === 3232
+					{activePlaylistMenu?._id === 3232
 						? favorites.map((i, index) => (
 								<PlaylistMenuItem
 									favPlaylist={true}

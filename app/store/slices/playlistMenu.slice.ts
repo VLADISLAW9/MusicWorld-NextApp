@@ -3,12 +3,12 @@ import { IPlaylist } from '@/app/types/IPlaylist'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
 interface PlaylistMenu {
-	activePlaylist: IPlaylist | null
+	activePlaylistMenu: IPlaylist | null
 	statePlaylistMenu: boolean
 }
 
 const initialState: PlaylistMenu = {
-	activePlaylist: null,
+	activePlaylistMenu: null,
 	statePlaylistMenu: false
 }
 
@@ -17,18 +17,18 @@ export const PlaylistMenuSlice = createSlice({
 	initialState,
 	reducers: {
 		openPlaylistMenu(state, action: PayloadAction<IPlaylist>) {
-			state.activePlaylist = action.payload
+			state.activePlaylistMenu = action.payload
 			state.statePlaylistMenu = true
 		},
 		closePlaylistMenu(state) {
-			state.activePlaylist = null
+			state.activePlaylistMenu = null
 			state.statePlaylistMenu = false
 		},
 		renameActivePlaylist(state, action: PayloadAction<string>) {
 			const newName: string = action.payload
 
-			if (state.activePlaylist?.name) {
-				state.activePlaylist.name = newName
+			if (state.activePlaylistMenu?.name) {
+				state.activePlaylistMenu.name = newName
 			}
 		}
 	}
