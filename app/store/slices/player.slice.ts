@@ -13,6 +13,7 @@ interface PlayerState {
 	volume: number
 	stateTrack: boolean
 	stateMyWave: boolean
+	statePlaylist: boolean
 }
 
 const initialState: PlayerState = {
@@ -25,7 +26,8 @@ const initialState: PlayerState = {
 	duration: 0,
 	volume: 100,
 	stateTrack: false,
-	stateMyWave: false
+	stateMyWave: false,
+	statePlaylist: false
 }
 
 export const playerSlice = createSlice({
@@ -40,6 +42,12 @@ export const playerSlice = createSlice({
 		pauseTrack(state) {
 			state.isPlaying = false
 			state.stateTrack = false
+		},
+		playPlaylist(state) {
+			state.statePlaylist = true
+		},
+		pausePlaylist(state) {
+			state.statePlaylist = true
 		},
 		playMyWave(state) {
 			state.isPlaying = true

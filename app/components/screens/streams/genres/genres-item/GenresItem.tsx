@@ -11,23 +11,27 @@ interface IReviewItemProps {
 const GenresItem: FC<IReviewItemProps> = ({ data }) => {
 	const [isHover, setIsHover] = useState(false)
 	const [isPlaying, setIsPlaying] = useState(false)
-	const { activePlaylist, activeTrack } = useAppSelector(state => state.player)
+	const { activePlaylist, activeTrack, stateTrack } = useAppSelector(
+		state => state.player
+	)
 	const { setActivePlaylist, setActiveTrack, playTrack, pauseTrack } =
 		useActions()
 
-	let randTrack = Math.floor(Math.random() * data.tracks.length)
-
-	console.log(data.tracks)
-
 	useEffect(() => {
 		if (activePlaylist) {
-			if (activePlaylist._id === data._id) {
-				setIsPlaying(true)
+			if (data._id === activePlaylist._id) {
+				if (!stateTrack) {
+					setIsPlaying(false)
+				} else {
+					setIsPlaying(true)
+				}
 			} else {
 				setIsPlaying(false)
 			}
+		} else {
+			setIsPlaying(false)
 		}
-	}, [activePlaylist])
+	}, [activePlaylist, stateTrack])
 
 	const play = () => {
 		if (activePlaylist) {
@@ -35,12 +39,12 @@ const GenresItem: FC<IReviewItemProps> = ({ data }) => {
 				playTrack()
 				setIsPlaying(true)
 			} else {
-				setActiveTrack(data.tracks[randTrack])
+				setActiveTrack(data.tracks[0])
 				playTrack()
 				setActivePlaylist(data)
 			}
 		} else {
-			setActiveTrack(data.tracks[randTrack])
+			setActiveTrack(data.tracks[0])
 			setActivePlaylist(data)
 			playTrack()
 			setIsPlaying(true)

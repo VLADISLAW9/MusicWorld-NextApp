@@ -623,11 +623,11 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 								<BiSkipNext className='rotate-180 w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 							</button>
 							{!stateTrack ? (
-								<button onClick={play_mywave}>
+								<button onClick={play_track}>
 									<BiPlay className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 								</button>
 							) : (
-								<button onClick={stop_mywave}>
+								<button onClick={stop_track}>
 									<BiPause className='w-10 h-10 text-[#757575] hover:text-white transition-colors' />
 								</button>
 							)}

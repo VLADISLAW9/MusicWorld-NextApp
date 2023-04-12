@@ -169,7 +169,7 @@ export const music = [
 	},
 	{
 		_id: 16,
-		name: 'Бла Бла	',
+		name: 'Бла Бла',
 		author: 'Мэйби Бэйби',
 		music:
 			'https://ruo.morsmusic.org/load/866271867/MJEJJBI_BJEJJBI_-_Bla_Bla_(musmore.com).mp3',
