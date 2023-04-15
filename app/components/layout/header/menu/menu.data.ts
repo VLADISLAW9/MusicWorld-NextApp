@@ -3,18 +3,14 @@ import { IMenuLink } from './menu-item/menu-item.interface'
 export const menu: IMenuLink[] = [
 	{
 		link: '/',
-		name: 'Home',
-	},
-	{
-		link: '/non-music',
-		name: 'Podcasts and books',
+		name: 'Home'
 	},
 	{
 		link: '/collection',
-		name: 'Collection',
+		name: 'Collection'
 	},
 	{
 		link: '/streams',
-		name: 'Streams',
+		name: 'Streams'
 	}
 ]

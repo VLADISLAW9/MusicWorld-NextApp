@@ -1,5 +1,5 @@
 import Streams from '@/app/components/screens/streams/Streams'
-import { getAllMusic } from '@/app/services/music'
+import { getAllMusic } from '@/app/services'
 import { IMusic } from '@/app/types/IMusic'
 import { NextPage } from 'next'
 

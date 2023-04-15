@@ -1,5 +1,5 @@
 import Collection from '@/app/components/screens/collection/Collection'
-import { getAllMusic } from '@/app/services/music'
+import { getAllMusic } from '@/app/services'
 import { IMusic } from '@/app/types/IMusic'
 import { NextPage } from 'next'
 

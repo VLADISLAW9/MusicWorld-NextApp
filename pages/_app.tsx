@@ -1,6 +1,6 @@
 import { music } from '@/app/assets/data/music'
 import Player from '@/app/components/UI/player/Player'
-import { getAllMusic } from '@/app/services/music'
+import { getAllMusic } from '@/app/services'
 import { store } from '@/app/store/store'
 import type { AppProps } from 'next/app'
 import { Provider } from 'react-redux'

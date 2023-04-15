@@ -8,7 +8,7 @@ import Mood from './blocks/mood/Mood'
 import NewReleases from './blocks/releases/NewReleases'
 import HomeMenu from './menu/HomeMenu'
 
-const Home: FC<IMusicProps> = ({ music }) => {
+const Home: FC<IMusicProps> = ({ music, authors }) => {
 	const { activeBlock } = useAppSelector(state => state.handleBlock)
 
 	return (

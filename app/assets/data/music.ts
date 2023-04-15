@@ -1,4 +1,6 @@
-export const music = [
+import { IMusic } from '@/app/types/IMusic'
+
+export const music: IMusic[] = [
 	{
 		_id: 1,
 		name: 'Ich Mag Sie',

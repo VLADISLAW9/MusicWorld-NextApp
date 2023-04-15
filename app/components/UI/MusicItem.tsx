@@ -1,7 +1,7 @@
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
-import { CardMedia } from '@mui/material'
+import { CardMedia, Link } from '@mui/material'
 import { FC, useEffect, useState } from 'react'
 import { BiPause, BiPlay } from 'react-icons/bi'
 import { BsHeart, BsShare } from 'react-icons/bs'
@@ -24,6 +24,7 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 		state => state.player
 	)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
+
 
 	const [isFav, setIsFav] = useState(false)
 
@@ -90,7 +91,9 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 				alt='Paella dish'
 			/>
 			<h1 className='mt-2 text-white'>{mus.name}</h1>
-			<p className='text-sm text-white/40 font-light'>{mus.author}</p>
+			<Link href={'/'} className='text-sm text-white/40 font-light'>
+				{mus.author}
+			</Link>
 			{hover && (
 				<ul className='absolute flex items-center top-[75px] left-[15px] gap-3'>
 					<li>
