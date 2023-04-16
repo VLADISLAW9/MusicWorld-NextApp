@@ -1,16 +1,20 @@
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
+import { getAllAuthors } from '@/app/services'
+import { IAuthor } from '@/app/types/IAuthor'
 import { IMusic } from '@/app/types/IMusic'
-import { CardMedia, Link } from '@mui/material'
+import { CardMedia } from '@mui/material'
+import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { BiPause, BiPlay } from 'react-icons/bi'
 import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IMusicItem {
 	mus: IMusic
+	authors: IAuthor[]
 }
 
-const MusicItem: FC<IMusicItem> = ({ mus }) => {
+const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
 	const [hover, setHover] = useState(false)
 	const {
 		playTrack,
@@ -25,10 +29,11 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 	)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
-
 	const [isFav, setIsFav] = useState(false)
 
 	const [state, setState] = useState(false)
+
+	const author_id = authors.filter(a => a.name === mus.author)[0]?._id
 
 	useEffect(() => {
 		setIsFav(favorites.includes(mus))
@@ -91,7 +96,10 @@ const MusicItem: FC<IMusicItem> = ({ mus }) => {
 				alt='Paella dish'
 			/>
 			<h1 className='mt-2 text-white'>{mus.name}</h1>
-			<Link href={'/'} className='text-sm text-white/40 font-light'>
+			<Link
+				href={`/author/${author_id}`}
+				className='hover:text-white cursor-pointer text-sm text-white/40 font-light'
+			>
 				{mus.author}
 			</Link>
 			{hover && (

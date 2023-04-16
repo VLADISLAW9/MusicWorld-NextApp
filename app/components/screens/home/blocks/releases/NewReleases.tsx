@@ -12,7 +12,7 @@ const AllNewReleases: FC<IMusicProps> = ({ music }) => {
 				New tracks, albums and compilations
 			</h1>
 			<ul className='grid grid-cols-6 mt-8 gap-8'>
-				{musicNewRelease?.map(mus => (
+				{musicNewRelease?.map((mus) => (
 					<MusicItem key={mus._id} mus={mus} />
 				))}
 			</ul>

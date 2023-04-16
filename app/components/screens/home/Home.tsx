@@ -16,10 +16,12 @@ const Home: FC<IMusicProps> = ({ music, authors }) => {
 			<div className='px-[30px] py-[20px] mt-12'>
 				<h1 className='text-5xl text-white font-bold'>Home</h1>
 				<HomeMenu />
-				{activeBlock === 'All' && <All music={music} />}
-				{activeBlock === 'NewReleases' && <NewReleases music={music} />}
-				{activeBlock === 'Chart' && <Chart music={music} />}
-				{activeBlock === 'Mood' && <Mood music={music} />}
+				{activeBlock === 'All' && <All authors={authors} music={music} />}
+				{activeBlock === 'NewReleases' && (
+					<NewReleases authors={authors} music={music} />
+				)}
+				{activeBlock === 'Chart' && <Chart authors={authors} music={music} />}
+				{activeBlock === 'Mood' && <Mood music={music} authors={authors} />}
 			</div>
 		</Layout>
 	)

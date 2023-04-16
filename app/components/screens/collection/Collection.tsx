@@ -16,7 +16,7 @@ const Collection: FC<IMusicProps> = ({ music }) => {
 		<Layout>
 			<div className='px-[30px] py-[20px] mt-3'>
 				<div className='flex'>
-					<Avatar className='w-40 h-40' alt='user' src='' />
+					<Avatar className='w-48 h-48' alt='user' src='' />
 					<div className='ml-10'>
 						<p className='text-white/40 font-light text-xl'>Collection</p>
 						<h1 className='text-4xl font-bold text-white mt-3'>Username</h1>
