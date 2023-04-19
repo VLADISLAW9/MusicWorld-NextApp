@@ -2,7 +2,7 @@ import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
 import { FC, useEffect, useState } from 'react'
-import { BiPause, BiPlay } from 'react-icons/bi'
+import { BiHeart, BiPause, BiPlay } from 'react-icons/bi'
 import { MdClose } from 'react-icons/md'
 
 interface IPlaylistMenuItem {
@@ -16,6 +16,7 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 		playTrack,
 		pauseTrack,
 		setActiveTrack,
+		addToFav,
 		removeToFav,
 		removeTrackFromPlaylist
 	} = useActions()
@@ -25,8 +26,9 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 	)
 	const [hover, setHover] = useState(false)
 	const [musicState, setMusicState] = useState(false)
-	const { activePlaylist } = useAppSelector(state => state.playlistMenu)
+	const { activePlaylistMenu } = useAppSelector(state => state.playlistMenu)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
+	const [isFav, setIsFav] = useState(false)
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -70,7 +72,7 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 			removeToFav(i)
 			console.log('fav is working')
 		} else {
-			removeTrackFromPlaylist({ activePlaylist, i })
+			removeTrackFromPlaylist({ activePlaylistMenu, i })
 			console.log('is working')
 		}
 	}
@@ -115,12 +117,38 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 						</button>
 					)}
 
-					<button
-						onClick={removeTrack}
-						className='absolute right-10 text-white/50 hover:text-white transition-colors'
-					>
-						<MdClose className='w-5 h-5' />
-					</button>
+					{i.author ? (
+						<div className=''>
+							{!isFav ? (
+								<button
+									onClick={() => {
+										addToFav(i)
+										setIsFav(true)
+									}}
+									className=''
+								>
+									<BiHeart className=' w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
+								</button>
+							) : (
+								<button
+									onClick={() => {
+										removeToFav(i)
+										setIsFav(false)
+									}}
+									className=''
+								>
+									<BiHeart className=' w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
+								</button>
+							)}
+						</div>
+					) : (
+						<button
+							onClick={removeTrack}
+							className='absolute right-10 text-white/50 hover:text-white transition-colors'
+						>
+							<MdClose className='w-5 h-5' />
+						</button>
+					)}
 				</div>
 			)}
 		</div>

@@ -1,10 +1,20 @@
+import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IAuthorProps } from '@/pages/author/[id]'
-import { FC } from 'react'
-import Layout from '../../layout/Layout'
 import { Avatar } from '@mui/material'
-import { BiHeart, BiLike, BiPlay } from 'react-icons/bi'
+import { FC } from 'react'
+import { BiHeart, BiPlay } from 'react-icons/bi'
+import Layout from '../../layout/Layout'
+import AlbumsBlock from './blocks/AlbumsBlock'
+import MainBlock from './blocks/MainBlock'
+import SimilarBlock from './blocks/SimilarBlock'
+import TracksBlock from './blocks/TracksBlock'
+import AuthorMenu from './menu/AuthorMenu'
 
 const AuthorsPage: FC<IAuthorProps> = ({ author }) => {
+	const { activeAuthorPageBlock } = useAppSelector(
+		state => state.handleAuthorPageBlock
+	)
+
 	return (
 		<Layout>
 			<div className='px-[30px] py-[20px] mt-3'>
@@ -33,7 +43,11 @@ const AuthorsPage: FC<IAuthorProps> = ({ author }) => {
 						</ul>
 					</div>
 				</div>
-				<AuthorMenu/>
+				<AuthorMenu />
+				{activeAuthorPageBlock === 'Main' && <MainBlock author={author} />}
+				{activeAuthorPageBlock === 'Tracks' && <TracksBlock />}
+				{activeAuthorPageBlock === 'Albums' && <AlbumsBlock />}
+				{activeAuthorPageBlock === 'Similar' && <SimilarBlock />}
 			</div>
 		</Layout>
 	)

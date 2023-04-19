@@ -189,6 +189,7 @@ export const music: IMusic[] = [
 			'https://ruo.morsmusic.org/load/1137834983/Tri_dnya_dozhdya_-_Otpuskajj_(musmore.com).mp3',
 		rating: 5.5,
 		release: 2023,
+		album: 'Байполар',
 		genre: ['rock', 'metal'],
 		image:
 			'https://avatars.yandex.net/get-music-content/6202531/1663e219.a.22347956-1/200x200'

@@ -13,10 +13,6 @@ const PlaylistMenu: FC = () => {
 	)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
-	const currentPlaylist = creatingPlaylistArray.filter(
-		pl => pl._id === activePlaylistMenu?._id
-	)[0]?.tracks
-
 	useEffect(() => {
 		const handleScroll = () => {
 			const scrollTop = window.pageYOffset
@@ -59,7 +55,8 @@ const PlaylistMenu: FC = () => {
 
 				<ul
 					className={
-						currentPlaylist?.length > 9 || favorites.length > 9
+						(activePlaylistMenu && activePlaylistMenu.tracks?.length > 9) ||
+						favorites.length > 9
 							? 'mt-10 overflow-y-scroll max-h-[550px] list-none'
 							: 'mt-10 list-none'
 					}
@@ -73,8 +70,8 @@ const PlaylistMenu: FC = () => {
 									index={index}
 								/>
 						  ))
-						: currentPlaylist.map((i, index) => (
-								<PlaylistMenuItem key={i._id} i={i} index={index} />
+						: activePlaylistMenu?.tracks.map((i, index) => (
+								<PlaylistMenuItem  key={i._id} i={i} index={index} />
 						  ))}
 					{}
 				</ul>

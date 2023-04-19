@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux'
 import { creatingPlaylistSliceActions } from '../store/slices/creatingPlaylistsArray'
 import { favoritesSliceActions } from '../store/slices/favourite.slice'
 import { handleBlockActions } from '../store/slices/handleBlock.slice'
+import { handleAuthorPageActions } from '../store/slices/handleBlock_author.slice copy'
 import { handleCollectionActions } from '../store/slices/handleBlock_collection.slice'
 import { handleStreamsActions } from '../store/slices/handleBlock_streams.slice'
 import { handleGenreActions } from '../store/slices/handleGenre.slice'
@@ -19,7 +20,8 @@ const actions = {
 	...favoritesSliceActions,
 	...playlistMenuActions,
 	...creatingPlaylistSliceActions,
-	...handleStreamsActions
+	...handleStreamsActions,
+	...handleAuthorPageActions
 }
 
 export const useActions = () => {
