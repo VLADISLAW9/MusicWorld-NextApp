@@ -16,6 +16,6 @@ export async function getAllAuthors(): Promise<IAuthor[]> {
 export async function getCurrentAuthor(
 	id: string | string[]
 ): Promise<IAuthor[]> {
-	const response = await fetch(`http://localhost:3000/api/authors/${id}`)
+	const response = await fetch(`${API_URL}/authors/${id}`)
 	return await response.json()
 }

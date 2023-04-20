@@ -5,6 +5,6 @@ export interface IPlaylist {
 	name: string
 	tracks: IMusic[]
 	image?: string
-	author?: string
+	author?: any
 	BackgroundColor?: string
 }

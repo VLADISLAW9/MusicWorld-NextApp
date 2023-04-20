@@ -1,7 +1,6 @@
+import { authors } from '@/app/assets/data/authors'
 import { useActions } from '@/app/hooks/actions.hook'
-import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { IAuthor } from '@/app/types/IAuthor'
 import { IPlaylist } from '@/app/types/IPlaylist'
 import { CardMedia } from '@mui/material'
 import Link from 'next/link'
@@ -10,20 +9,24 @@ import { BiPause, BiPlay } from 'react-icons/bi'
 import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IAlbumProps {
-	author: IAuthor
 	album: IPlaylist
 }
 
-const AlbumItem: FC<IAlbumProps> = ({ album, author }) => {
+const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 	const [hover, setHover] = useState(false)
-	const [isFav, setIsFav] = useState(false)
+	const { addToFavAlbums, removeFromFavAlbums } = useActions()
+	const { favoritesAlbums } = useAppSelector(state => state.favouriteAlbums)
+	const [isFav, setIsFav] = useState(favoritesAlbums.includes(album))
 	const [isPlaying, setIsPlaying] = useState(false)
 	const { openPlaylistMenu } = useActions()
 	const { setActiveTrack, setActivePlaylist, playTrack, pauseTrack } =
 		useActions()
-	const { ref, isShow, setIsShow } = useOutside(false)
 	const { activePlaylistMenu } = useAppSelector(state => state.playlistMenu)
 	const { stateTrack, activePlaylist } = useAppSelector(state => state.player)
+	const author = authors.filter(a => a.name === album.author)[0]
+
+	
+
 
 	useEffect(() => {
 		if (activePlaylist) {
@@ -74,10 +77,6 @@ const AlbumItem: FC<IAlbumProps> = ({ album, author }) => {
 		})
 	}
 
-	const addToFav = () => {}
-
-	const removeFromFav = () => {}
-
 	return (
 		<li
 			onClick={openPlaylist}
@@ -96,16 +95,20 @@ const AlbumItem: FC<IAlbumProps> = ({ album, author }) => {
 			/>
 			<h1 className='mt-2 text-white'>{album.name}</h1>
 			<Link
-				href={`/author/${author._id}`}
+				href={`/author/${author?._id}`}
 				className='hover:text-white cursor-pointer text-sm text-white/40 font-light'
 			>
-				{album.author}
+				{author?.name}
 			</Link>
 			{hover && (
 				<ul className='absolute flex items-center top-[75px] left-[15px] gap-3'>
 					<li>
 						{!isFav ? (
 							<button
+								onClick={() => {
+									addToFavAlbums(album)
+									setIsFav(true)
+								}}
 								className='bg-stone-800/95 p-3 scale-90
 						rounded-full text-white/50 hover:text-white hover:scale-100 transition-all hover:bg-stone-800'
 							>
@@ -113,6 +116,10 @@ const AlbumItem: FC<IAlbumProps> = ({ album, author }) => {
 							</button>
 						) : (
 							<button
+								onClick={() => {
+									removeFromFavAlbums(album)
+									setIsFav(false)
+								}}
 								className='bg-stone-800/95 p-3 scale-90
 						rounded-full text-[#FFCC00] hover:text-[#FFCC00] hover:scale-100 transition-all hover:bg-stone-800'
 							>
@@ -122,11 +129,17 @@ const AlbumItem: FC<IAlbumProps> = ({ album, author }) => {
 					</li>
 					<li>
 						{!isPlaying ? (
-							<button className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'>
+							<button
+								onClick={play}
+								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
+							>
 								<BiPlay className='w-6 h-6 translate-x-0.5' />
 							</button>
 						) : (
-							<button className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'>
+							<button
+								onClick={stop}
+								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
+							>
 								<BiPause className='w-6 h-6 	' />
 							</button>
 						)}
