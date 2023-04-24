@@ -46,7 +46,7 @@ const MainBlock: FC<IAuthorProps> = ({ author }) => {
 			<div>
 				<HomeListHeader link={'Chart'} header={'Popular tracks'} />
 				<ul className='mt-5'>
-					{author.tracks.map((m, index: number) => (
+					{author.tracks.slice(0, 4).map((m, index: number) => (
 						<ChartItem key={m._id} track={m} hideCrown={true} index={index} />
 					))}
 				</ul>
@@ -54,7 +54,7 @@ const MainBlock: FC<IAuthorProps> = ({ author }) => {
 			<div className='mt-16'>
 				<HomeListHeader link={'Chart'} header={'Popular albums'} />
 				<ul className='mt-5 grid grid-cols-6 gap-8'>
-					{author.playlist?.map(a => (
+					{author.playlist?.slice(0, 11).map(a => (
 						<AlbumItem key={author._id} album={a} />
 					))}
 				</ul>
@@ -62,7 +62,7 @@ const MainBlock: FC<IAuthorProps> = ({ author }) => {
 			<div className='mt-16'>
 				<HomeListHeader link={'Chart'} header={'Simelar authors'} />
 				<ul className='mt-5 grid grid-cols-6 gap-8'>
-					{similarAuthors?.map((a: IAuthor) => (
+					{similarAuthors?.slice(0, 11).map((a: IAuthor) => (
 						<AuthorItem key={author._id} author={a} />
 					))}
 				</ul>

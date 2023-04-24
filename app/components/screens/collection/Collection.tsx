@@ -27,7 +27,7 @@ const Collection: FC<IMusicProps> = ({ music }) => {
 				{activeCollection === 'Tracks' && <Tracks />}
 				{activeCollection === 'Playlists' && <Playlists />}
 				{activeCollection === 'Story' && <Story />}
-				{activeCollection === 'Podcasts' && <AuthorsCollection />}
+				{activeCollection === 'Authors' && <AuthorsCollection />}
 			</div>
 		</Layout>
 	)

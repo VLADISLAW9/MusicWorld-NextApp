@@ -59,7 +59,7 @@ const CollectionMenu: FC = () => {
 				<li>
 					<button
 						onClick={() => {
-							handleCollection('Podcasts')
+							handleCollection('Authors')
 						}}
 						className={cn(
 							'z-20 font-semibold relative hover:text-[#FFCC00] transition-colors',
@@ -68,7 +68,7 @@ const CollectionMenu: FC = () => {
 								: 'text-white/50'
 						)}
 					>
-						Podcasts and books
+						Authors
 					</button>
 				</li>
 			</ul>

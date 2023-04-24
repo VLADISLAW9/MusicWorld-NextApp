@@ -1,6 +1,5 @@
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { getAllAuthors } from '@/app/services'
 import { IAuthor } from '@/app/types/IAuthor'
 import { IMusic } from '@/app/types/IMusic'
 import { CardMedia } from '@mui/material'
@@ -33,7 +32,7 @@ const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
 
 	const [state, setState] = useState(false)
 
-	const author_id = authors.filter(a => a.name === mus.author)[0]?._id
+	const author_id = authors?.filter(a => a.name === mus.author)[0]?._id
 
 	useEffect(() => {
 		setIsFav(favorites.includes(mus))

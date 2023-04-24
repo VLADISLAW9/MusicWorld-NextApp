@@ -135,9 +135,11 @@ const AuthorsPage: FC<IAuthorProps> = ({ author }) => {
 				</div>
 				<AuthorMenu />
 				{activeAuthorPageBlock === 'Main' && <MainBlock author={author} />}
-				{activeAuthorPageBlock === 'Tracks' && <TracksBlock />}
-				{activeAuthorPageBlock === 'Albums' && <AlbumsBlock />}
-				{activeAuthorPageBlock === 'Similar' && <SimilarBlock />}
+				{activeAuthorPageBlock === 'Tracks' && <TracksBlock author={author} />}
+				{activeAuthorPageBlock === 'Albums' && <AlbumsBlock author={author} />}
+				{activeAuthorPageBlock === 'Similar' && (
+					<SimilarBlock author={author} />
+				)}
 			</div>
 		</Layout>
 	)
