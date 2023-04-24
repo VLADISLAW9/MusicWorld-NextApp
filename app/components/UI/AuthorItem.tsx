@@ -1,82 +1,77 @@
-import { authors } from '@/app/assets/data/authors'
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { IPlaylist } from '@/app/types/IPlaylist'
+import { IAuthor } from '@/app/types/IAuthor'
 import { CardMedia } from '@mui/material'
 import Link from 'next/link'
 import { FC, useEffect, useState } from 'react'
 import { BiPause, BiPlay } from 'react-icons/bi'
 import { BsHeart, BsShare } from 'react-icons/bs'
 
-interface IAlbumProps {
-	album: IPlaylist
+interface IAuthorItemProps {
+	author: IAuthor
 }
 
-const AlbumItem: FC<IAlbumProps> = ({ album }) => {
+const AuthorItem: FC<IAuthorItemProps> = ({ author }) => {
 	const [hover, setHover] = useState(false)
-	const { addToFavAlbums, removeFromFavAlbums } = useActions()
-	const { favoritesAlbums } = useAppSelector(state => state.favouriteAlbums)
-	const [isFav, setIsFav] = useState(favoritesAlbums.includes(album))
-	const [isPlaying, setIsPlaying] = useState(false)
-	const { openPlaylistMenu } = useActions()
-	const { setActiveTrack, setActivePlaylist, playTrack, pauseTrack } =
-		useActions()
-	const { activePlaylistMenu } = useAppSelector(state => state.playlistMenu)
+	const {
+		playTrack,
+		pauseTrack,
+		setActiveTrack,
+		addAuthorToFav,
+		removeAuthorToFav,
+		setActivePlaylist
+	} = useActions()
 	const { stateTrack, activePlaylist } = useAppSelector(state => state.player)
-	const author = authors.filter(a => a.name === album.author)[0]
+
+	const { favoritesAuthors } = useAppSelector(state => state.favoritesAuthor)
+
+	const [isFav, setIsFav] = useState(favoritesAuthors.includes(author))
+
+	const [playAuthorState, setPlayAuthorState] = useState(false)
 
 	useEffect(() => {
 		if (activePlaylist) {
-			if (album._id === activePlaylist._id) {
+			if (author._id == activePlaylist._id) {
 				if (!stateTrack) {
-					setIsPlaying(false)
+					setPlayAuthorState(false)
 				} else {
-					setIsPlaying(true)
+					setPlayAuthorState(true)
 				}
 			} else {
-				setIsPlaying(false)
+				setPlayAuthorState(false)
 			}
 		} else {
-			setIsPlaying(false)
+			setPlayAuthorState(false)
 		}
 	}, [activePlaylist, stateTrack])
 
 	const play = () => {
-		if (album.tracks.length > 0) {
+		if (author.tracks.length > 0) {
 			if (activePlaylist) {
-				if (album._id === activePlaylist._id) {
+				if (author._id === activePlaylist._id) {
 					playTrack()
-					setIsPlaying(true)
+					setPlayAuthorState(true)
 				} else {
-					setActiveTrack(album.tracks[0])
+					setActiveTrack(author.tracks[0])
 					playTrack()
-					setActivePlaylist(album)
+					setActivePlaylist(author)
 				}
 			} else {
-				setActiveTrack(album.tracks[0])
-				setActivePlaylist(album)
+				setActiveTrack(author.tracks[0])
+				setActivePlaylist(author)
 				playTrack()
-				setIsPlaying(true)
+				setPlayAuthorState(true)
 			}
 		}
 	}
 
 	const stop = () => {
 		pauseTrack()
-		setIsPlaying(false)
-	}
-
-	const openPlaylist = () => {
-		openPlaylistMenu({
-			_id: album._id,
-			name: album.name,
-			tracks: album.tracks
-		})
+		setPlayAuthorState(false)
 	}
 
 	return (
 		<li
-			onClick={openPlaylist}
 			onMouseEnter={() => setHover(true)}
 			onMouseLeave={() => {
 				setHover(false)
@@ -85,17 +80,16 @@ const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 		>
 			<CardMedia
 				component='img'
-				className={hover ? 'opacity-70 ' : ''}
+				className={hover ? 'opacity-70 rounded-full ' : 'rounded-full'}
 				sx={{ height: 200, width: 200 }}
-				image={album.image}
+				image={author.avatar}
 				alt='Paella dish'
 			/>
-			<h1 className='mt-2 text-white'>{album.name}</h1>
 			<Link
-				href={`/author/${author?._id}`}
-				className='hover:text-white cursor-pointer text-sm text-white/40 font-light'
+				href={`/author/${author._id}`}
+				className='hover:text-white/40 cursor-pointer text-white transition-all'
 			>
-				{author?.name}
+				<h1 className='mt-2 text-center'>{author.name}</h1>
 			</Link>
 			{hover && (
 				<ul className='absolute flex items-center top-[75px] left-[15px] gap-3'>
@@ -103,7 +97,7 @@ const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 						{!isFav ? (
 							<button
 								onClick={() => {
-									addToFavAlbums(album)
+									addAuthorToFav(author)
 									setIsFav(true)
 								}}
 								className='bg-stone-800/95 p-3 scale-90
@@ -114,7 +108,7 @@ const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 						) : (
 							<button
 								onClick={() => {
-									removeFromFavAlbums(album)
+									removeAuthorToFav(author)
 									setIsFav(false)
 								}}
 								className='bg-stone-800/95 p-3 scale-90
@@ -125,7 +119,7 @@ const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 						)}
 					</li>
 					<li>
-						{!isPlaying ? (
+						{!playAuthorState ? (
 							<button
 								onClick={play}
 								className='bg-[#FFCC00]/95 p-3  scale-110 rounded-full text-stone-800/90 hover:bg-[#FFCC00] hover:text-stone-800 hover:scale-125 transition-all'
@@ -152,4 +146,4 @@ const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 	)
 }
 
-export default AlbumItem
+export default AuthorItem

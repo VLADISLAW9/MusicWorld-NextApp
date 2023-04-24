@@ -5,9 +5,9 @@ import { FC } from 'react'
 import Layout from '../../layout/Layout'
 import CollectionMenu from './menu/CollectionMenu'
 import Playlists from './playlists/Playlists'
-import Podcasts from './podcasts/Podcasts'
 import Story from './story/Story'
 
+import AuthorsCollection from './authors/AuthorsColllection'
 import Tracks from './tracks/Tracks'
 
 const Collection: FC<IMusicProps> = ({ music }) => {
@@ -27,7 +27,7 @@ const Collection: FC<IMusicProps> = ({ music }) => {
 				{activeCollection === 'Tracks' && <Tracks />}
 				{activeCollection === 'Playlists' && <Playlists />}
 				{activeCollection === 'Story' && <Story />}
-				{activeCollection === 'Podcasts' && <Podcasts />}
+				{activeCollection === 'Podcasts' && <AuthorsCollection />}
 			</div>
 		</Layout>
 	)

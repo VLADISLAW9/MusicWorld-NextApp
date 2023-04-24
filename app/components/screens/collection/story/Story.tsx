@@ -13,7 +13,7 @@ const Story: FC = () => {
 			>
 				Story
 			</h1>
-			<ul className='mt-5'>
+			<ul className='mt-5 '>
 				{listened.map((mus, index) => (
 					<ChartItem key={mus._id} hideCrown={true} track={mus} index={index} />
 				))}

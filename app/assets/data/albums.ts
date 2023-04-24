@@ -7,7 +7,7 @@ function getTrackForAlbum(album: string) {
 
 export const albums: IPlaylist[] = [
 	{
-		_id: 1,
+		_id: 100,
 		name: 'Байполар',
 		tracks: getTrackForAlbum('Байполар'),
 		author: 'Три дня дождя',

@@ -1,8 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { setupListeners } from '@reduxjs/toolkit/dist/query'
 import { creatingPlaylistSliceReducer } from './slices/creatingPlaylistsArray'
-import { favoritesSliceReducer } from './slices/favourite.slice'
 import { favoritesAlbumsSliceReducer } from './slices/favouriteAlbum.slice'
+import { favoritesAuthorsReducer } from './slices/favouriteAuthors.slice'
+import { favoritesSliceReducer } from './slices/favouriteMusic.slice'
 import { handleBlockReducer } from './slices/handleBlock.slice'
 import { handleAuthorPageReducer } from './slices/handleBlock_author.slice copy'
 import { handleCollectionReducer } from './slices/handleBlock_collection.slice'
@@ -24,7 +25,8 @@ export const store = configureStore({
 		creatingPlaylist: creatingPlaylistSliceReducer,
 		handleStreams: handleStreamsReducer,
 		handleAuthorPageBlock: handleAuthorPageReducer,
-		favouriteAlbums: favoritesAlbumsSliceReducer
+		favouriteAlbums: favoritesAlbumsSliceReducer,
+		favoritesAuthor: favoritesAuthorsReducer
 	},
 	middleware: getDefaultMiddleware => getDefaultMiddleware()
 })
