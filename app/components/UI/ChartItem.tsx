@@ -1,7 +1,9 @@
+import { authors } from '@/app/assets/data/authors'
 import { useActions } from '@/app/hooks/actions.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { IMusic } from '@/app/types/IMusic'
 import { CardMedia } from '@mui/material'
+import Link from 'next/dist/client/link'
 import { FC, useEffect, useState } from 'react'
 import { BiHeart } from 'react-icons/bi'
 import { BsPauseFill, BsPlayFill } from 'react-icons/bs'
@@ -20,6 +22,8 @@ const ChartItem: FC<IChartItem> = ({ track, index, hideCrown }) => {
 	const { activeTrack, stateTrack } = useAppSelector(state => state.player)
 	const [state, setState] = useState(false)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
+
+	const author_id = authors?.filter(a => a.name === track.author)[0]?._id
 
 	const [isFav, setIsFav] = useState(false)
 
@@ -91,7 +95,12 @@ const ChartItem: FC<IChartItem> = ({ track, index, hideCrown }) => {
 
 					<div className='ml-3 w-44'>
 						<h1 className='text-white text-base'>{track.name}</h1>
-						<p className='text-white/50 text-sm font-light'>{track.author}</p>
+						<Link
+							href={`/author/${author_id}`}
+							className='hover:text-white transition-all cursor-pointer  text-white/40 text-sm font-light'
+						>
+							{track.author}
+						</Link>
 					</div>
 
 					<div className={!hover ? 'opacity-0' : ''}>

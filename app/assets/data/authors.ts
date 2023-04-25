@@ -41,7 +41,8 @@ export const authors: IAuthor[] = [
 	{
 		_id: 4,
 		name: 'Kordhell',
-		avatar: '',
+		avatar:
+			'//avatars.yandex.net/get-music-content/6214856/8d7d0433.a.22899046-1/200x200',
 		playlist: getAuthorAlbums('Kordhell'),
 		tracks: getAuthorTrack('Kordhell'),
 		genre: ['house']

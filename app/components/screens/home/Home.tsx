@@ -3,6 +3,7 @@ import { IMusicProps } from '@/pages'
 import { FC } from 'react'
 import Layout from '../../layout/Layout'
 import All from './blocks/all/All'
+import Authors from './blocks/authors/Authors'
 import Chart from './blocks/chart/Chart'
 import Mood from './blocks/mood/Mood'
 import NewReleases from './blocks/releases/NewReleases'
@@ -22,6 +23,9 @@ const Home: FC<IMusicProps> = ({ music, authors }) => {
 				)}
 				{activeBlock === 'Chart' && <Chart authors={authors} music={music} />}
 				{activeBlock === 'Mood' && <Mood music={music} authors={authors} />}
+				{activeBlock === 'Authors' && (
+					<Authors music={music} authors={authors} />
+				)}
 			</div>
 		</Layout>
 	)

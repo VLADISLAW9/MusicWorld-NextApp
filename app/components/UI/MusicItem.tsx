@@ -97,7 +97,7 @@ const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
 			<h1 className='mt-2 text-white'>{mus.name}</h1>
 			<Link
 				href={`/author/${author_id}`}
-				className='hover:text-white cursor-pointer text-sm text-white/40 font-light'
+				className='hover:text-white transition-all cursor-pointer text-sm text-white/40 font-light'
 			>
 				{mus.author}
 			</Link>

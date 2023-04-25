@@ -69,6 +69,21 @@ const HomeMenu: FC = () => {
 						Moods and Genres
 					</button>
 				</li>
+				<li>
+					<button
+						onClick={() => {
+							handleBlock('Authors')
+						}}
+						className={cn(
+							'z-20 font-semibold relative hover:text-[#FFCC00] transition-colors',
+							activeBlock === 'Authors'
+								? 'text-white blockActive'
+								: 'text-white/50'
+						)}
+					>
+						Authors
+					</button>
+				</li>
 			</ul>
 		</div>
 	)

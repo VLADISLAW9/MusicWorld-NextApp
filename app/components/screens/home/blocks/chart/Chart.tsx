@@ -10,7 +10,7 @@ const AllChart: FC<IMusicProps> = ({ music }) => {
 			<h1 className='text-white text-xl font-semibold'>
 				Tracks popular on Music World right now
 			</h1>
-			<ul className='mt-8 grid grid-rows-5 grid-flow-row gap-y-2 gap-x-10  '>
+			<ul className='mt-8 grid grid-rows-5 grid-flow-row gap-y-2 gap-x-10 '>
 				{musicChart?.map((track, index) => (
 					<ChartItem index={index} key={track._id} track={track} />
 				))}
