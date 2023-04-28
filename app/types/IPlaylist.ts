@@ -7,4 +7,5 @@ export interface IPlaylist {
 	image?: string
 	author?: any
 	BackgroundColor?: string
+	release?: number
 }

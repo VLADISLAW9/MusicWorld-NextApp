@@ -5,7 +5,7 @@ import { IMusicProps } from '@/pages'
 import { FC } from 'react'
 
 const AllNewReleases: FC<IMusicProps> = ({ music, authors }) => {
-	const musicNewRelease = music?.filter((i: IMusic) => i.release === 2023)
+	const musicNewRelease = music.filter((i: IMusic) => i.release === 2023)
 	const data = musicNewRelease?.slice(0, 6)
 	return (
 		<div className='relative mt-28'>

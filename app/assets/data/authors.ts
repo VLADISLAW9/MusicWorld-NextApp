@@ -20,6 +20,7 @@ export const authors: IAuthor[] = [
 		tracks: getAuthorTrack('Три дня дождя'),
 		genre: ['rock', 'metal']
 	},
+
 	{
 		_id: 2,
 		name: 'CMH',
@@ -154,5 +155,14 @@ export const authors: IAuthor[] = [
 			'https://avatars.yandex.net/get-music-content/4387391/27669cb7.p.10602327/200x200',
 		tracks: getAuthorTrack('UncleFlexxx'),
 		genre: ['rap', 'pop']
+	},
+	{
+		_id: 17,
+		name: 'Big Baby Tape',
+		playlist: getAuthorAlbums('Big Baby Tape'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/2355477/818d8ba3.p.5701276/200x200',
+		tracks: getAuthorTrack('Big Baby Tape'),
+		genre: ['rap']
 	}
 ]

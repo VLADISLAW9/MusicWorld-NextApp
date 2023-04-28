@@ -6,13 +6,27 @@ interface IMoodItemProps {
 	genre: string
 	Icon: IconType
 	color: string
+	makeHandleBlock?: boolean
 }
 
-const MoodItem: FC<IMoodItemProps> = ({ genre, Icon, color }) => {
-	const { handleGenre } = useActions()
+const MoodItem: FC<IMoodItemProps> = ({
+	genre,
+	Icon,
+	color,
+	makeHandleBlock
+}) => {
+	const { handleGenre, handleBlock } = useActions()
+
+	const setGenres = () => {
+		handleGenre(genre)
+		if (makeHandleBlock) {
+			handleBlock('Mood')
+			window.scrollTo(0, 0)
+		}
+	}
 
 	return (
-		<li onClick={() => handleGenre(genre)} className='cursor-pointer'>
+		<li onClick={setGenres} className='cursor-pointer'>
 			<div
 				style={{ backgroundColor: color }}
 				className='w-[200px] h-[200px] flex flex-col justify-center items-center text-white'
