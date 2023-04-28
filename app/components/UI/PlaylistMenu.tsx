@@ -71,7 +71,7 @@ const PlaylistMenu: FC = () => {
 								/>
 						  ))
 						: activePlaylistMenu?.tracks.map((i, index) => (
-								<PlaylistMenuItem  key={i._id} i={i} index={index} />
+								<PlaylistMenuItem key={i._id} i={i} index={index} />
 						  ))}
 					{}
 				</ul>

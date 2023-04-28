@@ -28,7 +28,7 @@ const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
 	)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
 
-	const [isFav, setIsFav] = useState(false)
+	const [isFav, setIsFav] = useState(favorites.includes(mus))
 
 	const [state, setState] = useState(false)
 

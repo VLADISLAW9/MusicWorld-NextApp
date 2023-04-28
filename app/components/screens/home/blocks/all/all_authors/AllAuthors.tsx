@@ -7,7 +7,7 @@ const AllAuthors: FC<IMusicProps> = ({ authors }) => {
 	return (
 		<div className='relative mt-28'>
 			<HomeListHeader
-				link={'NewReleases'}
+				link={'Authors'}
 				header={'Authors'}
 				title={'All famous authors of various hits'}
 			/>
