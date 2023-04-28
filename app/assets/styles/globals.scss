@@ -188,7 +188,8 @@ body {
 	width: 30%;
 	right: 14.5rem;
 	top: 6rem;
-	height: calc(100% - 225px);
+	/* height: calc(100% - 225px); */
+	height: 100%;
 	position: fixed;
 	z-index: 30;
 }
@@ -290,10 +291,9 @@ body::-webkit-scrollbar-track {
 }
 
 body::-webkit-scrollbar-thumb {
-	background-color: #3A3A3A; /* цвет бегунка */
+	background-color: #3a3a3a; /* цвет бегунка */
 	border-radius: 20px; /* округлось бегунка */
 	@apply shadow-xl;
-	/* border: 3px solid orange; */
 }
 
 html {
