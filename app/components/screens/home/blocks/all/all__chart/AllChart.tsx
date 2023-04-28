@@ -11,6 +11,7 @@ const AllChart: FC<IMusicProps> = ({ music }) => {
 	return (
 		<div className='relative mt-28'>
 			<HomeListHeader
+				pageName={'HomePage'}
 				link={'Chart'}
 				header={'Chart'}
 				title={'Tracks popular on Music World right now'}

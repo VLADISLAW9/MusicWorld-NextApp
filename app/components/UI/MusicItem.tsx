@@ -10,7 +10,7 @@ import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IMusicItem {
 	mus: IMusic
-	authors: IAuthor[]
+	authors?: IAuthor[]
 }
 
 const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {

@@ -7,15 +7,36 @@ interface IHomeListHeader {
 	header: string
 	title?: string
 	link: string
+	pageName: string
 }
 
-const HomeListHeader: FC<IHomeListHeader> = ({ header, title, link }) => {
+const HomeListHeader: FC<IHomeListHeader> = ({
+	header,
+	title,
+	link,
+	pageName
+}) => {
 	const [hover, setHover] = useState(false)
-	const { handleBlock } = useActions()
+	const { handleBlock, handleAuthorPageBlock } = useActions()
 
 	const handleClick = () => {
-		handleBlock(link)
-		window.scrollTo(0, 0)
+		// if (pageName === 'AuthorsPage') {
+		// 	handleAuthorPageBlock(link)
+		// 	window.scrollTo(0, 0)
+		// } else {
+		// 	handleBlock(link)
+		// 	window.scrollTo(0, 0)
+		// }
+		switch (pageName) {
+			case 'AuthorsPage':
+				handleAuthorPageBlock(link)
+				window.scrollTo(0, 0)
+				break
+			case 'HomePage':
+				handleBlock(link)
+				window.scrollTo(0, 0)
+				break
+		}
 	}
 	return (
 		<div
