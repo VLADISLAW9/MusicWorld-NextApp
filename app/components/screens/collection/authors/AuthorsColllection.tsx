@@ -13,11 +13,15 @@ font-semibold'
 			>
 				Authors
 			</h1>
-			<ul className='mt-5 grid grid-cols-6 gap-8'>
-				{favoritesAuthors.map(author => (
-					<AuthorItem key={author._id} author={author} />
-				))}
-			</ul>
+			{favoritesAuthors.length === 0 ? (
+				<h1 className='text-2xl text-white/50 mt-10 text-center'>There is no authors in your collection</h1>
+			) : (
+				<ul className='mt-5 grid grid-cols-6 gap-8'>
+					{favoritesAuthors.map(author => (
+						<AuthorItem key={author._id} author={author} />
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }

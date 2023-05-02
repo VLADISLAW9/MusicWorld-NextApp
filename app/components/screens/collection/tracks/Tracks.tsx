@@ -13,16 +13,22 @@ const Tracks: FC = () => {
 			>
 				Tracks
 			</h1>
-			<ul className='mt-5'>
-				<li className='flex ml-[10px] mb-5'>
-					<div className='text-white/50 d-track__start-column'>#</div>
-					<div className='text-white/50 d-track__name'>Name</div>
-					<div className='text-white/50 d-track__artist mr-[5px]'>Author</div>
-				</li>
-				{favorites.map((mus, index) => (
-					<CollectionTrackItem index={index} mus={mus} key={mus._id} />
-				))}
-			</ul>
+			{favorites.length === 0 ? (
+				<h1 className='text-white/50 text-2xl text-center mt-10'>
+					There is no music in your collection
+				</h1>
+			) : (
+				<ul className='mt-5'>
+					<li className='flex ml-[10px] mb-5'>
+						<div className='text-white/50 d-track__start-column'>#</div>
+						<div className='text-white/50 d-track__name'>Name</div>
+						<div className='text-white/50 d-track__artist mr-[5px]'>Author</div>
+					</li>
+					{favorites.map((mus, index) => (
+						<CollectionTrackItem index={index} mus={mus} key={mus._id} />
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }

@@ -46,7 +46,7 @@ export const authors: IAuthor[] = [
 			'//avatars.yandex.net/get-music-content/6214856/8d7d0433.a.22899046-1/200x200',
 		playlist: getAuthorAlbums('Kordhell'),
 		tracks: getAuthorTrack('Kordhell'),
-		genre: ['house']
+		genre: ['house', 'edm']
 	},
 	{
 		_id: 5,
@@ -55,7 +55,7 @@ export const authors: IAuthor[] = [
 			'https://avatars.yandex.net/get-music-content/7852894/60c51f1f.p.8887635/200x200',
 		playlist: getAuthorAlbums('DVRST'),
 		tracks: getAuthorTrack('DVRST'),
-		genre: ['house']
+		genre: ['house', 'edm']
 	},
 	{
 		_id: 6,
@@ -91,7 +91,7 @@ export const authors: IAuthor[] = [
 			'https://avatars.yandex.net/get-music-content/7852894/0b476754.p.12495648/200x200',
 		playlist: getAuthorAlbums('FindMyName'),
 		tracks: getAuthorTrack('FindMyName'),
-		genre: ['house']
+		genre: ['house', 'edm']
 	},
 	{
 		_id: 10,
@@ -109,7 +109,7 @@ export const authors: IAuthor[] = [
 			'https://avatars.yandex.net/get-music-content/98892/6e840c57.p.5472000/200x200',
 		playlist: getAuthorAlbums('KYIVSTONERKYIVSTONER'),
 		tracks: getAuthorTrack('KYIVSTONERKYIVSTONER'),
-		genre: ['pop']
+		genre: ['pop', 'rap']
 	},
 	{
 		_id: 12,

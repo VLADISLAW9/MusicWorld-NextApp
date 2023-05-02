@@ -11,11 +11,15 @@ const AlbumsBlock: FC<IAuthorProps> = ({ author }) => {
 		<div>
 			{statePlaylistMenu && <PlaylistMenu />}
 			<h1 className='text-white text-2xl font-semibold'>Albums</h1>
-			<ul className='mt-5 grid grid-cols-6 gap-8'>
-				{author.playlist?.map(a => (
-					<AlbumItem key={author._id} album={a} />
-				))}
-			</ul>
+			{author.playlist.length === 0 ? (
+				<h1 className='text-white/50 text-2xl text-center mt-7'>The artist has no albums</h1>
+			) : (
+				<ul className='mt-5 grid grid-cols-6 gap-8'>
+					{author.playlist?.map(a => (
+						<AlbumItem key={author._id} album={a} />
+					))}
+				</ul>
+			)}
 		</div>
 	)
 }

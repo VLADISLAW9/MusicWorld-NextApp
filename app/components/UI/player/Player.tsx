@@ -11,6 +11,8 @@ import { BiHeart, BiPause, BiPlay, BiPlus, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
 import AlertWindows from '../AlertWindows'
 import TrackProgress from './TrackProgress'
+import { authors } from '@/app/assets/data/authors'
+import Link from 'next/link'
 
 let audio: any
 
@@ -33,6 +35,14 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 	const [isFav, setIsFav] = useState(false)
 
 	const { listened } = useAppSelector(state => state.listened)
+
+	const author_id_track = authors.filter(a => a.name === activeTrack?.author)[0]
+		?._id
+	const author_id_wave = authors.filter(a => a.name === activeMyWave?.author)[0]
+		?._id
+	const author_id_playlist = authors.filter(
+		a => a.name === activePlaylist?.author
+	)[0]?._id
 
 	const {
 		isShow: isShowVol,
@@ -348,9 +358,12 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 								<h1 className='text-base font-semibold text-white'>
 									{activeTrack?.name}
 								</h1>
-								<p className='text-sm font-light text-white'>
+								<Link
+									className='text-sm font-light text-white'
+									href={`/author/${author_id_track}`}
+								>
 									{activeTrack?.author}
-								</p>
+								</Link>
 							</div>
 							<div className='ml-5 flex'>
 								{!isFav ? (
@@ -495,9 +508,12 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 								<h1 className='text-base font-semibold text-white'>
 									{activeMyWave.name}
 								</h1>
-								<p className='text-sm font-light text-white'>
-									{activeMyWave.author}
-								</p>
+								<Link
+									className='text-sm font-light text-white'
+									href={`/author/${author_id_track}`}
+								>
+									{activeMyWave?.author}
+								</Link>
 							</div>
 							<div className='ml-5 flex'>
 								{!isFav ? (
@@ -648,9 +664,12 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 								<h1 className='text-base font-semibold text-white'>
 									{activeTrack?.name}
 								</h1>
-								<p className='text-sm font-light text-white'>
+								<Link
+									className='text-sm font-light text-white'
+									href={`/author/${author_id_track}`}
+								>
 									{activeTrack?.author}
-								</p>
+								</Link>
 							</div>
 							<div className='ml-5 flex'>
 								{!isFav ? (

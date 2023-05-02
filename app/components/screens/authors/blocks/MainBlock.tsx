@@ -61,11 +61,15 @@ const MainBlock: FC<IAuthorProps> = ({ author }) => {
 					link={'Albums'}
 					header={'Popular albums'}
 				/>
-				<ul className='mt-5 grid grid-cols-6 gap-8'>
-					{author.playlist?.slice(0, 11).map(a => (
-						<AlbumItem key={author._id} album={a} />
-					))}
-				</ul>
+				{author.playlist.length === 0 ? (
+					<h1 className='text-xl text-center text-white/50 mt-7'>The artist has no albums</h1>
+				) : (
+					<ul className='mt-5 grid grid-cols-6 gap-8'>
+						{author.playlist?.slice(0, 11).map(a => (
+							<AlbumItem key={author._id} album={a} />
+						))}
+					</ul>
+				)}
 			</div>
 			<div className='mt-16'>
 				<HomeListHeader
