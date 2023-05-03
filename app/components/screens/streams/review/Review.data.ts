@@ -17,28 +17,28 @@ const foreignArray = music
 
 export const review_items: IReviewItem[] = [
 	{
-		_id: 1,
+		_id: 101,
 		name: 'My wave',
 		backgroundColor: '255,102,101',
 		tracks: myWaveArray,
 		icon: BsSoundwave
 	},
 	{
-		_id: 2,
+		_id: 202,
 		name: 'New sound',
 		backgroundColor: '255,147,68',
 		tracks: newSoundArray,
 		icon: AiOutlineSound
 	},
 	{
-		_id: 3,
+		_id: 303,
 		name: 'Hits of the past',
 		backgroundColor: '165,201,75',
 		tracks: hitsOfThePastArray,
 		icon: GiBackwardTime
 	},
 	{
-		_id: 4,
+		_id: 404,
 		name: 'Around the world',
 		backgroundColor: '255,176,207',
 		tracks: foreignArray,

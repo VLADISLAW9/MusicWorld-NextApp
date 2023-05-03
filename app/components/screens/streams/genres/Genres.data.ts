@@ -16,42 +16,42 @@ const metal = music.filter(i => i.genre.includes('metal'))
 
 export const genres_items: IReviewItem[] = [
 	{
-		_id: 11,
+		_id: 1111,
 		name: 'Pop',
 		backgroundColor: '157,101,169',
 		tracks: pop,
 		icon: CiLollipop
 	},
 	{
-		_id: 22,
+		_id: 2222,
 		name: 'Hip-hop',
 		backgroundColor: '196,79,105',
 		tracks: rap,
 		icon: GiBilledCap
 	},
 	{
-		_id: 33,
+		_id: 3333,
 		name: 'Rock',
 		backgroundColor: '55,121,188',
 		tracks: rock,
 		icon: GiGuitar
 	},
 	{
-		_id: 44,
+		_id: 4444,
 		name: 'House',
 		backgroundColor: '96,79,105',
 		tracks: house,
 		icon: BsHeadphones
 	},
 	{
-		_id: 55,
+		_id: 5555,
 		name: 'EDM',
 		backgroundColor: '228,60,49',
 		tracks: edm,
 		icon: MdAlbum
 	},
 	{
-		_id: 66,
+		_id: 6666,
 		name: 'Metal',
 		backgroundColor: '255,187,90',
 		tracks: metal,
