@@ -35,8 +35,8 @@ const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
 	const author_id = authors?.filter(a => a.name === mus.author)[0]?._id
 
 	useEffect(() => {
-		setIsFav(favorites.includes(mus))
-	}, [favorites])
+		setIsFav(favorites.filter(i => i._id === mus._id).length > 0)
+	})
 
 	useEffect(() => {
 		if (activeTrack) {

@@ -28,6 +28,10 @@ const ChartItem: FC<IChartItem> = ({ track, index, hideCrown }) => {
 	const [isFav, setIsFav] = useState(favorites.includes(track))
 
 	useEffect(() => {
+		setIsFav(favorites.filter(i => i._id === track._id).length > 0)
+	})
+
+	useEffect(() => {
 		if (activeTrack) {
 			if (track.name === activeTrack.name) {
 				if (!stateTrack) {

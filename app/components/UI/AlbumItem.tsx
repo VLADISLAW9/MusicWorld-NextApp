@@ -26,6 +26,10 @@ const AlbumItem: FC<IAlbumProps> = ({ album }) => {
 	const author = authors.filter(a => a.name === album.author)[0]
 
 	useEffect(() => {
+		setIsFav(favoritesAlbums.filter(i => i._id === album._id).length > 0)
+	})
+
+	useEffect(() => {
 		if (activePlaylist) {
 			if (album._id === activePlaylist._id) {
 				if (!stateTrack) {

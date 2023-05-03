@@ -33,6 +33,10 @@ const AuthorsPage: FC<IAuthorProps> = ({ author }) => {
 	} = useActions()
 
 	useEffect(() => {
+		setIsFav(favoritesAuthors.filter(i => i._id === author._id).length > 0)
+	})
+
+	useEffect(() => {
 		if (activePlaylist) {
 			if (author._id == activePlaylist._id) {
 				if (!stateTrack) {

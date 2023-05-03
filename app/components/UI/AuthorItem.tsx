@@ -30,6 +30,10 @@ const AuthorItem: FC<IAuthorItemProps> = ({ author }) => {
 	const [playAuthorState, setPlayAuthorState] = useState(false)
 
 	useEffect(() => {
+		setIsFav(favoritesAuthors.filter(i => i._id === author._id).length > 0)
+	})
+
+	useEffect(() => {
 		if (activePlaylist) {
 			if (author._id == activePlaylist._id) {
 				if (!stateTrack) {
