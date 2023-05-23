@@ -12,8 +12,8 @@ const All: FC<IMusicProps> = ({ music, authors }) => {
 		<div>
 			<MyWave authors={authors} music={music} />
 			<AllNewReleases authors={authors} music={music} />
-			<AllChart music={music} />
-			<AllAuthors authors={authors} />
+			<AllChart authors={authors} music={music} />
+			<AllAuthors music={music} authors={authors} />
 			<Listened />
 			<AllMood />
 		</div>

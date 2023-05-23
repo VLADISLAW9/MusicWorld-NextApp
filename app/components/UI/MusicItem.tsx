@@ -10,7 +10,7 @@ import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IMusicItem {
 	mus: IMusic
-	authors?: IAuthor[]
+	authors: IAuthor[]
 }
 
 const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
@@ -32,7 +32,7 @@ const MusicItem: FC<IMusicItem> = ({ mus, authors }) => {
 
 	const [state, setState] = useState(false)
 
-	const author_id = authors?.filter(a => a.name === mus.author)[0]?._id
+	const author_id = authors.filter(a => a.name === mus.author)[0]._id
 
 	useEffect(() => {
 		setIsFav(favorites.filter(i => i._id === mus._id).length > 0)

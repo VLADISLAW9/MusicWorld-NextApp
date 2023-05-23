@@ -1,5 +1,6 @@
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { IMusicProps } from '@/pages'
+import { IAuthor } from '@/app/types/IAuthor'
+import { IMusic } from '@/app/types/IMusic'
 import { FC } from 'react'
 import Layout from '../../layout/Layout'
 import All from './blocks/all/All'
@@ -9,7 +10,12 @@ import Mood from './blocks/mood/Mood'
 import NewReleases from './blocks/releases/NewReleases'
 import HomeMenu from './menu/HomeMenu'
 
-const Home: FC<IMusicProps> = ({ music, authors }) => {
+interface IHomeProps {
+	music: IMusic[]
+	authors: IAuthor[]
+}
+
+const Home: FC<IHomeProps> = ({ music, authors }) => {
 	const { activeBlock } = useAppSelector(state => state.handleBlock)
 
 	return (
@@ -22,7 +28,9 @@ const Home: FC<IMusicProps> = ({ music, authors }) => {
 					<NewReleases authors={authors} music={music} />
 				)}
 				{activeBlock === 'Chart' && <Chart authors={authors} music={music} />}
-				{activeBlock === 'Mood' && <Mood music={music} authors={authors} />}
+				{activeBlock === 'Mood' && (
+					<Mood authors={authors} music={music} />
+				)}
 				{activeBlock === 'Authors' && (
 					<Authors music={music} authors={authors} />
 				)}

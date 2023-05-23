@@ -1,5 +1,5 @@
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { IMusicProps } from '@/pages'
+import { IMusic } from '@/app/types/IMusic'
 import { FC } from 'react'
 import Layout from '../../layout/Layout'
 import Genres from './genres/Genres'
@@ -7,7 +7,11 @@ import StreamsMenu from './menu/StreamsMenu'
 import Mood from './mood/Mood'
 import Review from './review/Review'
 
-const Streams: FC<IMusicProps> = () => {
+interface IStreamsProps {
+	music: IMusic[]
+}
+
+const Streams: FC<IStreamsProps> = () => {
 	const { activeStream } = useAppSelector(state => state.handleStreams)
 
 	return (

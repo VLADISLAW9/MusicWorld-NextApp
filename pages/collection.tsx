@@ -3,12 +3,12 @@ import { getAllMusic } from '@/app/services'
 import { IMusic } from '@/app/types/IMusic'
 import { NextPage } from 'next'
 
-export interface IMusicProps {
+interface ICollectionProps {
 	music: IMusic[]
 }
 
-const CollectionPage: NextPage<IMusicProps> = ({ music }) => {
-	return <Collection music={music} />
+const CollectionPage: NextPage<ICollectionProps> = ({ music }) => {
+	return <Collection />
 }
 
 export async function getStaticProps() {

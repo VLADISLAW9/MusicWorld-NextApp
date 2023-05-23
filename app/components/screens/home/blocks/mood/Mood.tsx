@@ -1,7 +1,8 @@
 import MoodItem from '@/app/components/UI/MoodItem'
 import MusicItem from '@/app/components/UI/MusicItem'
 import { useAppSelector } from '@/app/hooks/selector.hook'
-import { IMusicProps } from '@/pages'
+import { IAuthor } from '@/app/types/IAuthor'
+import { IMusic } from '@/app/types/IMusic'
 import { FC } from 'react'
 import { BsHeadphones } from 'react-icons/bs'
 import { CiLollipop } from 'react-icons/ci'
@@ -9,15 +10,22 @@ import { GiGuitar, GiMicrophone } from 'react-icons/gi'
 import { MdAlbum } from 'react-icons/md'
 import { TbHandRock } from 'react-icons/tb'
 
-const Mood: FC<IMusicProps> = ({ music }) => {
+interface IMoodProps {
+	music: IMusic[]
+	authors: IAuthor[]
+}
+
+const Mood: FC<IMoodProps> = ({ music, authors }) => {
 	const { activeGenre } = useAppSelector(state => state.handleGenre)
 
-	const rap = music?.filter(i => i.genre.includes('rap'))
-	const pop = music?.filter(i => i.genre.includes('pop'))
-	const house = music?.filter(i => i.genre.includes('house'))
-	const rock = music?.filter(i => i.genre.includes('rock'))
-	const edm = music?.filter(i => i.genre.includes('rap'))
-	const metal = music?.filter(i => i.genre.includes('metal'))
+	const rap = music.filter(i => i.genre.includes('rap'))
+	const pop = music.filter(i => i.genre.includes('pop'))
+	const house = music.filter(i => i.genre.includes('house'))
+	const rock = music.filter(i => i.genre.includes('rock'))
+	const edm = music.filter(i => i.genre.includes('rap'))
+	const metal = music.filter(i => i.genre.includes('metal'))
+
+	console.log(rap)
 
 	return (
 		<div>
@@ -36,17 +44,17 @@ const Mood: FC<IMusicProps> = ({ music }) => {
 			{activeGenre ? (
 				<ul className='text-center grid grid-cols-6 mt-8 gap-8'>
 					{activeGenre === 'Rap' ? (
-						rap?.map(i => <MusicItem key={i._id} mus={i} />)
+						rap.map(i => <MusicItem key={i._id} authors={authors} mus={i} />)
 					) : activeGenre === 'Pop' ? (
-						pop?.map(i => <MusicItem key={i._id} mus={i} />)
+						pop.map(i => <MusicItem authors={authors} key={i._id} mus={i} />)
 					) : activeGenre === 'House' ? (
-						house?.map(i => <MusicItem key={i._id} mus={i} />)
+						house.map(i => <MusicItem authors={authors} key={i._id} mus={i} />)
 					) : activeGenre === 'Rock' ? (
-						rock?.map(i => <MusicItem key={i._id} mus={i} />)
+						rock.map(i => <MusicItem authors={authors} key={i._id} mus={i} />)
 					) : activeGenre === 'EDM' ? (
-						edm?.map(i => <MusicItem key={i._id} mus={i} />)
+						edm.map(i => <MusicItem authors={authors} key={i._id} mus={i} />)
 					) : activeGenre === 'Metal' ? (
-						metal?.map(i => <MusicItem key={i._id} mus={i} />)
+						metal.map(i => <MusicItem authors={authors} key={i._id} mus={i} />)
 					) : (
 						<></>
 					)}

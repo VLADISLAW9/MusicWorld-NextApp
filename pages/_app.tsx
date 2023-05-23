@@ -1,3 +1,4 @@
+import { authors } from '@/app/assets/data/authors'
 import { music } from '@/app/assets/data/music'
 import Player from '@/app/components/UI/player/Player'
 import { getAllMusic } from '@/app/services'
@@ -10,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
 	return (
 		<Provider store={store}>
 			<Component {...pageProps} />
-			<Player music={music} />
+			<Player authors={authors} music={music} />
 		</Provider>
 	)
 }

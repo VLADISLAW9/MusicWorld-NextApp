@@ -1,4 +1,3 @@
-import { authors } from '@/app/assets/data/authors'
 import { useActions } from '@/app/hooks/actions.hook'
 import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
@@ -16,7 +15,7 @@ import TrackProgress from './TrackProgress'
 
 let audio: any
 
-const Player: NextPage<IMusicProps> = ({ music }) => {
+const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 	const {
 		stateTrack,
 		stateMyWave,

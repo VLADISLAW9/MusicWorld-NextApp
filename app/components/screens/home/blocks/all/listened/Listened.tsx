@@ -1,3 +1,4 @@
+import { authors } from '@/app/assets/data/authors'
 import MusicItem from '@/app/components/UI/MusicItem'
 import { useAppSelector } from '@/app/hooks/selector.hook'
 import { FC } from 'react'
@@ -25,20 +26,20 @@ const Listened: FC = () => {
 						{listened.length >= 6 ? (
 							<Slider className='' {...settings}>
 								{listened.map(music => (
-									<MusicItem key={music._id} mus={music} />
+									<MusicItem authors={authors} key={music._id} mus={music} />
 								))}
 							</Slider>
 						) : (
 							<ul className='flex gap-[2rem]'>
 								{listened.map(music => (
-									<MusicItem key={music._id} mus={music} />
+									<MusicItem authors={authors} key={music._id} mus={music} />
 								))}
 							</ul>
 						)}
 					</>
 				) : (
 					<h1 className='text-white/50 text-xl opacity-70 flex justify-center mt-14 mb-32'>
-						You didn't listen anything
+						You no listen anything
 					</h1>
 				)}
 			</div>

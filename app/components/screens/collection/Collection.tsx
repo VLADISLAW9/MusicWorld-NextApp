@@ -9,8 +9,10 @@ import Story from './story/Story'
 
 import AuthorsCollection from './authors/AuthorsColllection'
 import Tracks from './tracks/Tracks'
+import { IMusic } from '@/app/types/IMusic'
 
-const Collection: FC<IMusicProps> = ({ music }) => {
+
+const Collection: FC= () => {
 	const { activeCollection } = useAppSelector(state => state.handleCollection)
 
 	return (

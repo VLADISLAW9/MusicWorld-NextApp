@@ -5,8 +5,8 @@ import { IMusic } from '@/app/types/IMusic'
 import { NextPage } from 'next'
 
 export interface IMusicProps {
-	music?: IMusic[]
-	authors?: IAuthor[]
+	music: IMusic[]
+	authors: IAuthor[]
 }
 
 const HomePage: NextPage<IMusicProps> = ({ music, authors }) => {
