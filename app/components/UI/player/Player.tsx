@@ -359,13 +359,13 @@ const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 							</div>
 							<div className='ml-5'>
 								<h1 className='text-base font-semibold text-white'>
-									{activeTrack?.name}
+									{activeTrack.name}
 								</h1>
 								<Link
 									className='text-sm font-light text-white'
 									href={`/author/${author_id_track}`}
 								>
-									{activeTrack?.author}
+									{activeTrack.author}
 								</Link>
 							</div>
 							<div className='ml-5 flex'>
@@ -511,7 +511,7 @@ const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 								</h1>
 								<Link
 									className='text-sm font-light text-white'
-									href={`/author/${author_id_track}`}
+									href={`/author/${author_id_wave}`}
 								>
 									{activeMyWave?.author}
 								</Link>
@@ -667,7 +667,7 @@ const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 								</h1>
 								<Link
 									className='text-sm font-light text-white'
-									href={`/author/${author_id_track}`}
+									href={`/author/${author_id_playlist}`}
 								>
 									{activeTrack?.author}
 								</Link>
