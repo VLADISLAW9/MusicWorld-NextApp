@@ -28,8 +28,10 @@ const MyWave: FC<IMusicProps> = ({ music }) => {
 			playMyWave()
 			setState(true)
 		} else {
-			let number = Math.floor(Math.random() * music.length)
-			setActiveMyWave(music[number])
+			if (music) {
+				let number = Math.floor(Math.random() * music.length)
+				setActiveMyWave(music[number])
+			}
 
 			playMyWave()
 			setState(true)
