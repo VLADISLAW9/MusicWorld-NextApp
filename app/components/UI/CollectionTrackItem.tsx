@@ -13,7 +13,13 @@ const CollectionTrackItem: FC<CollectionTrackProps> = ({ mus, index }) => {
 	const [isHover, setIsHover] = useState(false)
 	const { activeTrack, stateTrack } = useAppSelector(state => state.player)
 	const [isPlay, setIsPlay] = useState(false)
-	const { setActiveTrack, playTrack, pauseTrack } = useActions()
+	const { setActiveTrack, playTrack, pauseTrack, removeToFav } = useActions()
+	const { favorites } = useAppSelector(state => state.favoritesSlice)
+	const [isFav, setIsFav] = useState(favorites.includes(mus))
+
+	useEffect(() => {
+		setIsFav(favorites.filter(i => i._id === mus._id).length > 0)
+	})
 
 	useEffect(() => {
 		if (activeTrack) {
@@ -100,7 +106,12 @@ const CollectionTrackItem: FC<CollectionTrackProps> = ({ mus, index }) => {
 				<div className='flex'>
 					<div className='text-white d-track__name'>{mus.author}</div>
 					<div className='d-track__moreinfo'>
-						<button>
+						<button
+							onClick={() => {
+								removeToFav(mus)
+								setIsFav(false)
+							}}
+						>
 							<BsFillHeartFill
 								className={
 									isHover

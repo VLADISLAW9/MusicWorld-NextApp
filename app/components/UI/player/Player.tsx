@@ -1,3 +1,4 @@
+import { authors } from '@/app/assets/data/authors'
 import { useActions } from '@/app/hooks/actions.hook'
 import { useOutside } from '@/app/hooks/outside.hook'
 import { useAppSelector } from '@/app/hooks/selector.hook'
@@ -6,13 +7,12 @@ import { IMusicProps } from '@/pages'
 import { CardMedia, Slider } from '@mui/material'
 import cn from 'clsx'
 import { NextPage } from 'next'
+import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { BiHeart, BiPause, BiPlay, BiPlus, BiSkipNext } from 'react-icons/bi'
 import { BsVolumeUpFill } from 'react-icons/bs'
 import AlertWindows from '../AlertWindows'
 import TrackProgress from './TrackProgress'
-import { authors } from '@/app/assets/data/authors'
-import Link from 'next/link'
 
 let audio: any
 
@@ -219,7 +219,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 	}
 
 	const prevMusicInPlaylist = () => {
-		if (activePlaylist && activePlaylist.tracks.length > 0) {
+		if (activeTrack && activePlaylist && activePlaylist.tracks.length > 0) {
 			const index = activePlaylist.tracks.indexOf(activeTrack)
 			if (index > 0) {
 				const prevTrack = activePlaylist.tracks[index - 1]
@@ -228,7 +228,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		}
 	}
 	const nextMusicInPlaylist = () => {
-		if (activePlaylist && activePlaylist.tracks.length > 0) {
+		if (activeTrack && activePlaylist && activePlaylist.tracks.length > 0) {
 			const index = activePlaylist.tracks.indexOf(activeTrack)
 			if (index < activePlaylist.tracks.length - 1) {
 				const nextTrack = activePlaylist.tracks[index + 1]
@@ -242,11 +242,13 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 	)
 
 	const nextMusic = () => {
-		let number = Math.floor(Math.random() * music.length)
-		if (activeMyWave) {
-			setActiveMyWave(music[number])
-		} else if (activeTrack) {
-			setActiveTrack(music[number])
+		if (music) {
+			let number = Math.floor(Math.random() * music.length)
+			if (activeMyWave) {
+				setActiveMyWave(music[number])
+			} else if (activeTrack) {
+				setActiveTrack(music[number])
+			}
 		}
 	}
 
@@ -417,10 +419,10 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 														onClick={() => {
 															setIsShowPlaylists(false)
 															if (
+																activeTrack &&
 																!creatingPlaylistArray
-																	.filter(el => el._id === playlist._id)
-																	.map(el => el.tracks)
-																	.includes(activeTrack)
+																	.filter(el => el._id === playlist._id)[0]
+																	.tracks.includes(activeTrack)
 															) {
 																handleAlertWindows()
 																addTrackToPlaylist({ playlist, activeTrack })
@@ -429,9 +431,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 														key={playlist._id}
 														className='px-2 py-1 cursor-pointer hover:bg-[#393939]'
 													>
-														<h1 className='text-white ml-5'>
-															{playlist.name} {index + 1}
-														</h1>
+														<h1 className='text-white ml-5'>{playlist.name}</h1>
 													</li>
 												))}
 											</ul>
@@ -676,7 +676,9 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									<>
 										<button
 											onClick={() => {
-												addToFav(activeTrack)
+												if (activeTrack) {
+													addToFav(activeTrack)
+												}
 											}}
 										>
 											<BiHeart className='w-6 h-6 mt-1.5 text-[#757575] hover:text-white transition-colors ' />
@@ -686,7 +688,9 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 									<>
 										<button
 											onClick={() => {
-												removeToFav(activeTrack)
+												if (activeTrack) {
+													removeToFav(activeTrack)
+												}
 											}}
 										>
 											<BiHeart className='w-6 h-6 mt-1.5 text-[#FFCC00] hover:text-[#FFCC00]/80 transition-colors ' />
@@ -715,7 +719,10 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 												<li
 													onClick={() => {
 														setIsShowPlaylists(false)
-														if (!favorites.includes(activeTrack)) {
+														if (
+															activeTrack &&
+															!favorites.includes(activeTrack)
+														) {
 															handleAlertWindows()
 															addToFav(activeTrack)
 														}
@@ -729,6 +736,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 														onClick={() => {
 															setIsShowPlaylists(false)
 															if (
+																activeTrack &&
 																!creatingPlaylistArray
 																	.filter(el => el._id === playlist._id)[0]
 																	.tracks.includes(activeTrack)

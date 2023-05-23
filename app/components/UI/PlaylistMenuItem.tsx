@@ -28,7 +28,11 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 	const [musicState, setMusicState] = useState(false)
 	const { activePlaylistMenu } = useAppSelector(state => state.playlistMenu)
 	const { favorites } = useAppSelector(state => state.favoritesSlice)
-	const [isFav, setIsFav] = useState(false)
+	const [isFav, setIsFav] = useState(favorites.includes(i))
+
+	useEffect(() => {
+		setIsFav(favorites.filter(i => i._id === i._id).length > 0)
+	})
 
 	useEffect(() => {
 		if (activeTrack) {

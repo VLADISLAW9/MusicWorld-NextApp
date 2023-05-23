@@ -6,7 +6,6 @@ interface TrackProgressProps {
 	right: number
 	onChange: (e: any) => void
 	absolute: boolean
-	orientation: string
 }
 
 const TrackProgress: FC<TrackProgressProps> = ({
