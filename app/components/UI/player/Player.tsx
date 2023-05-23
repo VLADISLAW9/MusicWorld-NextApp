@@ -68,6 +68,8 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		state => state.creatingPlaylist
 	)
 
+ // hello
+
 	const {
 		pauseMyWave,
 		playMyWave,
