@@ -4,9 +4,9 @@ import { FC } from 'react'
 import ChartItem from '../../../../../UI/ChartItem'
 
 const AllChart: FC<IMusicProps> = ({ music }) => {
-	const musicChart = music.sort((a, b) => b.rating - a.rating)
+	const musicChart = music?.sort((a, b) => b.rating - a.rating)
 
-	const data = musicChart.slice(0, 10)
+	const data = musicChart?.slice(0, 10)
 
 	return (
 		<div className='relative mt-28'>

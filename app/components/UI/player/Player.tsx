@@ -68,7 +68,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 		state => state.creatingPlaylist
 	)
 
- // hello
+	// hello
 
 	const {
 		pauseMyWave,
@@ -459,7 +459,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 										min={0}
 										max={100}
 										value={volume}
-										onChange={changeVolume}
+										// onChange={changeVolume}
 									/>
 								</div>
 							)}
@@ -615,7 +615,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 										min={0}
 										max={100}
 										value={volume}
-										onChange={changeVolume}
+										// onChange={changeVolume}
 									/>
 								</div>
 							)}
@@ -779,7 +779,7 @@ const Player: NextPage<IMusicProps> = ({ music }) => {
 										min={0}
 										max={100}
 										value={volume}
-										onChange={changeVolume}
+										// onChange={changeVolume}
 									/>
 								</div>
 							)}
