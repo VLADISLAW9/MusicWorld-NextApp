@@ -77,12 +77,12 @@ export const authors: IAuthor[] = [
 	},
 	{
 		_id: 8,
-		name: 'нексюша',
+		name: 'MACAN',
 		avatar:
-			'https://avatars.yandex.net/get-music-content/6296749/c8be5106.p.9588923/200x200',
-		playlist: getAuthorAlbums('нексюша'),
-		tracks: getAuthorTrack('нексюша'),
-		genre: ['pop']
+			'https://avatars.yandex.net/get-music-content/8871869/5c688b36.p.3892062/200x200',
+		playlist: getAuthorAlbums('MACAN'),
+		tracks: getAuthorTrack('MACAN'),
+		genre: ['rap']
 	},
 	{
 		_id: 9,
@@ -163,6 +163,69 @@ export const authors: IAuthor[] = [
 		avatar:
 			'https://avatars.yandex.net/get-music-content/2355477/818d8ba3.p.5701276/200x200',
 		tracks: getAuthorTrack('Big Baby Tape'),
+		genre: ['rap']
+	},
+	{
+		_id: 18,
+		name: 'INSTASAMKA',
+		playlist: getAuthorAlbums('INSTASAMKA'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/9784575/5c0b94de.p.7461723/200x200',
+		tracks: getAuthorTrack('INSTASAMKA'),
+		genre: ['rap']
+	},
+	{
+		_id: 19,
+		name: 'Король и Шут',
+		playlist: getAuthorAlbums('Король и Шут'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/95061/1d46a945.p.41052/200x200',
+		tracks: getAuthorTrack('Король и Шут'),
+		genre: ['pop']
+	},
+	{
+		_id: 20,
+		name: 'GAYAZOV$ BROTHER$',
+		playlist: getAuthorAlbums('GAYAZOV$ BROTHER$'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/5559490/cca7ee9c.p.6229247/200x200',
+		tracks: getAuthorTrack('GAYAZOV$ BROTHER$'),
+		genre: ['pop', 'rap']
+	},
+	{
+		_id: 21,
+		name: 'Miyagi & Эндшпиль',
+		playlist: getAuthorAlbums('Miyagi & Эндшпиль'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/7548376/e247b650.p.4611844/200x200',
+		tracks: getAuthorTrack('Miyagi & Эндшпиль'),
+		genre: ['pop', 'rap']
+	},
+	{
+		_id: 22,
+		name: 'Miyagi & Andy Panda',
+		playlist: getAuthorAlbums('Miyagi & Andy Panda'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/4477012/f76465d9.p.6774682/200x200',
+		tracks: getAuthorTrack('Miyagi & Andy Panda'),
+		genre: ['pop', 'rap']
+	},
+	{
+		_id: 23,
+		name: 'kizaru',
+		playlist: getAuthorAlbums('kizaru'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/2808981/6cb2a174.p.3879764/200x200',
+		tracks: getAuthorTrack('kizaru'),
+		genre: ['rap']
+	},
+	{
+		_id: 23,
+		name: 'xxxmanera',
+		playlist: getAuthorAlbums('xxxmanera'),
+		avatar:
+			'https://avatars.yandex.net/get-music-content/9784575/80cb3c36.p.8548866/200x200',
+		tracks: getAuthorTrack('xxxmanera'),
 		genre: ['rap']
 	}
 ]
