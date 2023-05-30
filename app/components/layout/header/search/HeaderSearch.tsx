@@ -1,6 +1,7 @@
 import { albums } from '@/app/assets/data/albums'
 import { authors } from '@/app/assets/data/authors'
 import { music } from '@/app/assets/data/music'
+import AlbumItem from '@/app/components/UI/AlbumItem'
 import AuthorItem from '@/app/components/UI/AuthorItem'
 import ChartItem from '@/app/components/UI/ChartItem'
 import { useOutside } from '@/app/hooks/outside.hook'
@@ -58,10 +59,13 @@ const HeaderSearch: FC = () => {
 				searchQuery &&
 				(filteredAlbums.length || filteredAuthors.length || filteredMusic) >
 					0 && (
-					<div className='bg-[#181818] absolute top-[23px] p-4 left-8 border border-[#8C8C8C] '>
+					<div className='bg-[#181818] h-[700px] overflow-auto absolute top-[23px] p-4 left-8 border border-[#8C8C8C] '>
 						<div className='mb-5'>
+							<h1 className='text-white/50 mb-3'>Authors</h1>
 							{filteredAuthors.map(author => (
-								<AuthorItem key={author._id} author={author} />
+								<div key={author._id} className='mb-3'>
+									<AuthorItem mini={true} author={author} />
+								</div>
 							))}
 						</div>
 						<div className='mb-5'>
@@ -76,11 +80,15 @@ const HeaderSearch: FC = () => {
 							))}
 						</div>
 						<div>
+							<h1 className='text-white/50 mb-3'>Albums</h1>
 							{filteredAlbums.map(album => (
 								<div key={album._id}>
-									{album.name} - {album.author}
+									<AlbumItem mini={true} album={album} />
 								</div>
-							))}
+							))}{' '}
+							{filteredAlbums.length === 0 && (
+								<h1 className='text-[#525252]'>Not a albums</h1>
+							)}
 						</div>
 					</div>
 				)}

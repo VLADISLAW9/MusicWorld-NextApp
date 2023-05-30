@@ -10,9 +10,10 @@ import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IAlbumProps {
 	album: IPlaylist
+	mini: boolean
 }
 
-const AlbumItem: FC<IAlbumProps> = ({ album }) => {
+const AlbumItem: FC<IAlbumProps> = ({ album, mini }) => {
 	const [hover, setHover] = useState(false)
 	const { addToFavAlbums, removeFromFavAlbums } = useActions()
 	const { favoritesAlbums } = useAppSelector(state => state.favouriteAlbums)

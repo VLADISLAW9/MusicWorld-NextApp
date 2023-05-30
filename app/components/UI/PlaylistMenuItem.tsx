@@ -122,7 +122,7 @@ const PlaylistMenuItem: FC<IPlaylistMenuItem> = ({ index, i, favPlaylist }) => {
 					)}
 
 					{i.author ? (
-						<div className=''>
+						<div className='absolute top-0.5 right-10'>
 							{!isFav ? (
 								<button
 									onClick={() => {

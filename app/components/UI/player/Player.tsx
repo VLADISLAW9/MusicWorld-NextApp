@@ -458,7 +458,7 @@ const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 										min={0}
 										max={100}
 										value={volume}
-										// onChange={changeVolume}
+										onChange={changeVolume}
 									/>
 								</div>
 							)}
@@ -614,7 +614,7 @@ const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 										min={0}
 										max={100}
 										value={volume}
-										// onChange={changeVolume}
+										onChange={changeVolume}
 									/>
 								</div>
 							)}
@@ -778,7 +778,7 @@ const Player: NextPage<IMusicProps> = ({ music, authors }) => {
 										min={0}
 										max={100}
 										value={volume}
-										// onChange={changeVolume}
+										onChange={changeVolume}
 									/>
 								</div>
 							)}

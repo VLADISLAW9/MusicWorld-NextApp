@@ -9,9 +9,10 @@ import { BsHeart, BsShare } from 'react-icons/bs'
 
 interface IAuthorItemProps {
 	author: IAuthor
+	mini?: boolean
 }
 
-const AuthorItem: FC<IAuthorItemProps> = ({ author }) => {
+const AuthorItem: FC<IAuthorItemProps> = ({ author, mini }) => {
 	const [hover, setHover] = useState(false)
 	const {
 		playTrack,
@@ -80,12 +81,16 @@ const AuthorItem: FC<IAuthorItemProps> = ({ author }) => {
 			onMouseLeave={() => {
 				setHover(false)
 			}}
-			className=' hover:cursor-pointer relative list-none'
+			className={
+				mini
+					? 'hover:cursor-pointer relative flex items-center list-none gap-3'
+					: 'hover:cursor-pointer relative list-none'
+			}
 		>
 			<CardMedia
 				component='img'
-				className={hover ? 'opacity-70 rounded-full ' : 'rounded-full'}
-				sx={{ height: 200, width: 200 }}
+				className={(hover && !mini) ? 'opacity-70 rounded-full ' : 'rounded-full'}
+				sx={mini ? { height: 55, width: 55 } : { height: 200, width: 200 }}
 				image={author.avatar}
 				alt='Paella dish'
 			/>
@@ -95,7 +100,7 @@ const AuthorItem: FC<IAuthorItemProps> = ({ author }) => {
 			>
 				<h1 className='mt-2 text-center'>{author.name}</h1>
 			</Link>
-			{hover && (
+			{(hover && !mini) && (
 				<ul className='absolute flex items-center top-[75px] left-[15px] gap-3'>
 					<li>
 						{!isFav ? (
